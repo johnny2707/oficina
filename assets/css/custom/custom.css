@@ -1,0 +1,254 @@
+/* ++++ CORE ++++ */
+    :root,
+    [data-bs-theme=light],
+    [data-bs-theme=dark] {
+        --tblr-primary: #CD5C08 !important;
+        --tblr-primary-rgb: 205, 92, 8 !important;
+        --tblr-white: #FAFAFA !important;
+    }
+
+    tr:last-child th:first-child {
+        border-top-left-radius: 8px;
+    }
+    
+    tr:last-child th:last-child {
+        border-top-right-radius: 8px;
+    }
+
+    .form-help-webmovel {
+        margin: 0px 2px;
+        display: inline-flex;
+        padding: 11px;
+        font-weight: var(--tblr-font-weight-bold);
+        align-items: center;
+        justify-content: center;
+        height: 1.125rem;
+        font-size: .75rem;
+        color: var(--tblr-muted);
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background: var(--tblr-gray-100);
+        border-radius: 9px;
+        transition: background-color .3s,color .3s;
+    }
+    .form-help-webmovel:hover, .form-help-webmovel[aria-describedby] {
+        color: #fff;
+        background: var(--tblr-primary);
+    }
+
+    .ti {
+        font-size: 16px !important;
+    }
+
+    .nav-item .ti {
+        font-size: 20px !important;
+    }
+
+    .pagination {
+        --tblr-pagination-focus-box-shadow: 0 0 0 0.25rem rgb(48, 159, 46 / 25%) !important;
+    }
+
+    .form-control:focus {
+        border-color: 0 0 0 0.25rem rgb(48, 159, 46 / 50%) !important;
+        box-shadow: 0 0 0 0.25rem rgb(48, 159, 46 / 25%) !important;
+    }
+
+    select, 
+    input[type="text"]:not([disabled]), 
+    input[type="email"]:not([disabled]), 
+    input[type="password"]:not([disabled]), 
+    input[type="number"]:not([disabled]), 
+    input[type="date"]:not([disabled]), 
+    input[type="time"]:not([disabled]), 
+    input[type="file"]:not([disabled]), 
+    input[type="tel"]:not([disabled]), 
+    input[type="url"]:not([disabled]), 
+    textarea, 
+    .form-select {
+        background-color: #f8f8f875 !important;
+    }
+
+    .btn-webmovel {
+        background-color: #078641 !important;
+    }
+
+    .btn-webmovel:hover {
+        background-color: #066933 !important;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.25rem !important;
+    }
+    
+    .border-primary {
+        border-color: #CD5C08 !important;
+    }
+    
+    .nav-item.active::after {
+        border: 0 solid #309F2E !important;
+        border-bottom-width: 2px !important;
+    }
+
+    .dropdown-item.active, .dropdown-item:active {
+        color: #309F2E;
+        text-decoration: none;
+        background-color: rgba(23, 51, 63, 0.06);
+    }
+
+    .nav-link:focus, .nav-link:hover {
+        color: #309F2E;
+        text-decoration: none;
+    }
+
+    .card-footer-webmovel {
+        border-top: none;
+    }
+
+    .changeInputType {
+        color: #268224 !important;
+        float: right !important;
+    }
+    
+    .changeInputType:hover {
+        cursor: pointer;
+        color: #268224 !important;
+    }
+
+    .button-txt-label {
+        color: #268224 !important;
+        float: right !important;
+    }
+    
+    .button-txt-label:hover {
+        cursor: pointer;
+        color: #268224 !important;
+    }
+
+    .modal-xlg {
+        --tblr-modal-width: 900px !important;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
+    }
+
+    .wrapword {
+        white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+        white-space: -webkit-pre-wrap;          /* Chrome & Safari */ 
+        white-space: -pre-wrap;                 /* Opera 4-6 */
+        white-space: -o-pre-wrap;               /* Opera 7 */
+        white-space: pre-wrap;                  /* CSS3 */
+        word-wrap: break-word;                  /* Internet Explorer 5.5+ */
+        word-break: break-all;
+        white-space: normal;
+    }
+
+    .change-variation-type {
+        color: #268224 !important;
+        float: right !important;
+    }
+    
+    .change-variation-type:hover {
+        cursor: pointer;
+        color: #268224 !important;
+    }
+
+    .add-new-variation-price {
+        color: #268224 !important;
+        float: right !important;
+    }
+    
+    .add-new-variation-price:hover {
+        cursor: pointer;
+        color: #268224 !important;
+    }
+    
+    .form-label, .card-title {
+        font-weight: 600 !important;
+    }
+/* ---- CORE ---- */
+
+/* ++++ LOAD SPINNER ++++ */
+#page-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 99999;
+}
+
+#page-loader img {
+    width: 100px; /* Ajusta o tamanho conforme necessário */
+    animation: bounce 0.6s infinite ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+}
+/* ---- LOAD SPINNER ---- */
+
+/* ++++ DATATABLES ++++ */
+
+table.dataTable {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    padding-top: 0px !important;
+}
+
+.dataTable thead th {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.dataTable tbody td {
+    padding: 0.3rem 1rem !important;
+}
+
+.dataTable > tbody {
+    border-color: lightgray !important;
+}
+
+.dataTable tbody td.td-input {
+    padding: 0px 5px !important;
+}
+/* ---- DATATABLES ---- */
+
+
+/* ++++ TOM SELECT ++++ */
+.form-select {
+    padding: 0 !important;
+}
+/* ---- TOM SELECT ---- */
+
+
+/* ++++ JQUERY UI ++++ */
+.ui-sortable-helper {
+    display: table;
+}
+/* ---- JQUERY UI ---- */
