@@ -87,7 +87,7 @@ class Auth extends BaseController
                         'id'          => $userData[0]['id'],
                         'name'        => $userData[0]['name'],
                         'role'        => $userData[0]['role'],
-                        // 'permissions' => json_decode($userData[0]['permissions']),
+                        'permissions' => json_decode($userData[0]['permissions']),
                     ]);
 
                     $this->res['popUpMessages'][] = 'Login efetuado com sucesso!';

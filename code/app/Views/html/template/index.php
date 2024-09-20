@@ -164,11 +164,11 @@
 							</a>
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
 								<?php if (in_array('USERS', $permissions) || in_array('ALL', $permissions)) : ?>
-									<a href="<?= base_url('users') ?>" class="dropdown-item <?= isset($subMenu) && $subMenu == 'USERS' ? 'active' : '' ?>">Utilizadores</a>
+									<a href="<?= base_url('clients') ?>" class="dropdown-item <?= isset($subMenu) && $subMenu == 'USERS' ? 'active' : '' ?>">Clients</a>
 									<div class="dropdown-divider"></div>
 								<?php endif; ?>
-								<a href="<?= base_url('users/myPassword') ?>" class="dropdown-item <?= isset($subMenu) && $subMenu == 'MY-PASSWORD' ? 'active' : '' ?>">Alterar password</a>
-								<a href="<?= base_url('auth/logout') ?>" class="dropdown-item">Terminar sessão</a>
+								<!-- <a href="<?= base_url('users/myPassword') ?>" class="dropdown-item <?= isset($subMenu) && $subMenu == 'MY-PASSWORD' ? 'active' : '' ?>">Alterar password</a> -->
+								<a href="<?= base_url('auth/logout') ?>" class="dropdown-item">Log out</a>
 							</div>
 						</div>
 					</div>

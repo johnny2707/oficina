@@ -32,9 +32,9 @@
                     </div>
                 </div>
 
-                <div class="contactForm">
+                <div>
                     <div class="card mb-3">
-                        <div class="card-body">
+                        <div class="card-body contactForm">
                             <h3>main contact</h3>
                             
                             <div class="mb-3">
@@ -59,7 +59,7 @@
 
                 <div>
                     <div class="card mb-3">
-                        <div class="card-body">
+                        <div class="card-body carForm">
                             <h3>car details</h3>
                             <div class="mb-3">
                                 <label class="form-label">vin</label>

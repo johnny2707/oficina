@@ -19,16 +19,14 @@ class Dashboard extends BaseController
     }
 
     public function index() {
-        return view('html/users/create');
-
-        // $this->data['title'] = "Dashboard";
-
-        // return view('html/dashboard/index', $this->data);
-    }
-
-    public function pda() {
         $this->data['title'] = "Dashboard";
 
-        return view('html/dashboard/pda/index', $this->data);
+        return view('html/dashboard/index', $this->data);
     }
+
+//     public function pda() {
+//         $this->data['title'] = "Dashboard";
+
+//         return view('html/dashboard/pda/index', $this->data);
+//     }
 }

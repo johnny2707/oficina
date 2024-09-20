@@ -12,20 +12,25 @@ $routes->get('/', 'Dashboard::index', ['filter' => 'authGuard']);
 // AUTHENTICATION
 
 $routes->group('auth', ['filter' => 'authValidation'], function($routes){
-    $routes->get('/auth',                                  'Auth::index');
-    $routes->post('/auth',                                 'Auth::login');
-    $routes->get('/auth/recoverPassword',                  'Auth::recoverPassword');
-    $routes->post('/auth/sendPasswordEmail',               'Auth::sendPasswordEmail');
-    $routes->get('/auth/changePassword/(:segment)',        'Auth::changePassword/$1');
-    $routes->get('/auth/emailSentConfirmation/(:segment)', 'Auth::emailSentConfirmation/$1');
-    $routes->post('/auth/updatePassword',                  'Auth::updatePassword');
+    $routes->get('/',                                  'Auth::index');
+    $routes->post('/',                                 'Auth::login');
+    $routes->get('/recoverPassword',                  'Auth::recoverPassword');
+    $routes->post('/sendPasswordEmail',               'Auth::sendPasswordEmail');
+    $routes->get('/changePassword/(:segment)',        'Auth::changePassword/$1');
+    $routes->get('/emailSentConfirmation/(:segment)', 'Auth::emailSentConfirmation/$1');
+    $routes->post('/updatePassword',                  'Auth::updatePassword');
 });
 
 $routes->get('/auth/logout',                           'Auth::logout', ['filter' => 'authGuard']);
 
-// Users |permissionsValidation:USERS,ALL
+//CLIENTS |permissionValidation:CLIENTS,ALL
 
-$routes->group("users", ['filter' => 'authGuard'], function($routes){
+$routes->get('/clients',  'Clients::index', ['filter' => 'authGuard']);
+$routes->post('/clients', 'Clients::createNewClient', ['filter' => 'authGuard']);
+
+//USERS
+
+$routes->group("users", ['filter' => 'authGuard|permissionsValidation:USERS,ALL'], function($routes){
     $routes->get('/',                   'Users::index');
     $routes->get('table',               'Users::populateUsersTable');
     $routes->get('create',              'Users::create');

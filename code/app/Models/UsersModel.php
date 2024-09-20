@@ -29,7 +29,8 @@ class UsersModel extends Model
     {
         $query = $this->db->table('tb_users')
                           ->select('*')
-                          ->where('email', $userEmail);
+                          ->join('tb_users_roles', 'tb_users_roles.id = tb_users.role_id')
+                          ->where('tb_users.email', $userEmail);
         
         return $query->get()->getResultArray();
     }

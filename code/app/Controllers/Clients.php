@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\ClientsModel;
+use App\Models\UsersModel;
 
 class Clients extends BaseController
 {
@@ -8,11 +9,13 @@ class Clients extends BaseController
     protected $clientsModel;
     protected $res;
     protected $data;
+    protected $usersModel;
 
     public function __construct()
     {
         $this->session = \Config\Services::session();
         $this->clientsModel = new ClientsModel;
+        $this->usersModel = new UsersModel;
 
         $this->res = [
             'error' => FALSE,
@@ -21,21 +24,25 @@ class Clients extends BaseController
         ];
 
         $this->data = [
-            'customJS' => ''
+            'customJS' => '<script src="'. base_url('assets/js/custom/clients.js?' . $_ENV['VERSION'] ).'"></script>'
         ];
     }
 
     public function index()
     {
+        $this->data['title'] = 'user creation';
+        $this->data['allRoles'] = $this->usersModel->getRoles();
 
+        return view('html/clients/clientCreation', $this->data);
     }
 
     public function createNewClient()
     {
         helper('uuid');
 
-        $clientName = $this->request->getPost('name');
-        $clientNif = $this->request->getPost('nif');
+        $clientInfo = $this->request->getPost('clientInfo');
+        $contactNum = $this->request->getPost('contactNum');
+        $carNum = $this->request->getPost('carNum');
 
         $validationRules = [
             'nif' => [
@@ -48,10 +55,14 @@ class Clients extends BaseController
             ],
         ];
 
-        $clientData = [
-            'id' => generateUUID(),
-            'nif' => $clientNif,
-            'name' => $clientName,
-        ];
+        $this->res['popUpMessages'][] = 'sucesso!';
+
+        return $this->response->setJSON($this->res);
+
+        // $clientData = [
+        //     'id' => generateUUID(),
+        //     'nif' => ,
+        //     'name' => ,
+        // ];
     }
 }
