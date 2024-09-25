@@ -149,7 +149,7 @@ $(document).ready(function(){
                         notyf.error(value);
                     });
                 } else {
-                    notyf.success(data.popUpMessages[0]);
+                    notyf.success(data.popUpMessages[0]);a
                 }
             },
             error: function(xhr, status, error){

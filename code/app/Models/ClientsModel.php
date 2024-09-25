@@ -35,6 +35,12 @@ class ClientsModel extends Model
 
     public function getClientData($clientId)
     {
+        $query = $this->db->table('tb_clients')
+                          ->select('*')
+                          ->join('tb_clients_contacts', 'tb_client.id = tb_clients_contacts.client_id')
+                          ->join('tb_clients_vehicles', 'tb_cients.id = tb_clients_vehicles.client_id')
+                          ->where('tb_clients.id', $clientId);
         
+        return $query->get()->getResultArray();
     }
 }

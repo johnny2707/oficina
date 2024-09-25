@@ -25,8 +25,10 @@ $routes->get('/auth/logout',                           'Auth::logout', ['filter'
 
 //CLIENTS |permissionValidation:CLIENTS,ALL
 
-$routes->get('/clients',  'Clients::index', ['filter' => 'authGuard']);
-$routes->post('/clients', 'Clients::createNewClient', ['filter' => 'authGuard']);
+$routes->group('clients', ['filter' => 'authGuard'], function($routes){
+    $routes->get('/',  'Clients::index');
+    $routes->post('/', 'Clients::createNewClient');
+});
 
 //USERS
 
