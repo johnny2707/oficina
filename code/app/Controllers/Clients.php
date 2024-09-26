@@ -38,11 +38,7 @@ class Clients extends BaseController
 
     public function createNewClient()
     {
-        helper('uuid');
-
         $clientInfo = $this->request->getPost('clientInfo');
-        $contactNum = $this->request->getPost('contactNum');
-        $carNum = $this->request->getPost('carNum');
 
         $validationRules = [
             'nif' => [
@@ -53,16 +49,11 @@ class Clients extends BaseController
                 'label' => 'name',
                 'rules' => 'required|max_length[255]'
             ],
+
         ];
 
         $this->res['popUpMessages'][] = 'sucesso!';
 
         return $this->response->setJSON($this->res);
-
-        // $clientData = [
-        //     'id' => generateUUID(),
-        //     'nif' => ,
-        //     'name' => ,
-        // ];
     }
 }

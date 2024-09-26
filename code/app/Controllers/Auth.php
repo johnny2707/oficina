@@ -3,6 +3,7 @@
 use App\Models\UsersModel;
 use CodeIgniter\Debug\Toolbar\Collectors\Views;
 use PhpOffice\PhpSpreadsheet\Calculation\Engineering\BitWise;
+use PhpParser\Node\Expr\Empty_;
 
 class Auth extends BaseController 
 {   
@@ -87,7 +88,7 @@ class Auth extends BaseController
                         'id'          => $userData[0]['id'],
                         'name'        => $userData[0]['name'],
                         'role'        => $userData[0]['role'],
-                        'permissions' => json_decode($userData[0]['permissions']),
+                        'permissions' => json_decode($userData[0]['permissions'], true),
                     ]);
 
                     $this->res['popUpMessages'][] = 'Login efetuado com sucesso!';

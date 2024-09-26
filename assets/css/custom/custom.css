@@ -142,7 +142,7 @@
 
     /* Firefox */
     input[type=number] {
-    -moz-appearance: textfield;
+        -moz-appearance: textfield;
     }
 
     .wrapword {
@@ -178,6 +178,10 @@
     
     .form-label, .card-title {
         font-weight: 600 !important;
+    }
+
+    .navbar-vertical, .navbar-expand-lg, .navbar-nav {
+        flex-grow: 0;
     }
 /* ---- CORE ---- */
 

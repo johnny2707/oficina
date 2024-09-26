@@ -33,7 +33,7 @@
                 </div>
 
                 <div>
-                    <div class="card mb-3">
+                    <div class="card mb-5">
                         <div class="card-body contactForm">
                             <h3>main contact</h3>
                             
@@ -52,12 +52,12 @@
                         </div>
                     </div>
 
-                    <div class="mb-5">
+                    <!-- <div class="mb-5">
                         <button type="button" class="btn btn-secondary w-100 addContact">add more +</button>
-                    </div>
+                    </div> -->
                 </div>
 
-                <div>
+                <!-- <div>
                     <div class="card mb-3">
                         <div class="card-body carForm">
                             <h3>car details</h3>
@@ -83,7 +83,7 @@
                     <div class="mb-5">
                         <button type="button" class="btn btn-secondary w-100 addCar">add more +</button>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="mb-5">
                     <button type="button" class="btn btn-primary w-100 createClient">submit</button>

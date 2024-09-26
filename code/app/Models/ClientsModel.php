@@ -15,9 +15,10 @@ class ClientsModel extends Model
         $this->db = \Config\Database::connect();
     }
 
-    public function createClient($clientData)
+    public function createClient($clientData, $contactInfo)
     {
         $this->db->table('tb_clients')->insert($clientData);
+        $this->db->table('tb_clients_contacts')->insert($contactInfo);
     }
 
     public function updateClient($clientData)
