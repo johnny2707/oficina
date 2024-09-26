@@ -19,9 +19,11 @@
                     if (in_array($arg, $userPermissions)) 
                     {
                         // array_push($flagPermissionsExists, TRUE);
-                        return redirect()->to(base_url());
+                        return;
                     }
                 }
+
+                return redirect()->to(base_url());
 
                 // if (!in_array(TRUE, $flagPermissionsExists)) 
                 // {

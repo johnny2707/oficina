@@ -35,7 +35,7 @@
 	<link href="<?= base_url('assets/css/custom/custom.css') ?>" rel="stylesheet"/>
 
 	<!-- Custom CSS -->
-	<?php #$customCSS ?>
+	<?= $customCSS ?>
 </head>
 <body>
 
@@ -44,7 +44,7 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
 			</button>
-			<h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+			<h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3 my-3">
 				<a href="<?= base_url() ?>" class="text-decoration-none">
 					<img src="<?= base_url('assets/img/logo.svg') ?>" width="110" height="32" alt="Oficina" class="navbar-brand-image">
 					Oficina
@@ -86,7 +86,7 @@
           	<div class="collapse navbar-collapse" id="sidebar-menu">
             	<ul class="navbar-nav pt-lg-3">
 					<li class="nav-item">
-						<a class="nav-link" href="./">
+						<a class="nav-link" href="<?= base_url() ?>">
 							<span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
 							</span>
@@ -104,27 +104,27 @@
 						</a>
 						<div class="dropdown-menu">
 							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMERS' ? 'active' : '' ?>" href="<?= base_url('customers')?>">Criação</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CREATION' ? 'active' : '' ?>" href="<?= base_url('clients/createClientPage') ?>">Criação</a>
+							<?php endif; ?>
+
+							<?php if (in_array('CUSTOMER UPDATE', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER UPDATE' ? 'active' : '' ?>" href="<?= base_url('clients/updateClientPage') ?>">Atualização</a>
 							<?php endif; ?>
 
 							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMERS' ? 'active' : '' ?>" href="<?= base_url('customers')?>">Atualização</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CONTACT' ? 'active' : '' ?>" href="<?= base_url('clients/addContactPage') ?>">Adicionar Contacto</a>
 							<?php endif; ?>
 
 							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMERS' ? 'active' : '' ?>" href="<?= base_url('customers')?>">Adicionar Contacto</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CAR' ? 'active' : '' ?>" href="<?= base_url('clients/addCarPage') ?>">Adicionar Carro</a>
+							<?php endif; ?>
+
+							<?php if (in_array('CUSTOMER LIST', $permissions) || in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER LIST' ? 'active' : '' ?>" href="<?= base_url('clients/listAllClients') ?>">Lista</a>
 							<?php endif; ?>
 
 							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMERS' ? 'active' : '' ?>" href="<?= base_url('customers')?>">Adicionar Carro</a>
-							<?php endif; ?>
-
-							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMERS' ? 'active' : '' ?>" href="<?= base_url('customers')?>">Lista</a>
-							<?php endif; ?>
-
-							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMERS' ? 'active' : '' ?>" href="<?= base_url('customers')?>">Outros Dados</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER OTHERS' ? 'active' : '' ?>" href="<?= base_url() ?>">Outros</a>
 							<?php endif; ?>
 						</div>
 					</li>
@@ -170,8 +170,9 @@
 	<!-- Custom JS -->
 	<script> 
 		const baseURL = "<?= base_url() ?>";
-		const dataTables_StateSave = "<?php #$_ENV['DATATABLES_STATESAVE'] ?>";
+		const dataTables_StateSave = "<?php //$_ENV['DATATABLES_STATESAVE'] ?>";
 	</script>
+
 	<?= $customJS ?>
 
 </body>

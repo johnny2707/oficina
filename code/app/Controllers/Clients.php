@@ -2,6 +2,7 @@
 
 use App\Models\ClientsModel;
 use App\Models\UsersModel;
+use PhpParser\Node\Expr\FuncCall;
 
 class Clients extends BaseController
 {
@@ -10,12 +11,15 @@ class Clients extends BaseController
     protected $res;
     protected $data;
     protected $usersModel;
+    protected $seeder;
 
     public function __construct()
     {
         $this->session = \Config\Services::session();
         $this->clientsModel = new ClientsModel;
         $this->usersModel = new UsersModel;
+
+        $this->seeder = \Config\Database::seeder();
 
         $this->res = [
             'error' => FALSE,
@@ -24,14 +28,23 @@ class Clients extends BaseController
         ];
 
         $this->data = [
+            'menu' => 'COSTUMERS',
+            'submenu' => 'INDEX',
+            'clientData' => array(),
+            'customCSS' => '',
             'customJS' => '<script src="'. base_url('assets/js/custom/clients.js?' . $_ENV['VERSION'] ).'"></script>'
         ];
     }
 
     public function index()
     {
-        $this->data['title'] = 'user creation';
-        $this->data['allRoles'] = $this->usersModel->getRoles();
+        
+    }
+
+    public function createClientLoadPage()
+    {
+        $this->data['title'] = 'client creation';
+        // $this->data['allRoles'] = $this->usersModel->getRoles();
 
         return view('html/clients/clientCreation', $this->data);
     }
@@ -55,5 +68,35 @@ class Clients extends BaseController
         $this->res['popUpMessages'][] = 'sucesso!';
 
         return $this->response->setJSON($this->res);
+    }
+
+    public function updateClientLoadPage()
+    {
+        $this->data['title'] = 'client update';
+
+        return view('html/clients/clientUpdate', $this->data);
+    }
+
+    public function updateClient()
+    {
+        $clientInfo = $this->request->getPost('clientInfo');
+
+        $this->res['popUpMessages'][] = 'sucesso!';
+
+        return $this->response->setJSON($this->res);
+    }
+
+    public function listAllClientsLoadPage()
+    {
+        $this->data['title'] = 'client list';
+
+        $this->data['clientData'] = $this->clientsModel->getAllClients();
+
+        return view('html/clients/clientsList', $this->data);
+    }
+
+    public function Seeder()
+    {
+        $this->seeder->call('ClientSeeder');
     }
 }

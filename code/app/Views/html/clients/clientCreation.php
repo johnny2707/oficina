@@ -35,7 +35,7 @@
                 <div>
                     <div class="card mb-5">
                         <div class="card-body contactForm">
-                            <h3>main contact</h3>
+                            <h3>default contact</h3>
                             
                             <div class="mb-3">
                                 <label class="form-label">description</label>

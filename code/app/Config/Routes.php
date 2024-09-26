@@ -12,23 +12,34 @@ $routes->get('/', 'Dashboard::index', ['filter' => 'authGuard']);
 // AUTHENTICATION
 
 $routes->group('auth', ['filter' => 'authValidation'], function($routes){
-    $routes->get('/',                                  'Auth::index');
-    $routes->post('/',                                 'Auth::login');
-    $routes->get('/recoverPassword',                  'Auth::recoverPassword');
-    $routes->post('/sendPasswordEmail',               'Auth::sendPasswordEmail');
-    $routes->get('/changePassword/(:segment)',        'Auth::changePassword/$1');
-    $routes->get('/emailSentConfirmation/(:segment)', 'Auth::emailSentConfirmation/$1');
-    $routes->post('/updatePassword',                  'Auth::updatePassword');
+    $routes->get('/',                                'Auth::index');
+    $routes->post('/',                               'Auth::login');
+    $routes->get('recoverPassword',                  'Auth::recoverPassword');
+    $routes->post('sendPasswordEmail',               'Auth::sendPasswordEmail');
+    $routes->get('changePassword/(:segment)',        'Auth::changePassword/$1');
+    $routes->get('emailSentConfirmation/(:segment)', 'Auth::emailSentConfirmation/$1');
+    $routes->post('updatePassword',                  'Auth::updatePassword');
 });
 
-$routes->get('/auth/logout',                           'Auth::logout', ['filter' => 'authGuard']);
+$routes->get('/auth/logout',                         'Auth::logout', ['filter' => 'authGuard']);
 
 //CLIENTS |permissionValidation:CLIENTS,ALL
 
-$routes->group('clients', ['filter' => 'authGuard'], function($routes){
-    $routes->get('/',  'Clients::index');
-    $routes->post('/', 'Clients::createNewClient');
+$routes->group('clients', ['filter' => 'authGuard|permissionsValidation:ALL'], function($routes){
+    $routes->get('/',                     'Clients::index');
+    $routes->get('createClientPage',      'Clients::createClientLoadPage');
+    $routes->post('createClient',         'Clients::createNewClient');
+    $routes->get('updateClientPage',      'Clients::updateClientLoadPage');
+    $routes->post('updateClient',         'Clients::updateClient/$1');
+    $routes->get('addContactPage',        'Clients::addContactPage');
+    $routes->post('addContact',           'Clients::addContact');
+    $routes->get('addCarPage',            'Clients::addCarPage');
+    $routes->post('addCar',               'Clients::addCar');
+    $routes->get('listAllClients',        'Clients::listAllClientsLoadPage');
+    $routes->post('listAllClients',       'Clients::listAllClients');
 });
+
+$routes->get('seeder', 'Clients::Seeder');
 
 //USERS
 

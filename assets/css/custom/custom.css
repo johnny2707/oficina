@@ -181,7 +181,7 @@
     }
 
     .navbar-vertical, .navbar-expand-lg, .navbar-nav {
-        flex-grow: 0;
+        flex-grow: 0 !important;
     }
 /* ---- CORE ---- */
 

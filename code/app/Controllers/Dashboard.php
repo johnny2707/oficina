@@ -10,8 +10,8 @@ class Dashboard extends BaseController
 
         $this->data = [
             'menu'          => 'DASHBOARD',
-            // 'subMenu'       => '',
-            // 'customCSS'     => '',
+            'subMenu'       => '',
+            'customCSS'     => '',
             'customJS'      => '
                 <script src="'.base_url('assets/js/custom/dashboard.js?' . $_ENV['VERSION'] ).'"></script>
             '
@@ -23,10 +23,4 @@ class Dashboard extends BaseController
 
         return view('html/dashboard/index', $this->data);
     }
-
-//     public function pda() {
-//         $this->data['title'] = "Dashboard";
-
-//         return view('html/dashboard/pda/index', $this->data);
-//     }
 }
