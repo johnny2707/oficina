@@ -51,39 +51,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div class="mb-5">
-                        <button type="button" class="btn btn-secondary w-100 addContact">add more +</button>
-                    </div> -->
                 </div>
-
-                <!-- <div>
-                    <div class="card mb-3">
-                        <div class="card-body carForm">
-                            <h3>car details</h3>
-                            <div class="mb-3">
-                                <label class="form-label">vin</label>
-                                <input type="text" class="form-control" placeholder="vin" name="vin">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">license plate</label>
-                                <input type="text" class="form-control" placeholder="license plate" name="licensePlate">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">model</label>
-                                <input type="text" class="form-control" placeholder="model" name="model">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">year</label>
-                                <input type="text" class="form-control" placeholder="year" name="year">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-5">
-                        <button type="button" class="btn btn-secondary w-100 addCar">add more +</button>
-                    </div>
-                </div> -->
 
                 <div class="mb-5">
                     <button type="button" class="btn btn-primary w-100 createClient">submit</button>

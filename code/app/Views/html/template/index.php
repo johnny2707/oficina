@@ -128,6 +128,35 @@
 							<?php endif; ?>
 						</div>
 					</li>
+					<li class="nav-item dropdown <?= isset($menu) && $menu == 'COSTUMERS' ? 'active' : '' ?>">
+						<a class="nav-link dropdown-toggle" href="#COSTUMERS" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+							<span class="nav-link-icon d-md-none d-lg-inline-block">
+								<i class="ti ti-users"></i>
+							</span>
+							<span class="nav-link-title">Mecânicos</span>
+						</a>
+						<div class="dropdown-menu">
+							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CREATION' ? 'active' : '' ?>" href="<?= base_url('mechanics/createMechanicPage') ?>">Criação</a>
+							<?php endif; ?>
+
+							<?php if (in_array('CUSTOMER UPDATE', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER UPDATE' ? 'active' : '' ?>" href="<?= base_url('mechanics/updateMechanicPage') ?>">Atualização</a>
+							<?php endif; ?>
+
+							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CONTACT' ? 'active' : '' ?>" href="<?= base_url('mechanics/mechanicAgendaPage') ?>">Agenda</a>
+							<?php endif; ?>
+
+							<?php if (in_array('CUSTOMER LIST', $permissions) || in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER LIST' ? 'active' : '' ?>" href="<?= base_url('mechanics/listAllMechanics') ?>">Lista</a>
+							<?php endif; ?>
+
+							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER OTHERS' ? 'active' : '' ?>" href="<?= base_url() ?>">Outros</a>
+							<?php endif; ?>
+						</div>
+					</li>
             	</ul>
           	</div>
         </div>

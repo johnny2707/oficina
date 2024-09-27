@@ -1,11 +1,14 @@
 <?php
 
+use App\Filters\AuthGuard;
 use App\Filters\AuthValidation;
 use CodeIgniter\Router\RouteCollection;
 
 /**
  * @var RouteCollection $routes
  */
+
+$routes->get('clock', 'Clock::index');
 
 $routes->get('/', 'Dashboard::index', ['filter' => 'authGuard']);
 
@@ -43,16 +46,19 @@ $routes->get('seeder', 'Clients::Seeder');
 
 //USERS
 
-$routes->group("users", ['filter' => 'authGuard|permissionsValidation:USERS,ALL'], function($routes){
-    $routes->get('/',                   'Users::index');
-    $routes->get('table',               'Users::populateUsersTable');
-    $routes->get('create',              'Users::create');
-    $routes->post('create',             'Users::createNewUser');
-    $routes->get('(:hash)/update',      'Users::update/$1');
-    $routes->post('(:hash)/update',     'Users::updateUser/$1');
-    $routes->post('(:hash)/activate',   'Users::activateUser/$1');
-    $routes->post('(:hash)/inactivate', 'Users::inactivateUser/$1');
-});
+$routes->get('users/createAccount/(:segment)',  'Users::createAccountPage/$1');
+$routes->post('users/createAccount/(:segment)', 'Users::createAccount/$1');
 
-$routes->get('/users/my-password',  'Users::myPassword', ['filter' => 'authGuard']);
-$routes->post('/users/my-password', 'Users::updateMyPassword', ['filter' => 'authGuard']);
+// $routes->group("users", ['filter' => 'authGuard|permissionsValidation:USERS,ALL'], function($routes){
+//     $routes->get('/',                   'Users::index');
+//     $routes->get('table',               'Users::populateUsersTable');
+//     $routes->get('create',              'Users::create');
+//     $routes->post('create',             'Users::createNewUser');
+//     $routes->get('(:hash)/update',      'Users::update/$1');
+//     $routes->post('(:hash)/update',     'Users::updateUser/$1');
+//     $routes->post('(:hash)/activate',   'Users::activateUser/$1');
+//     $routes->post('(:hash)/inactivate', 'Users::inactivateUser/$1');
+// });
+
+// $routes->get('/users/my-password',  'Users::myPassword', ['filter' => 'authGuard']);
+// $routes->post('/users/my-password', 'Users::updateMyPassword', ['filter' => 'authGuard']);

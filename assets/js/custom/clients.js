@@ -12,32 +12,23 @@ $(document).ready(function(){
             element.removeAttr('disabled');
         }, 1000);
 
-        let clientInfo = {};
-
         let nif = $('input[name=nif]').val();
         let name = $('input[name=name]').val();
-
-        clientInfo['client'] = {
-            'nif': nif, 
-            'name': name
-        };
 
         let description = $('input[name=description]').val();
         let phoneNumber = $('input[name=phoneNumber]').val();
         let emailAddress = $('input[name=emailAddress]').val();
 
-        clientInfo['contacts'] = {
-            'description': description,
-            'phoneNumber': phoneNumber,
-            'emailAddress': emailAddress
-        };
-
         $.ajax({
-            url: `${baseURL}clients`,
+            url: `${baseURL}clients/createClient`,
             method: "POST",
             dataType: 'json',
             data : {
-                clientInfo: clientInfo,
+                'nif': nif,
+                'name': name,
+                'description': description,
+                'phoneNumber': phoneNumber,
+                'emailAddress': emailAddress
             },
             success: function(data) {
                 if (data.error == true) {
@@ -45,7 +36,7 @@ $(document).ready(function(){
                         notyf.error(value);
                     });
                 } else {
-                    notyf.success(data.popUpMessages[0]);a
+                    notyf.success(data.popUpMessages[0]);
                 }
             },
             error: function(xhr, status, error){

@@ -26,8 +26,8 @@ class Auth extends BaseController
         ];
 
         $this->data = [
-            // 'activePage' => 'auth',
-            // 'customCSS'  => '',
+            'activePage' => 'auth',
+            'customCSS'  => '',
             'customJS'   => '<script src="'.base_url('assets/js/custom/auth.js?' . $_ENV['VERSION'] ).'"></script>'
         ];
     }

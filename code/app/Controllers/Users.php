@@ -21,9 +21,9 @@ class Users extends BaseController
         );
 
         $this->data = [
-            // 'menu'          => 'USER',
-            // 'subMenu'       => '',
-            // 'customCSS'     => '',
+            'menu'          => 'USER',
+            'subMenu'       => '',
+            'customCSS'     => '',
             'customJS'      => '<script src="'. base_url('assets/js/custom/clients.js?' . $_ENV['VERSION'] ).'"></script>'
         ];
     }
@@ -35,13 +35,11 @@ class Users extends BaseController
         return view('html/users/index', $this->data);
     }
 
-    public function create()
+    public function createAccountPage()
     {
         $this->data['title'] = 'user creation';
-        $this->data['allRoles'] = $this->usersModel->getRoles();
 
-        // return view('html/users/create', $this->data);
-        return view('html/clients/clientCreation', $this->data);
+        return view('html/users/createAccount', $this->data);
     }
 
     // public function index() {
