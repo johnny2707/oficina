@@ -107,10 +107,6 @@
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CREATION' ? 'active' : '' ?>" href="<?= base_url('clients/createClientPage') ?>">Criação</a>
 							<?php endif; ?>
 
-							<?php if (in_array('CUSTOMER UPDATE', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER UPDATE' ? 'active' : '' ?>" href="<?= base_url('clients/updateClientPage') ?>">Atualização</a>
-							<?php endif; ?>
-
 							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CONTACT' ? 'active' : '' ?>" href="<?= base_url('clients/addContactPage') ?>">Adicionar Contacto</a>
 							<?php endif; ?>
@@ -140,10 +136,6 @@
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CREATION' ? 'active' : '' ?>" href="<?= base_url('mechanics/createMechanicPage') ?>">Criação</a>
 							<?php endif; ?>
 
-							<?php if (in_array('CUSTOMER UPDATE', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER UPDATE' ? 'active' : '' ?>" href="<?= base_url('mechanics/updateMechanicPage') ?>">Atualização</a>
-							<?php endif; ?>
-
 							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CONTACT' ? 'active' : '' ?>" href="<?= base_url('mechanics/mechanicAgendaPage') ?>">Agenda</a>
 							<?php endif; ?>
@@ -162,15 +154,13 @@
         </div>
     </aside>
 	
-	<div class="wrapper">
-		<div class="page-wrapper">
-			<?= $this->renderSection("content") ?>
+	<div class="page-wrapper">
+		<?= $this->renderSection("content") ?>
 
-			<div id="page-loader">
-				<img src="<?= base_url('assets/img/logo.svg') ?>" alt="Logo">
-			</div>
-
+		<div id="page-loader">
+			<img src="<?= base_url('assets/img/logo.svg') ?>" alt="Logo">
 		</div>
+
 	</div>
 
 	<!-- Tabler Core -->

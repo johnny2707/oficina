@@ -49,5 +49,81 @@ $(document).ready(function(){
         });
     });
 
-    $('#clientList').DataTable();
+    $(document).on('click', '.deleteButton', function (e) {
+        let id = $(this).data('client-id');
+
+        console.log(id);
+
+        $.ajax({
+            type: "post",
+            url: `${baseURL}clients/deleteClient`,
+            data: {
+                id
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.error == true) {
+                    $.each( data.popUpMessages, function( key, value ) {
+                        notyf.error(value);
+                    });
+                } else {
+                    notyf.success(data.popUpMessages[0]);
+                    location.reload();
+                }
+            },
+            error: function (xhr, status, error) { 
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+
+                notyf.error('Ocorreu um erro. Atualize a página e tente novamente!');
+            }
+        });
+    });
+
+    new DataTable('#clientList');
+
+    // $(document).on('keyup', 'input[name="clientSearch"]', function(e){
+
+    //     document.getElementById("clientSearchListData").innerHTML = "";
+    //     var delay = setTimeout('');
+
+    //     var inputText = $('input[name="clientSearch"]').val();
+
+    //     $.ajax({
+    //         type: "post",
+    //         url: `${baseURL}clients/clientSearch`,
+    //         data: {
+    //             inputText
+    //         },
+    //         dataType: "json",
+    //         success: function (data) {
+    //             if (data.error == true) {
+    //                 $.each( data.popUpMessages, function( key, value ) {
+    //                     notyf.error(value);
+    //                 });
+    //             } else {
+    //                 var clientData = data.clientInfo;
+
+    //                 clientData.forEach(element => {
+    //                     document.getElementById("clientSearchListData").innerHTML += (`
+    //                             <tr>
+    //                             <td>${element['id']}</td>
+    //                             <td>${element['nif']}</td>
+    //                             <td>${element['name']}</td>
+    //                             <td>${element['creation_date']}</td>
+    //                             </tr>
+    //                         `);
+    //                 });
+    //             }
+    //         },
+    //         error: function(xhr, status, error){
+    //             console.log(xhr);
+    //             console.log(status);
+    //             console.log(error);
+
+    //             notyf.error('Ocorreu um erro. Atualize a página e tente novamente!');
+    //         }
+    //     });
+    // });
 });

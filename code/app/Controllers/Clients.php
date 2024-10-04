@@ -16,6 +16,7 @@ class Clients extends BaseController
     protected $usersModel;
     protected $seeder;
     protected $email;
+    protected $db;
 
     public function __construct()
     {
@@ -44,11 +45,7 @@ class Clients extends BaseController
         ];
     }
 
-    public function index()
-    {
-        
-    }
-
+    //CREATE CLIENT
     public function createClientLoadPage()
     {
         $this->data['title'] = 'client creation';
@@ -125,9 +122,11 @@ class Clients extends BaseController
         return $this->response->setJSON($this->res);
     }
 
-    public function updateClientLoadPage()
+    //ATUALIZAR CLIENTE
+    public function updateClientLoadPage($client_id)
     {
         $this->data['title'] = 'client update';
+        $this->data['clientData'] = $this->clientsModel->getClientData($client_id);
 
         return view('html/clients/clientUpdate', $this->data);
     }
@@ -141,20 +140,17 @@ class Clients extends BaseController
         return $this->response->setJSON($this->res);
     }
 
+    //LISTA DE CLIENTES
     public function listAllClientsLoadPage()
     {
         $this->data['title'] = 'client list';
 
         $this->data['clientData'] = $this->clientsModel->getAllClients();
 
-        return view('html/clients/clientsList', $this->data);
+        return view('html/clients/clientList', $this->data);
     }
 
-    public function Seeder()
-    {
-        $this->seeder->call('ClientSeeder');
-    }
-
+    //ENVIAR EMAIL CRIAÇÃO DE CONTA
     private function accountCreation($emailAddress)
     {
         $emailBody = view('html/users/emailTemplate', ['email' => $emailAddress]);
@@ -171,5 +167,32 @@ class Clients extends BaseController
         $this->email->send();
         
         return;
+    }
+
+    //MOSTRAR CLIENTE
+    public function showClientLoadPage($client_id)
+    {
+        $clientData = $this->clientsModel->getClientData($client_id);
+
+        $this->data['title'] = $clientData['client'][0]['name'];
+        $this->data['clientData'] = $clientData;
+
+        return view('html/clients/clientInformation', $this->data);
+    }
+
+    //ELIMINAR CLIENTE
+    public function deleteClient()
+    {
+        $client_id = $this->request->getPost('id');
+
+        $this->clientsModel->deleteClient($client_id);
+
+        $this->res['popUpMessages'][] = 'eliminado com sucesso!';
+        return $this->response->setJSON($this->res);
+    }
+
+    public function Seeder()
+    {
+        $this->seeder->call('ClientSeeder');
     }
 }

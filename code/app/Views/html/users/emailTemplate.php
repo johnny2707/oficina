@@ -141,7 +141,7 @@
                                 <tr>
                                   <td style="padding-right: 0px;padding-left: 0px; margin:auto;">
                                     
-                                    <img src="<?= base_url("assets/img/logo.svg") ?>" alt="Image" title="Image" style="margin:auto;border:0px;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 29%;max-width: 168.2px;" width="168.2"/>
+                                    <img src="../../../../../assets/img/logo.svg" alt="Image" title="Image" style="margin:auto;border:0px;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 29%;max-width: 168.2px;" width="168.2"/>
                                     
                                   </td>
                                 </tr>

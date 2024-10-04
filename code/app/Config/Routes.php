@@ -29,17 +29,19 @@ $routes->get('/auth/logout',                         'Auth::logout', ['filter' =
 //CLIENTS |permissionValidation:CLIENTS,ALL
 
 $routes->group('clients', ['filter' => 'authGuard|permissionsValidation:ALL'], function($routes){
-    $routes->get('/',                     'Clients::index');
-    $routes->get('createClientPage',      'Clients::createClientLoadPage');
-    $routes->post('createClient',         'Clients::createNewClient');
-    $routes->get('updateClientPage',      'Clients::updateClientLoadPage');
-    $routes->post('updateClient',         'Clients::updateClient/$1');
-    $routes->get('addContactPage',        'Clients::addContactPage');
-    $routes->post('addContact',           'Clients::addContact');
-    $routes->get('addCarPage',            'Clients::addCarPage');
-    $routes->post('addCar',               'Clients::addCar');
-    $routes->get('listAllClients',        'Clients::listAllClientsLoadPage');
-    $routes->post('listAllClients',       'Clients::listAllClients');
+    $routes->get('/',                             'Clients::index');
+    $routes->get('createClientPage',              'Clients::createClientLoadPage');
+    $routes->post('createClient',                 'Clients::createNewClient');
+    $routes->get('updateClientPage/(:hash)',      'Clients::updateClientLoadPage/$1');
+    $routes->post('updateClient',                 'Clients::updateClient');
+    $routes->get('addContactPage/(:hash)',        'Clients::addContactPage');
+    $routes->post('addContact',                   'Clients::addContact');
+    $routes->get('addCarPage/(:hash)',            'Clients::addCarPage');
+    $routes->post('addCar',                       'Clients::addCar');
+    $routes->get('listAllClients',                'Clients::listAllClientsLoadPage');
+    $routes->post('listAllClients',               'Clients::listAllClients');
+    $routes->get('showClientPage/(:hash)',        'Clients::showClientLoadPage/$1');
+    $routes->post('deleteClient',                 'Clients::deleteClient');
 });
 
 $routes->get('seeder', 'Clients::Seeder');
