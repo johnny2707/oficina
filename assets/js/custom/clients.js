@@ -52,8 +52,6 @@ $(document).ready(function(){
     $(document).on('click', '.deleteButton', function (e) {
         let id = $(this).data('client-id');
 
-        console.log(id);
-
         $.ajax({
             type: "post",
             url: `${baseURL}clients/deleteClient`,
@@ -72,6 +70,47 @@ $(document).ready(function(){
                 }
             },
             error: function (xhr, status, error) { 
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+
+                notyf.error('Ocorreu um erro. Atualize a página e tente novamente!');
+            }
+        });
+    });
+
+    $(document).on('click', '.updateClientInfoButton', function(e){
+        console.log('entrou');
+
+
+        let id = $("#clientModal").data('id');
+        let nif = $("input[name='modalClientNif']").val();
+        let name = $("input[name='modalClientName']").val();
+
+        let clientInfo = {
+            'id': id,
+            'nif': nif,
+            'name': name
+        };
+
+        $.ajax({
+            type: "post",
+            url: `${baseURL}clients/updateClientInfo`,
+            data: clientInfo,
+            dataType: "json",
+            success: function (data) {
+                console.log('sucesso!');
+                
+                if (data.error == true) {
+                    $.each( data.popUpMessages, function(key, value ) {
+                        notyf.error(value);
+                    });
+                } else {
+                    notyf.success(data.popUpMessages[0]);
+                    location.reload();
+                }
+            },
+            error:function(xhr, status, error) {
                 console.log(xhr);
                 console.log(status);
                 console.log(error);

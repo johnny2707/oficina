@@ -33,10 +33,12 @@ $routes->group('clients', ['filter' => 'authGuard|permissionsValidation:ALL'], f
     $routes->get('createClientPage',              'Clients::createClientLoadPage');
     $routes->post('createClient',                 'Clients::createNewClient');
     $routes->get('updateClientPage/(:hash)',      'Clients::updateClientLoadPage/$1');
-    $routes->post('updateClient',                 'Clients::updateClient');
-    $routes->get('addContactPage/(:hash)',        'Clients::addContactPage');
+    $routes->post('updateClientInfo',             'Clients::updateClientInfo');
+    $routes->post('updateContactInfo',            'Clients::updateContactInfo');
+    $routes->post('updateCarInfo',                'Clients::updateCarInfo');
+    $routes->get('addContactPage/(:hash)',        'Clients::addContactPage/$1');
     $routes->post('addContact',                   'Clients::addContact');
-    $routes->get('addCarPage/(:hash)',            'Clients::addCarPage');
+    $routes->get('addCarPage/(:hash)',            'Clients::addCarPage/$1');
     $routes->post('addCar',                       'Clients::addCar');
     $routes->get('listAllClients',                'Clients::listAllClientsLoadPage');
     $routes->post('listAllClients',               'Clients::listAllClients');

@@ -23,9 +23,22 @@ class ClientsModel extends Model
         $this->db->table('tb_clients_contacts')->insert($contactInfo);
     }
 
-    public function updateClient($clientData)
+    public function updateClientInfo($clientData)
     {
-        $this->db->table('tb_clients')->update($clientData);
+        $id = $clientData['id'];
+        unset($clientData['id']);
+
+        $this->db->table('tb_clients')->set($clientData)->where('id', $id)->update();
+    }
+
+    public function updateContactInfo($contactData)
+    {
+        $this->db->table('tb_clients_contacts')->update($contactData);
+    }
+
+    public function updateCarInfo($carData)
+    {
+        $this->db->table('tb_clients_vehicles')->update($carData);
     }
 
     public function getAllClients()
@@ -38,28 +51,28 @@ class ClientsModel extends Model
 
     public function getClientData($clientId)
     {
-        $clientQuery = $this->db->table('tb_clients')
+        $clientInfo = $this->db->table('tb_clients')
                                 ->select('*')
                                 ->where('id', $clientId)
                                 ->get()
                                 ->getResultArray();
 
-        $contactsQuery = $this->db->table('tb_clients_contacts')
+        $contactsInfo = $this->db->table('tb_clients_contacts')
                                   ->select('id, description, phone_number, email_address')
                                   ->where('client_id', $clientId)
                                   ->get()
                                   ->getResultArray();
 
-        $vehiclesQuery = $this->db->table('tb_clients_vehicles')
+        $vehiclesInfo = $this->db->table('tb_clients_vehicles')
                                   ->select('id, description, vin, license_plate, model, year')
                                   ->where('client_id', $clientId)
                                   ->get()
                                   ->getResultArray();
 
         $clientData = [
-            'client' => $clientQuery,
-            'contacts' => $contactsQuery,
-            'vehicles' => $vehiclesQuery
+            'client' => $clientInfo,
+            'contacts' => $contactsInfo,
+            'vehicles' => $vehiclesInfo
         ];
 
         return $clientData;

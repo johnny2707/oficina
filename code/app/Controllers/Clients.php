@@ -131,9 +131,19 @@ class Clients extends BaseController
         return view('html/clients/clientUpdate', $this->data);
     }
 
-    public function updateClient()
+    public function updateClientInfo()
     {
-        $clientInfo = $this->request->getPost('clientInfo');
+        $id = $this->request->getPost('id');
+        $nif = $this->request->getPost('nif');
+        $name = $this->request->getPost('name');
+
+        $clientData = [
+            'id' => $id,
+            'nif' => $nif,
+            'name' => $name
+        ];
+
+        $this->clientsModel->updateClientInfo($clientData);
 
         $this->res['popUpMessages'][] = 'sucesso!';
 

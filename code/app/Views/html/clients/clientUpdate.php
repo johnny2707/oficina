@@ -17,18 +17,45 @@
         <div class="row">
         <div class="col-md-12 mb-3">
                 <div class="card p-4">
-                    <h3>client info</h3>
-
-                    <input type="hidden" name="clientId" value="<?= $clientData['client'][0]['id'] ?>">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3>client info</h3>
+                        <button class="btn border-0 p-3" data-bs-toggle="modal" data-bs-target="#clientModal"><i class="ti ti-edit"></i></button>
+                    </div>
 
                     <div class="mb-3">
                         <label class="form-label">nif</label>
-                        <input type="text" class="form-control" placeholder="nif" name="clientNif" value="<?= $clientData['client'][0]['nif'] ?>">
+                        <input type="text" class="form-control" placeholder="nif" name="" value="<?= $clientData['client'][0]['nif'] ?>" disabled>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">name</label>
-                        <input type="text" class="form-control" placeholder="name" name="clientName" value="<?= $clientData['client'][0]['name'] ?>">
+                        <input type="text" class="form-control" placeholder="name" name="" value="<?= $clientData['client'][0]['name'] ?>" disabled>
+                    </div>
+
+                    <div class="modal fade" id="clientModal" tabindex="-1" aria-labelledby="clientModalLabel" aria-hidden="true" data-id="<?= $clientData['client'][0]['id'] ?>">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="clientModalLabel">edit client info</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">nif</label>
+                                        <input type="text" class="form-control" placeholder="nif" name="modalClientNif" value="<?= $clientData['client'][0]['nif'] ?>">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">name</label>
+                                        <input type="text" class="form-control" placeholder="name" name="modalClientName" value="<?= $clientData['client'][0]['name'] ?>">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                                    <button type="button" class="btn btn-primary updateClientInfoButton">save changes</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,18 +68,50 @@
                         foreach($clientData['contacts'] as $contact):
                     ?>
 
-                    <input type="hidden" name="clientId" value="<?= $contact['id'] ?>">
-
-                    <h4><?= $contact['description'] ?></h4>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="p-0 m-0"><?= $contact['description'] ?></h4>
+                        <button class="btn border-0 p-3" data-bs-toggle="modal" data-bs-target="#contactModal<?= $contact['description'] ?>"><i class="ti ti-edit"></i></button>
+                    </div>
                             
                     <div class="mb-3">
                         <label class="form-label">phone number</label>
-                        <input type="text" class="form-control" placeholder="phone number" name="" value="<?= $contact['phone_number'] ?>">
+                        <input type="text" class="form-control" placeholder="phone number" name="" value="<?= $contact['phone_number'] ?>" disabled>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">email address</label>
-                        <input type="text" class="form-control" placeholder="email address" name="" value="<?= $contact['email_address'] ?>">
+                        <input type="text" class="form-control" placeholder="email address" name="" value="<?= $contact['email_address'] ?>" disabled>
+                    </div>
+
+                    <div class="modal fade" id="contactModal<?= $contact['description'] ?>" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true" data-id="<?= $contact['id'] ?>">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="contactModalLabel">edit contact info</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">description</label>
+                                        <input type="text" class="form-control" placeholder="description" name="" value="<?= $contact['description'] ?>">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">phone number</label>
+                                        <input type="text" class="form-control" placeholder="phone number" name="" value="<?= $contact['phone_number'] ?>">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">email address</label>
+                                        <input type="text" class="form-control" placeholder="email address" name="" value="<?= $contact['email_address'] ?>">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                                    <button type="button" class="btn btn-primary">save changes</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
                     <?php
@@ -67,33 +126,78 @@
             ?>
                 <div class="col-md-12">
                     <div class="card p-4">
-                        <h3>car info</h3>
+                        
+                        <h3>car info</h3>                        
 
                         <?php 
                             foreach($clientData['vehicles'] as $car):
                         ?>
                         <input type="hidden" name="carId" value="<?= $car['id'] ?>">
 
-                        <h4><?= $car['description'] ?></h4>
-                                
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="p-0 m-0"><?= $car['description'] ?></h4>
+                            <button class="btn border-0 p-3" data-bs-toggle="modal" data-bs-target="#carModal<?= $car['description'] ?>"><i class="ti ti-edit"></i></button>
+                        </div>
+
                         <div class="mb-3">
                             <label class="form-label">vin</label>
-                            <input type="text" class="form-control" placeholder="vin" name="" value="<?= $car['vin'] ?>">
+                            <input type="text" class="form-control" placeholder="vin" name="" value="<?= $car['vin'] ?>" disabled>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">license plate</label>
-                            <input type="text" class="form-control" placeholder="license plate" name="" value="<?= $car['license_plate'] ?>">
+                            <input type="text" class="form-control" placeholder="license plate" name="" value="<?= $car['license_plate'] ?>" disabled>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">model</label>
-                            <input type="text" class="form-control" placeholder="model" name="" value="<?= $car['model'] ?>">
+                            <input type="text" class="form-control" placeholder="model" name="" value="<?= $car['model'] ?>" disabled>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">year</label>
-                            <input type="text" class="form-control" placeholder="year" name="" value="<?= $car['year'] ?>">
+                            <input type="text" class="form-control" placeholder="year" name="" value="<?= $car['year'] ?>" disabled>
+                        </div>
+
+                        <div class="modal fade" id="carModal<?= $car['description'] ?>" tabindex="-1" aria-labelledby="carModalLabel" aria-hidden="true" data-id="<?= $car['id'] ?>">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="carModalLabel">edit car info</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label class="form-label">description</label>
+                                            <input type="text" class="form-control" placeholder="description" name="" value="<?= $car['description'] ?>">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">vin</label>
+                                            <input type="text" class="form-control" placeholder="vin" name="" value="<?= $car['vin'] ?>">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">license plate</label>
+                                            <input type="text" class="form-control" placeholder="license plate" name="" value="<?= $car['license_plate'] ?>">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">model</label>
+                                            <input type="text" class="form-control" placeholder="model" name="" value="<?= $car['model'] ?>">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">year</label>
+                                            <input type="text" class="form-control" placeholder="year" name="" value="<?= $car['year'] ?>">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                                        <button type="button" class="btn btn-primary">save changes</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         
                         <?php

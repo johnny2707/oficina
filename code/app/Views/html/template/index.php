@@ -107,13 +107,13 @@
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CREATION' ? 'active' : '' ?>" href="<?= base_url('clients/createClientPage') ?>">Criação</a>
 							<?php endif; ?>
 
-							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
+							<!-- <?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CONTACT' ? 'active' : '' ?>" href="<?= base_url('clients/addContactPage') ?>">Adicionar Contacto</a>
 							<?php endif; ?>
 
 							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CAR' ? 'active' : '' ?>" href="<?= base_url('clients/addCarPage') ?>">Adicionar Carro</a>
-							<?php endif; ?>
+							<?php endif; ?> -->
 
 							<?php if (in_array('CUSTOMER LIST', $permissions) || in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER LIST' ? 'active' : '' ?>" href="<?= base_url('clients/listAllClients') ?>">Lista</a>
