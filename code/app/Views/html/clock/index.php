@@ -44,12 +44,13 @@
             width: 25%;
         }
 
-        button {
+        button, a {
             padding: 1vh 2vw;
             background-color: #2F2F2F;
             color: #FAFAFA;
             border: none;
             border-radius: 25px;
+            text-decoration: none;
         }
 
         span {
@@ -67,6 +68,8 @@
             <button id="stop" onclick="stopClock()">stop</button>
             <button id="reset" onclick="resetClock()">reset</button>
         </div>
+
+        <a href="<?= base_url() ?>">go back</a>
     </div>
     
     <script>

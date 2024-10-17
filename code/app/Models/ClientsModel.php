@@ -17,12 +17,25 @@ class ClientsModel extends Model
         $this->db = \Config\Database::connect();
     }
 
+    //CREATION
     public function createClient($clientData, $contactInfo)
     {
         $this->db->table('tb_clients')->insert($clientData);
         $this->db->table('tb_clients_contacts')->insert($contactInfo);
     }
 
+    //ADD CAR OR CONTACT
+    public function insertContact($contactInfo)
+    {
+        $this->db->table('tb_clients_contacts')->insert($contactInfo);
+    }
+
+    public function insertCar($carInfo)
+    {
+        $this->db->table('tb_clients_vehicles')->insert($carInfo);
+    }
+
+    //UPDATE
     public function updateClientInfo($clientData)
     {
         $id = $clientData['id'];
@@ -33,14 +46,36 @@ class ClientsModel extends Model
 
     public function updateContactInfo($contactData)
     {
-        $this->db->table('tb_clients_contacts')->update($contactData);
+        $id = $contactData['id'];
+        unset($contactData['id']);
+
+        $client_id = $contactData['client_id'];
+        unset($contactData['client_id']);
+
+        $this->db->table('tb_clients_contacts')->set($contactData)->where('id', $id)->where('client_id', $client_id)->update();
+
+        if($this->db->affectedRows() > 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public function updateCarInfo($carData)
     {
-        $this->db->table('tb_clients_vehicles')->update($carData);
+        $id = $carData['id'];
+        unset($carData['id']);
+
+        $client_id = $carData['client_id'];
+        unset($carData['client_id']);
+
+        $this->db->table('tb_clients_vehicles')->set($carData)->where('id', $id)->where('client_id', $client_id)->update();
     }
 
+    //GET INFO
     public function getAllClients()
     {
         $query = $this->db->table('tb_clients')
@@ -95,6 +130,7 @@ class ClientsModel extends Model
         return $query->get()->getResultArray();
     }
 
+    //DELETE
     public function deleteClient($client_id)
     {
         $deletionDate = new Time('now');

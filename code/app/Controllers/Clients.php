@@ -128,17 +128,18 @@ class Clients extends BaseController
         $this->data['title'] = 'client update';
         $this->data['clientData'] = $this->clientsModel->getClientData($client_id);
 
+        $this->session->set(['client_id' => $client_id]);
+
         return view('html/clients/clientUpdate', $this->data);
     }
 
     public function updateClientInfo()
     {
-        $id = $this->request->getPost('id');
         $nif = $this->request->getPost('nif');
         $name = $this->request->getPost('name');
 
         $clientData = [
-            'id' => $id,
+            'id' => $this->session['client_id'],
             'nif' => $nif,
             'name' => $name
         ];
@@ -146,6 +147,140 @@ class Clients extends BaseController
         $this->clientsModel->updateClientInfo($clientData);
 
         $this->res['popUpMessages'][] = 'sucesso!';
+
+        return $this->response->setJSON($this->res);
+    }
+
+    public function updateContactInfo()
+    {
+        $id = $this->request->getPost('id');
+        $description = $this->request->getPost('description');
+        $phoneNumber = $this->request->getPost('phone_number');
+        $emailAddress = $this->request->getPost('email_address');
+
+        $clientData = [
+            'id' => $id,
+            'client_id' => $this->session->get('client_id'),
+            'description' => $description,
+            'phone_number' => $phoneNumber,
+            'email_address' => $emailAddress
+        ];
+
+        $result = $this->clientsModel->updateContactInfo($clientData);
+
+        if($result)
+        {
+            $this->res['popUpMessages'][] = 'error!';
+            $this->res['error'] = TRUE;
+        }
+        else
+        {
+            $this->res['popUpMessages'][] = 'sucesso!';
+        }
+
+        return $this->response->setJSON($this->res);
+    }
+
+    public function updateCarInfo()
+    {
+        $id = $this->request->getPost('id');
+        $description = $this->request->getPost('description');
+        $vin = $this->request->getPost('vin');
+        $licensePlate = $this->request->getPost('license_plate');
+        $model = $this->request->getPost('model');
+        $year = $this->request->getPost('year');
+
+        $clientData = [
+            'id' => $id,
+            'client_id' => $this->session->get('client_id'),
+            'description' => $description,
+            'vin' => $vin,
+            'license_plate' => $licensePlate,
+            'model' => $model,
+            'year' => $year
+        ];
+
+        $result = $this->clientsModel->updateCarInfo($clientData);
+
+        if($result)
+        {
+            $this->res['popUpMessages'][] = 'error!';
+            $this->res['error'] = TRUE;
+        }
+        else
+        {
+            $this->res['popUpMessages'][] = 'sucesso!';
+        }
+
+        return $this->response->setJSON($this->res);
+    }
+
+    //ADICIONAR CONTACTOS OU CARROS
+    public function addClientInfoPage($client_id)
+    {
+        $this->data['title'] = 'add info';
+        $this->data['clientData'] = $this->clientsModel->getClientData($client_id);
+        $this->session->set(['client_id' => $client_id]);
+
+        return view('html/clients/clientAddInfo', $this->data);
+    }
+
+    public function addContact()
+    {
+        $description = $this->request->getPost('description');
+        $phoneNumber = $this->request->getPost('phone_number');
+        $emailAddress = $this->request->getPost('email_address');
+
+        $clientData = [
+            'client_id' => $this->session->get('client_id'),
+            'description' => $description,
+            'phone_number' => $phoneNumber,
+            'email_address' => $emailAddress
+        ];
+
+        $result = $this->clientsModel->insertContact($clientData);
+
+        if($result)
+        {
+            $this->res['popUpMessages'][] = 'error!';
+            $this->res['error'] = TRUE;
+        }
+        else
+        {
+            $this->res['popUpMessages'][] = 'sucesso!';
+        }
+
+        return $this->response->setJSON($this->res);
+    }
+
+    public function addCar()
+    {
+        $description = $this->request->getPost('description');
+        $vin = $this->request->getPost('vin');
+        $licensePlate = $this->request->getPost('license_plate');
+        $model = $this->request->getPost('model');
+        $year = $this->request->getPost('year');
+
+        $clientData = [
+            'client_id' => $this->session->get('client_id'),
+            'description' => $description,
+            'vin' => $vin,
+            'license_plate' => $licensePlate,
+            'model' => $model,
+            'year' => $year
+        ];
+
+        $result = $this->clientsModel->insertCar($clientData);
+
+        if($result)
+        {
+            $this->res['popUpMessages'][] = 'error!';
+            $this->res['error'] = TRUE;
+        }
+        else
+        {
+            $this->res['popUpMessages'][] = 'sucesso!';
+        }
 
         return $this->response->setJSON($this->res);
     }

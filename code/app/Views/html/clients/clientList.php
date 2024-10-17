@@ -54,6 +54,7 @@
                                         <td>
                                             <a href="<?= base_url('clients/showClientPage/'.$client["id"]) ?>" class='btn btn-primary me-3' data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="show"><i class='ti ti-eye'></i></a>
                                             <a href="<?= base_url('clients/updateClientPage/'.$client["id"]) ?>" class='btn btn-success me-3' data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="edit"><i class='ti ti-pencil'></i></a>
+                                            <a href="<?= base_url('clients/addClientInfoPage/'.$client["id"]) ?>" class='btn btn-info me-3' data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="add"><i class='ti ti-plus'></i></a>
                                             <button data-bs-toggle="modal" data-bs-target="#deleteModal<?= $client['id'] ?>" class='btn btn-danger' data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="delete"><i class='ti ti-trash'></i></button>
                                         
                                             <div class="modal fade" id="deleteModal<?= $client['id'] ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">

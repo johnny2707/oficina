@@ -149,6 +149,14 @@
 							<?php endif; ?>
 						</div>
 					</li>
+					<li>
+						<a class="nav-link" href="<?= base_url('clock') ?>" role="button">
+							<span class="nav-link-icon d-md-none d-lg-inline-block">
+								<i class="ti ti-clock"></i>
+							</span>
+							<span class="nav-link-title">clock</span>
+						</a>
+					</li>
             	</ul>
           	</div>
         </div>

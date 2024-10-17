@@ -32,7 +32,7 @@
                         <input type="text" class="form-control" placeholder="name" name="" value="<?= $clientData['client'][0]['name'] ?>" disabled>
                     </div>
 
-                    <div class="modal fade" id="clientModal" tabindex="-1" aria-labelledby="clientModalLabel" aria-hidden="true" data-id="<?= $clientData['client'][0]['id'] ?>">
+                    <div class="modal fade" id="clientModal" tabindex="-1" aria-labelledby="clientModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -83,7 +83,7 @@
                         <input type="text" class="form-control" placeholder="email address" name="" value="<?= $contact['email_address'] ?>" disabled>
                     </div>
 
-                    <div class="modal fade" id="contactModal<?= $contact['description'] ?>" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true" data-id="<?= $contact['id'] ?>">
+                    <div class="modal fade" id="contactModal<?= $contact['description'] ?>" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -93,22 +93,22 @@
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label class="form-label">description</label>
-                                        <input type="text" class="form-control" placeholder="description" name="" value="<?= $contact['description'] ?>">
+                                        <input type="text" class="form-control" placeholder="description" name="modalContactDescription" value="<?= $contact['description'] ?>">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">phone number</label>
-                                        <input type="text" class="form-control" placeholder="phone number" name="" value="<?= $contact['phone_number'] ?>">
+                                        <input type="text" class="form-control" placeholder="phone number" name="modalContactPhoneNumber" value="<?= $contact['phone_number'] ?>">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">email address</label>
-                                        <input type="text" class="form-control" placeholder="email address" name="" value="<?= $contact['email_address'] ?>">
+                                        <input type="text" class="form-control" placeholder="email address" name="modalContactEmailAddress" value="<?= $contact['email_address'] ?>">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-                                    <button type="button" class="btn btn-primary">save changes</button>
+                                    <button type="button" class="btn btn-primary updateContactInfoButton" data-contact-id="<?= $contact['id'] ?>">save changes</button>
                                 </div>
                             </div>
                         </div>
@@ -159,7 +159,7 @@
                             <input type="text" class="form-control" placeholder="year" name="" value="<?= $car['year'] ?>" disabled>
                         </div>
 
-                        <div class="modal fade" id="carModal<?= $car['description'] ?>" tabindex="-1" aria-labelledby="carModalLabel" aria-hidden="true" data-id="<?= $car['id'] ?>">
+                        <div class="modal fade" id="carModal<?= $car['description'] ?>" tabindex="-1" aria-labelledby="carModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -169,32 +169,32 @@
                                     <div class="modal-body">
                                         <div class="mb-3">
                                             <label class="form-label">description</label>
-                                            <input type="text" class="form-control" placeholder="description" name="" value="<?= $car['description'] ?>">
+                                            <input type="text" class="form-control" placeholder="description" name="modalCarDescription" value="<?= $car['description'] ?>">
                                         </div>
 
                                         <div class="mb-3">
                                             <label class="form-label">vin</label>
-                                            <input type="text" class="form-control" placeholder="vin" name="" value="<?= $car['vin'] ?>">
+                                            <input type="text" class="form-control" placeholder="vin" name="modalCarVin" value="<?= $car['vin'] ?>">
                                         </div>
 
                                         <div class="mb-3">
                                             <label class="form-label">license plate</label>
-                                            <input type="text" class="form-control" placeholder="license plate" name="" value="<?= $car['license_plate'] ?>">
+                                            <input type="text" class="form-control" placeholder="license plate" name="modalCarLicensePlate" value="<?= $car['license_plate'] ?>">
                                         </div>
 
                                         <div class="mb-3">
                                             <label class="form-label">model</label>
-                                            <input type="text" class="form-control" placeholder="model" name="" value="<?= $car['model'] ?>">
+                                            <input type="text" class="form-control" placeholder="model" name="modalCarModel" value="<?= $car['model'] ?>">
                                         </div>
 
                                         <div class="mb-3">
                                             <label class="form-label">year</label>
-                                            <input type="text" class="form-control" placeholder="year" name="" value="<?= $car['year'] ?>">
+                                            <input type="text" class="form-control" placeholder="year" name="modalCarYear" value="<?= $car['year'] ?>">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-                                        <button type="button" class="btn btn-primary">save changes</button>
+                                        <button type="button" class="btn btn-primary updateCarInfoButton" data-car-id="<?= $car['id'] ?>">save changes</button>
                                     </div>
                                 </div>
                             </div>

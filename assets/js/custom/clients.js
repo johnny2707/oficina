@@ -120,6 +120,186 @@ $(document).ready(function(){
         });
     });
 
+    $(document).on('click', '.updateContactInfoButton', function(e){
+        let contactId = $(this).data('contact-id');
+        
+        var modal = $(this).closest('.modal');
+
+        let emailAddress = modal.find("input[name='modalContactEmailAddress']").val();
+        let phoneNumber = modal.find("input[name='modalContactPhoneNumber']").val();
+        let description = modal.find("input[name='modalContactDescription']").val();
+
+        let clientInfo = {
+            'id': contactId,
+            'description': description,
+            'phone_number': phoneNumber,
+            'email_address': emailAddress
+        };
+
+        $.ajax({
+            type: "post",
+            url: `${baseURL}clients/updateContactInfo`,
+            data: clientInfo,
+            dataType: "json",
+            success: function (data) {
+                console.log('sucesso!');
+                
+                if (data.error == true) {
+                    $.each( data.popUpMessages, function(key, value ) {
+                        notyf.error(value);
+                        location.reload();
+                    });
+                } else {
+                    notyf.success(data.popUpMessages[0]);
+                    location.reload();
+                }
+            },
+            error:function(xhr, status, error) {
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+
+                notyf.error('Ocorreu um erro. Atualize a página e tente novamente!');
+            }
+        });
+    });
+
+    $(document).on('click', '.updateCarInfoButton', function(e){
+        let carId = $(this).data('car-id');
+        
+        var modal = $(this).closest('.modal');
+
+        let description = modal.find("input[name='modalCarDescription']").val();
+        let vin = modal.find("input[name='modalCarVin']").val();
+        let license_plate = modal.find("input[name='modalCarLicensePlate']").val();
+        let model = modal.find("input[name='modalCarModel']").val();
+        let year = modal.find("input[name='modalCarYear']").val();
+
+        let clientInfo = {
+            'id': carId,
+            'description': description,
+            'vin': vin,
+            'license_plate': license_plate,
+            'model': model,
+            'year': year
+        };
+
+        $.ajax({
+            type: "post",
+            url: `${baseURL}clients/updateCarInfo`,
+            data: clientInfo,
+            dataType: "json",
+            success: function (data) {
+                console.log('sucesso!');
+                
+                if (data.error == true) {
+                    $.each( data.popUpMessages, function(key, value ) {
+                        notyf.error(value);
+                        location.reload();
+                    });
+                } else {
+                    notyf.success(data.popUpMessages[0]);
+                    location.reload();
+                }
+            },
+            error:function(xhr, status, error) {
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+
+                notyf.error('Ocorreu um erro. Atualize a página e tente novamente!');
+            }
+        });
+    });
+
+    $(document).on('click', '.addContactModalButton', function(e){
+        
+        var modal = $(this).closest('.modal');
+
+        let emailAddress = modal.find("input[name='modalContactEmailAddress']").val();
+        let phoneNumber = modal.find("input[name='modalContactPhoneNumber']").val();
+        let description = modal.find("input[name='modalContactDescription']").val();
+
+        let clientInfo = {
+            'description': description,
+            'phone_number': phoneNumber,
+            'email_address': emailAddress
+        };
+
+        $.ajax({
+            type: "post",
+            url: `${baseURL}clients/addContact`,
+            data: clientInfo,
+            dataType: "json",
+            success: function (data) {
+                console.log('sucesso!');
+                
+                if (data.error == true) {
+                    $.each( data.popUpMessages, function(key, value ) {
+                        notyf.error(value);
+                        location.reload();
+                    });
+                } else {
+                    notyf.success(data.popUpMessages[0]);
+                    location.reload();
+                }
+            },
+            error:function(xhr, status, error) {
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+
+                notyf.error('Ocorreu um erro. Atualize a página e tente novamente!');
+            }
+        });
+    });
+
+    $(document).on('click', '.addCarModalButton', function(e){
+        
+        var modal = $(this).closest('.modal');
+
+        let description = modal.find("input[name='modalCarDescription']").val();
+        let vin = modal.find("input[name='modalCarVin']").val();
+        let license_plate = modal.find("input[name='modalCarLicensePlate']").val();
+        let model = modal.find("input[name='modalCarModel']").val();
+        let year = modal.find("input[name='modalCarYear']").val();
+
+        let clientInfo = {
+            'description': description,
+            'vin': vin,
+            'license_plate': license_plate,
+            'model': model,
+            'year': year
+        };
+
+        $.ajax({
+            type: "post",
+            url: `${baseURL}clients/addCar`,
+            data: clientInfo,
+            dataType: "json",
+            success: function (data) {
+                console.log('sucesso!');
+                
+                if (data.error == true) {
+                    $.each( data.popUpMessages, function(key, value ) {
+                        notyf.error(value);
+                        location.reload();
+                    });
+                } else {
+                    notyf.success(data.popUpMessages[0]);
+                    location.reload();
+                }
+            },
+            error:function(xhr, status, error) {
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+
+                notyf.error('Ocorreu um erro. Atualize a página e tente novamente!');
+            }
+        });
+    });
+
     new DataTable('#clientList');
 
     // $(document).on('keyup', 'input[name="clientSearch"]', function(e){
