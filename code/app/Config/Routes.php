@@ -12,6 +12,7 @@ $routes->get('clock', 'Clock::index');
 
 $routes->get('/', 'Dashboard::index', ['filter' => 'authGuard']);
 
+
 // AUTHENTICATION
 
 $routes->group('auth', ['filter' => 'authValidation'], function($routes){
@@ -26,9 +27,10 @@ $routes->group('auth', ['filter' => 'authValidation'], function($routes){
 
 $routes->get('/auth/logout',                         'Auth::logout', ['filter' => 'authGuard']);
 
-//CLIENTS |permissionValidation:CLIENTS,ALL
 
-$routes->group('clients', ['filter' => 'authGuard|permissionsValidation:ALL'], function($routes){
+//CLIENTS
+
+$routes->group('clients', ['filter' => 'authGuard|permissionsValidation:COSTUMERS, ALL'], function($routes){
     $routes->get('/',                             'Clients::index');
     $routes->get('createClientPage',              'Clients::createClientLoadPage');
     $routes->post('createClient',                 'Clients::createNewClient');
@@ -46,6 +48,25 @@ $routes->group('clients', ['filter' => 'authGuard|permissionsValidation:ALL'], f
 });
 
 $routes->get('seeder', 'Clients::Seeder');
+
+
+//MECHANICS
+
+$routes->group('mechanics', ['filter' => 'authGuard|permissionsValidation:MECHANICS, ALL'], function($routes){
+    $routes->get('/',                             'Mechanics::index');
+    $routes->get('createMechanicPage',            'Mechanics::createMechanicLoadPage');
+    $routes->post('createMechanic',               'Mechanics::createNewMechanic');
+    $routes->get('updateMechanicPage/(:hash)',    'Mechanics::updateMechanicLoadPage/$1');
+    $routes->post('updateMechanicInfo',           'Mechanics::updateMechanicInfo');
+    $routes->post('updateContactInfo',            'Mechanics::updateContactInfo');
+    $routes->get('listAllMechanics',              'Mechanics::listAllMechanicsLoadPage');
+    $routes->post('listAllMechanics',             'Mechanics::listAllMechanics');
+    $routes->get('showMechanicPage/(:hash)',      'Mechanics::showMechanicLoadPage/$1');
+    $routes->post('deleteMechanic',               'Mechanics::deleteMechanic');
+});
+
+$routes->get('seeder', 'Clients::Seeder');
+
 
 //USERS
 

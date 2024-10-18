@@ -73,6 +73,15 @@ class ClientsModel extends Model
         unset($carData['client_id']);
 
         $this->db->table('tb_clients_vehicles')->set($carData)->where('id', $id)->where('client_id', $client_id)->update();
+
+        if($this->db->affectedRows() > 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     //GET INFO

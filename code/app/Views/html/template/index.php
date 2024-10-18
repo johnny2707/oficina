@@ -107,14 +107,6 @@
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CREATION' ? 'active' : '' ?>" href="<?= base_url('clients/createClientPage') ?>">Criação</a>
 							<?php endif; ?>
 
-							<!-- <?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CONTACT' ? 'active' : '' ?>" href="<?= base_url('clients/addContactPage') ?>">Adicionar Contacto</a>
-							<?php endif; ?>
-
-							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CAR' ? 'active' : '' ?>" href="<?= base_url('clients/addCarPage') ?>">Adicionar Carro</a>
-							<?php endif; ?> -->
-
 							<?php if (in_array('CUSTOMER LIST', $permissions) || in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER LIST' ? 'active' : '' ?>" href="<?= base_url('clients/listAllClients') ?>">Lista</a>
 							<?php endif; ?>
@@ -127,27 +119,35 @@
 					<li class="nav-item dropdown <?= isset($menu) && $menu == 'COSTUMERS' ? 'active' : '' ?>">
 						<a class="nav-link dropdown-toggle" href="#COSTUMERS" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 							<span class="nav-link-icon d-md-none d-lg-inline-block">
-								<i class="ti ti-users"></i>
+								<i class="ti ti-tool"></i>
 							</span>
 							<span class="nav-link-title">Mecânicos</span>
 						</a>
 						<div class="dropdown-menu">
 							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CREATION' ? 'active' : '' ?>" href="<?= base_url('mechanics/createMechanicPage') ?>">Criação</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'MECHANIC CREATION' ? 'active' : '' ?>" href="<?= base_url('mechanics/createMechanicPage') ?>">Criação</a>
 							<?php endif; ?>
 
 							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CONTACT' ? 'active' : '' ?>" href="<?= base_url('mechanics/mechanicAgendaPage') ?>">Agenda</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'MECHANIC AGENDA' ? 'active' : '' ?>" href="<?= base_url('mechanics/mechanicAgendaPage') ?>">Agenda</a>
 							<?php endif; ?>
 
 							<?php if (in_array('CUSTOMER LIST', $permissions) || in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER LIST' ? 'active' : '' ?>" href="<?= base_url('mechanics/listAllMechanics') ?>">Lista</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'MECHANIC LIST' ? 'active' : '' ?>" href="<?= base_url('mechanics/listAllMechanics') ?>">Lista</a>
 							<?php endif; ?>
 
 							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER OTHERS' ? 'active' : '' ?>" href="<?= base_url() ?>">Outros</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'MECHANIC OTHERS' ? 'active' : '' ?>" href="<?= base_url() ?>">Outros</a>
 							<?php endif; ?>
 						</div>
+					</li>
+					<li>
+						<a class="nav-link" href="<?= base_url('clock') ?>" role="button">
+							<span class="nav-link-icon d-md-none d-lg-inline-block">
+								<i class="ti ti-calendar"></i>
+							</span>
+							<span class="nav-link-title">Events</span>
+						</a>
 					</li>
 					<li>
 						<a class="nav-link" href="<?= base_url('clock') ?>" role="button">
