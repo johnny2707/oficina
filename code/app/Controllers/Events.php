@@ -31,6 +31,8 @@ class Events extends BaseController
 
         $this->email = \Config\Services::email();
 
+        helper('holidays');
+
         $this->res = [
             'error' => FALSE,
             'popUpMessages' => [],
@@ -58,7 +60,28 @@ class Events extends BaseController
 
     public function createEvent()
     {
-        $eventData = $this->request->getPost('eventInfo');
+        $eventData = [
+            'type' => $this->request->getPost('type'),
+            'event_description' => $this->request->getPost('description'),
+            'event_date' => $this->request->getPost('date'),
+            'event_start' => $this->request->getPost('start'),
+            'event_end' => $this->request->getPost('finish'),
+            'mechanic_id' => $this->request->getPost('mechanicId'),
+            'completed' => 0
+        ];
+
+        $result = $this->eventsModel->createEvent($eventData);
+
+        if(!$result)
+        {
+            array_push($this->res['popUpMessages'], ["Sucesso!"]);
+        }
+        else
+        {
+            array_push($this->res['popUpMessages'], ["Error!"]);
+        }
+
+        return $this->response->setJSON($this->res);
     }
 
     public function listAllEvents()
@@ -126,12 +149,12 @@ class Events extends BaseController
                 // Add data to the events array
                 array_push($events, array(
                     'id'    => $interventions['id'],
-                    'title' => $interventions['description'] . "(" . $interventions['type'] . ")",
+                    'title' => $interventions['event_description'] . "(" . $interventions['name'] . ")",
                     'description' => "
-                        <b>" . $interventions['description'] . "(" . $interventions['type'] . ") </b>
+                        <b>" . $interventions['event_description'] . "(" . $interventions['name'] . ") </b>
                         <br><br>
                         <b><u>Descrição:</u></b><br>
-                        " . $interventions['description'],
+                        " . $interventions['event_description'],
                     'start' => $interventions['event_date'] . "T" . $interventions['event_start'],
                     'end'   => $interventions['event_date'] . "T" . $interventions['event_end'],
                     'color' => $interventions['color'] . ($interventions['completed'] == 1 ? '80' : ''),
@@ -198,18 +221,18 @@ class Events extends BaseController
             //     ));
             // }
 
-            // // ADD PUBLIC HOLIDAYS
-            // $publicHolidays = publicHolidaysByYear($formData['currentYear']);
-            // foreach ($publicHolidays as $date => $name) {
-            //     array_push($events, array(
-            //         'id'    => "",
-            //         'title' => $name,
-            //         'description' => "<b>Feriado nacional:</b> {$name}",
-            //         'start' => "{$date}T00:00:00",
-            //         'end'   => "{$date}T23:59:00",
-            //         'color' => "#808080"
-            //     ));
-            // }
+            // ADD PUBLIC HOLIDAYS
+            $publicHolidays = publicHolidaysByYear($formData['currentYear']);
+            foreach ($publicHolidays as $date => $name) {
+                array_push($events, array(
+                    'id'    => "",
+                    'title' => $name,
+                    'description' => "<b>Feriado nacional:</b> {$name}",
+                    'start' => "{$date}T00:00:00",
+                    'end'   => "{$date}T23:59:00",
+                    'color' => "#808080"
+                ));
+            }
             
             $this->response->setHeader('Content-type', 'application/json');
             return $this->response->setJSON($events);

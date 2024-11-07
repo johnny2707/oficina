@@ -5,32 +5,35 @@ $(document).ready(function(){
     $("#page-loader").hide();
 
     $(document).on("click", ".createEvent", function(e){
-        console.log("clicado");
-
 
         let type = $('select[name="eventType"]').val();
-        let description = $('select[name="eventDescription"]').val();
-        let date = $('select[name="eventDate"]').val();
-        let start = $('select[name="eventStart"]').val();
-        let finish = $('select[name="eventFinish"]').val();
-        let mechanic = $('select[name="eventMechanic"]').val();
-
-        let eventInfo = {
-            'type': type,
-            'description': description,
-            'date': date,
-            'start': start,
-            'finish': finish,
-            'mechanic': mechanic
-        };
+        let description = $('input[name="eventDescription"]').val();
+        let date = $('input[name="eventDate"]').val();
+        let start = $('input[name="eventStart"]').val();
+        let finish = $('input[name="eventFinish"]').val();
+        let mechanicId = $('select[name="eventMechanic"]').val();
 
         $.ajax({
             type: "POST",
             url:   `${baseURL}events/createEvent`,
-            data: eventInfo,
-            dataType: "dataType",
+            dataType: "json",
+            data: {
+                'type': type,
+                'description': description,
+                'date': date,
+                'start': start,
+                'finish': finish,
+                'mechanicId': mechanicId
+            },
             success: function (response) {
                 notyf.success("Evento adicionado com sucesso!");
+            },
+            error: function(xhr, status, error){
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+
+                notyf.error('Ocorreu um erro. Atualize a página e tente novamente!');
             }
         });
     });    

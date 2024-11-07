@@ -4,6 +4,7 @@ use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 use Config\Services;
 use PhpParser\Node\Expr\FuncCall;
+use PHPUnit\Framework\Error\Warning;
 
 class EventsModel extends Model
 {
@@ -16,6 +17,18 @@ class EventsModel extends Model
     {
         parent::__construct();
         $this->db = \Config\Database::connect();
+    }
+
+    public function createEvent($eventData)
+    {
+        if(!$this->db->table('tb_events')->set($eventData)->insert())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public function getAllEvents()

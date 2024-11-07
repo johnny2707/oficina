@@ -58,7 +58,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">mechanic</label>
-                            <select class="form-control" name="mechanic" name="eventMechanic">
+                            <select class="form-control" name="eventMechanic">
                                 <option value="0">select a mechanic (optional)</option>
                                 <?php 
                                     foreach($mechanics as $mechanic)
