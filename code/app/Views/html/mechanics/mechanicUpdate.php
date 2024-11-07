@@ -27,6 +27,11 @@
                         <input type="text" class="form-control" placeholder="name" name="" value="<?= $mechanicData[0]['name'] ?>" disabled>
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">role</label>
+                        <input type="text" class="form-control" placeholder="role" name="" value="<?= $mechanicData[0]['role'] ?>" disabled>
+                    </div>
+
                     <h3>contact info</h3>
                             
                     <div class="mb-3">
@@ -37,11 +42,6 @@
                     <div class="mb-3">
                         <label class="form-label">email address</label>
                         <input type="text" class="form-control" placeholder="email address" name="" value="<?= $mechanicData[0]['email_address'] ?>" disabled>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">role</label>
-                        <input type="text" class="form-control" placeholder="email address" name="" value="<?= $mechanicData[0]['role'] ?>" disabled>
                     </div>
 
                     <div class="modal fade" id="mechanicModal" tabindex="-1" aria-labelledby="mechanicModalLabel" aria-hidden="true">
@@ -58,6 +58,11 @@
                                     </div>
 
                                     <div class="mb-3">
+                                        <label class="form-label">role</label>
+                                        <input type="text" class="form-control" placeholder="role" name="mechanicModalRole" value="<?= $mechanicData[0]['role'] ?>">
+                                    </div>
+
+                                    <div class="mb-3">
                                         <label class="form-label">phone number</label>
                                         <input type="text" class="form-control" placeholder="phone number" name="mechanicModalPhoneNumber" value="<?= $mechanicData[0]['phone_number'] ?>">
                                     </div>
@@ -65,11 +70,6 @@
                                     <div class="mb-3">
                                         <label class="form-label">email address</label>
                                         <input type="text" class="form-control" placeholder="email address" name="mechanicModalEmailAddress" value="<?= $mechanicData[0]['email_address'] ?>">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">role</label>
-                                        <input type="text" class="form-control" placeholder="role" name="mechanicModalRole" value="<?= $mechanicData[0]['role'] ?>">
                                     </div>
                                 </div>
                                 <div class="modal-footer">

@@ -25,6 +25,11 @@
                             <input type="text" class="form-control" placeholder="name" name="name">
                         </div>
                     
+                        <div class="mb-3">
+                            <label class="form-label">role</label>
+                            <input type="text" class="form-control" placeholder="role" name="name">
+                        </div>
+
                         <h3>mechaniccontact</h3>
                         
                         <div class="mb-3">

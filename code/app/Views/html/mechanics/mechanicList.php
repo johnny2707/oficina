@@ -40,6 +40,7 @@
                             <th>name</th>
                             <th>phone number</th>
                             <th>email address</th>
+                            <th>role</th>
                             <th>creation date</th>
                             <th>actions</th>
                         </thead>
@@ -52,6 +53,7 @@
                                         <td><?= $mechanic['name'] ?></td>
                                         <td><?= $mechanic['phone_number'] ?></td>
                                         <td><?= $mechanic['email_address'] ?></td>
+                                        <td><?= $mechanic['role'] ?></td>
                                         <td><?= $mechanic['creation_date'] ?></td>
                                         <td>
                                             <a href="<?= base_url('mechanics/showMechanicPage/'.$mechanic["id"]) ?>" class='btn btn-primary me-3' data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="show"><i class='ti ti-eye'></i></a>

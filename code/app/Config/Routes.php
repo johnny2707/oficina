@@ -68,6 +68,17 @@ $routes->group('mechanics', ['filter' => 'authGuard|permissionsValidation:MECHAN
 $routes->get('seeder', 'Clients::Seeder');
 
 
+//EVENTS
+
+$routes->group('events', ['filter' => 'authGuard|permissionsValidation: EVENTS, ALL'], function($routes){
+    $routes->get('/',               'Events::index');
+    $routes->get('createEventPage', 'Events::createEventLoadPage');
+    $routes->post('createEvent',    'Events::createEvent');
+    $routes->get('listAllEvents',   'Events::listAllEvents');
+    $routes->post('listOfEvents',   'Events::listOfEvents');
+});
+
+
 //USERS
 
 $routes->get('users/createAccount/(:segment)',  'Users::createAccountPage/$1');

@@ -16,10 +16,13 @@
 
 	<!-- Libs CSS -->
 	<link href="<?= base_url('assets/libs/notyf/css/notyf.min.css') ?>" rel="stylesheet"/>
+
 	<link href="<?= base_url('assets/libs/datatables/dataTables.bootstrap5.min.css') ?>" rel="stylesheet"/>
 	<link href="<?= base_url('assets/libs/datatables/responsive.dataTables.min.css') ?>" rel="stylesheet"/>
 	<link href="<?= base_url('assets/libs/datatables/stateRestore.dataTables.min.css') ?>" rel="stylesheet"/>
+	
 	<link href="<?= base_url('assets/libs/tabler-icons/tabler-icons.min.css') ?>" rel="stylesheet"/>
+	
 	<link href="<?= base_url('assets/libs/jquery-confirm/css/jquery-confirm.min.css') ?>" rel="stylesheet"/>
 	<link href="<?= base_url('assets/libs/tom-select/css/tom-select.css') ?>" rel="stylesheet"/>
 	<link href="<?= base_url('assets/libs/jquery-ui/jquery-ui.min.css') ?>" rel="stylesheet"/>
@@ -141,13 +144,26 @@
 							<?php endif; ?>
 						</div>
 					</li>
-					<li>
-						<a class="nav-link" href="<?= base_url('clock') ?>" role="button">
+					<li class="nav-item dropdown <?= isset($menu) && $menu == 'EVENTS' ? 'active' : '' ?>">
+						<a class="nav-link dropdown-toggle" href="#EVENTS" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 							<span class="nav-link-icon d-md-none d-lg-inline-block">
-								<i class="ti ti-calendar"></i>
+								<i class="ti ti-tool"></i>
 							</span>
 							<span class="nav-link-title">Events</span>
 						</a>
+						<div class="dropdown-menu">
+							<?php if (in_array('EVENTS', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'EVENT CREATION' ? 'active' : '' ?>" href="<?= base_url('events/createEventPage') ?>">Criação</a>
+							<?php endif; ?>
+
+							<?php if (in_array('EVENTS', $permissions) || in_array('EVENTS', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'EVENT LIST' ? 'active' : '' ?>" href="<?= base_url('events/listAllEvents') ?>">Lista</a>
+							<?php endif; ?>
+
+							<?php if (in_array('EVENTS', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'EVENT OTHERS' ? 'active' : '' ?>" href="<?= base_url() ?>">Outros</a>
+							<?php endif; ?>
+						</div>
 					</li>
 					<li>
 						<a class="nav-link" href="<?= base_url('clock') ?>" role="button">
@@ -190,6 +206,8 @@
 	<script src="<?= base_url('assets/libs/jquery-ui/jquery-ui.min.js') ?>"></script>
 
 	<script src="<?= base_url('assets/libs/list.js/list.min.js') ?>"></script>
+	
+	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 
 	<!-- Webmóvel JS -->
 	<script src="<?= base_url('assets/js/custom/custom.js') ?>"></script>

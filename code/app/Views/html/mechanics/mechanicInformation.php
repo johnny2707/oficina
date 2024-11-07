@@ -24,6 +24,11 @@
                         <input type="text" class="form-control" placeholder="name" name="clientName" value="<?= $mechanicData[0]['name'] ?>" readonly disabled>
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">role</label>
+                        <input type="text" class="form-control" placeholder="role" name="mechanicModalRole" value="<?= $mechanicData[0]['role'] ?>" readonly disabled>
+                    </div>
+
                     <h3>contact info</h3>
                             
                     <div class="mb-3">
