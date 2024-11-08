@@ -31,11 +31,9 @@ class EventsModel extends Model
         }
     }
 
-    public function getAllEvents()
+    public function getAllEvents($start, $end)
     {
-        $query = $this->db->table('tb_events')->select('*')
-                                              ->join('tb_events_types', 'tb_events.type = tb_events_types.id')
-                                              ->join('tb_clients_vehicles', 'tb_events.car_id = tb_clients_vehicles.id');
+        $query = $this->db->table('tb_events')->select('*');
 
         return $query->get();
     }   
@@ -47,12 +45,24 @@ class EventsModel extends Model
         return $query->get()->getResultArray();
     }
 
-    public function getAllInterventionsByDateRange($start, $end)
+    public function getAllEventsByDateRange($start, $end)
     {
         $query = $this->db->table('tb_events')->select('*')
-                                              ->where('event_date >= '.$start)
-                                              ->where('event_date <= '.$end);
+                                              ->join('tb_events_types', 'tb_events.type = tb_events_types.id')
+                                              ->join('tb_clients_vehicles', 'tb_events.car_id = tb_clients_vehicles.id')
+                                              ->where("tb_events.event_date >= ", $start)
+                                              ->where("tb_events.event_date <=", $end);            
         
         return $query->get();
+    }
+
+    public function getEventDataById($eventId)
+    {
+        $query = $this->db->table($this->table)->select('*')
+                                               ->join('tb_events_types', 'tb_events.type = tb_events_types.id')
+                                               ->join('tb_clients_vehicles', 'tb_events.car_id = tb_clients_vehicles.id')
+                                               ->where("tb_events.id >= ", $eventId);
+                                               
+        return $query->get()->getResultArray();
     }
 }

@@ -60,6 +60,19 @@ class Events extends BaseController
 
     public function createEvent()
     {
+        $validationRules = array(
+            'type'              => ['rules' => 'required'],
+            'event_description' => ['rules' => 'required'],
+            'event_date'        => ['rules' => 'required'],
+            'event_start'       => ['rules' => 'required'],
+            'event_end'         => ['rules' => 'required']
+        );
+
+        if(!$this->validate($validationRules))
+        {
+            
+        }
+
         $eventData = [
             'type' => $this->request->getPost('type'),
             'event_description' => $this->request->getPost('description'),
@@ -120,8 +133,12 @@ class Events extends BaseController
             $formData = $this->request->getPost();
             $events = array();
 
+            // echo date("Y-m-d", strtotime($formData['start']));
+            // echo date("Y-m-d", strtotime($formData['end']));
+
             // ADD INTERVENTIONS
-            $allInterventions = $this->eventsModel->getAllEvents();
+            $allInterventions = $this->eventsModel->getAllEventsByDateRange(date("Y-m-d", strtotime($formData['start'])), date("Y-m-d", strtotime($formData['end'])));
+            
             foreach ($allInterventions->getResultArray() as $interventions) 
             {
 
@@ -239,5 +256,14 @@ class Events extends BaseController
 
         }
 
+    }
+
+    public function updateEventLoadPage($eventId)
+    {
+        $this->data['title'] = "update event";
+        
+        $this->data['eventInfo'] = $this->eventsModel->getEventDataById($eventId);
+
+        return view('html/events/eventUpdation', $this->data);
     }
 }

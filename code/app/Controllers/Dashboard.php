@@ -9,12 +9,10 @@ class Dashboard extends BaseController
         $this->session = \Config\Services::session();
 
         $this->data = [
-            'menu'          => 'DASHBOARD',
+            'menu'          => 'HOME',
             'subMenu'       => '',
             'customCSS'     => '',
-            'customJS'      => '
-                <script src="'.base_url('assets/js/custom/dashboard.js?' . $_ENV['VERSION'] ).'"></script>
-            '
+            'customJS'      => '<script src="'.base_url('assets/js/custom/events.js?' . $_ENV['VERSION'] ).'"></script>'
         ];
     }
 

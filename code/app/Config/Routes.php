@@ -16,16 +16,16 @@ $routes->get('/', 'Dashboard::index', ['filter' => 'authGuard']);
 // AUTHENTICATION
 
 $routes->group('auth', ['filter' => 'authValidation'], function($routes){
-    $routes->get('/',                                'Auth::index');
-    $routes->post('/',                               'Auth::login');
-    $routes->get('recoverPassword',                  'Auth::recoverPassword');
-    $routes->post('sendPasswordEmail',               'Auth::sendPasswordEmail');
-    $routes->get('changePassword/(:segment)',        'Auth::changePassword/$1');
-    $routes->get('emailSentConfirmation/(:segment)', 'Auth::emailSentConfirmation/$1');
-    $routes->post('updatePassword',                  'Auth::updatePassword');
+    $routes->get('/',                                  'Auth::index');
+    $routes->post('/',                                 'Auth::login');
 });
 
-$routes->get('/auth/logout',                         'Auth::logout', ['filter' => 'authGuard']);
+$routes->get('/auth/recoverPassword',                  'Auth::recoverPassword');
+$routes->post('/auth/sendPasswordEmail',               'Auth::sendPasswordEmail');
+$routes->get('/auth/changePassword/(:segment)',        'Auth::changePassword/$1');
+$routes->get('/auth/emailSentConfirmation/(:segment)', 'Auth::emailSentConfirmation/$1');
+$routes->post('/auth/updatePassword',                  'Auth::updatePassword');
+$routes->get('/auth/logout',                           'Auth::logout', ['filter' => 'authGuard']);
 
 
 //CLIENTS
@@ -50,6 +50,12 @@ $routes->group('clients', ['filter' => 'authGuard|permissionsValidation:COSTUMER
 $routes->get('seeder', 'Clients::Seeder');
 
 
+//VEHICLES
+
+$routes->group('vehicles', ['filter' => 'authGuard|permissionsValidation:VEHICLES, ALL'], function($routes){
+    $routes->post('getAllVehicles', 'Clients::getAllVehicles');
+});
+
 //MECHANICS
 
 $routes->group('mechanics', ['filter' => 'authGuard|permissionsValidation:MECHANICS, ALL'], function($routes){
@@ -71,11 +77,13 @@ $routes->get('seeder', 'Clients::Seeder');
 //EVENTS
 
 $routes->group('events', ['filter' => 'authGuard|permissionsValidation: EVENTS, ALL'], function($routes){
-    $routes->get('/',               'Events::index');
-    $routes->get('createEventPage', 'Events::createEventLoadPage');
-    $routes->post('createEvent',    'Events::createEvent');
-    $routes->get('listAllEvents',   'Events::listAllEvents');
-    $routes->post('listOfEvents',   'Events::listOfEvents');
+    $routes->get('/',                        'Events::index');
+    $routes->get('createEventPage',          'Events::createEventLoadPage');
+    $routes->post('createEvent',             'Events::createEvent');
+    $routes->get('listAllEvents',            'Events::listAllEvents');
+    $routes->post('listOfEvents',            'Events::listOfEvents');
+    $routes->get('updateEventPage/(:num)',   'Events::updateEventLoadPage/$1');
+    $routes->post('updateEvent',             'Events::updateEvent');
 });
 
 
@@ -83,6 +91,9 @@ $routes->group('events', ['filter' => 'authGuard|permissionsValidation: EVENTS, 
 
 $routes->get('users/createAccount/(:segment)',  'Users::createAccountPage/$1');
 $routes->post('users/createAccount/(:segment)', 'Users::createAccount/$1');
+
+
+
 
 // $routes->group("users", ['filter' => 'authGuard|permissionsValidation:USERS,ALL'], function($routes){
 //     $routes->get('/',                   'Users::index');

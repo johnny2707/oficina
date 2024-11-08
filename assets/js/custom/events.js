@@ -84,4 +84,48 @@ $(document).ready(function(){
     });
     calendar.render();
 
+    new TomSelect('#select-vehicle',{
+		valueField: 'url',
+		labelField: 'vehicle',
+		searchField: 'vehicle',
+		// fetch remote data
+		load: function(query, callback) {
+
+			var url = `${baseURL}events/` + encodeURIComponent(query);
+			fetch(url)
+				.then(response => response.json())
+				.then(json => {
+					callback(json.items);
+				}).catch(()=>{
+					callback();
+				});
+
+		},
+		// custom rendering functions for options and items
+		render: {
+			option: function(item, escape) {
+				return `<div class="py-2 d-flex">
+							<div>
+								<div class="mb-1">
+									<span class="h4">
+										${ escape(item.description) }
+									</span>
+								</div>
+							</div>
+						</div>`;
+			},
+			item: function(item, escape) {
+				return `<div class="py-2 d-flex">
+							<div>
+								<div class="mb-1">
+									<span class="h4">
+										${ escape(item.description) }
+									</span>
+								</div>
+							</div>
+						</div>`;
+			}
+		},
+	});
+
 });

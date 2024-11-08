@@ -81,7 +81,7 @@
 						</div>
 					</a>
 					<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-						<a href="<?= base_url('users/myPassword') ?>" class="dropdown-item <?= isset($subMenu) && $subMenu == 'MY-PASSWORD' ? 'active' : '' ?>">Alterar password</a>
+						<a href="<?= base_url('auth/recoverPassword') ?>" class="dropdown-item <?= isset($subMenu) && $subMenu == 'MY-PASSWORD' ? 'active' : '' ?>">Alterar password</a>
 						<a href="<?= base_url('auth/logout') ?>" class="dropdown-item">Log out</a>
 					</div>
 				</div>

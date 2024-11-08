@@ -2,6 +2,7 @@
 
 use App\Models\ClientsModel;
 use App\Models\UsersModel;
+use App\Models\VehiclesModel;
 use DateTime;
 use PhpParser\Node\Expr\FuncCall;
 use Symfony\Component\Console\Descriptor\Descriptor;
@@ -17,12 +18,14 @@ class Clients extends BaseController
     protected $seeder;
     protected $email;
     protected $db;
+    protected $vehiclesModel;
 
     public function __construct()
     {
         $this->session = \Config\Services::session();
         $this->clientsModel = new ClientsModel;
         $this->usersModel = new UsersModel;
+        $this->vehiclesModel = new VehiclesModel;
 
         $this->seeder = \Config\Database::seeder();
 
@@ -334,6 +337,15 @@ class Clients extends BaseController
 
         $this->res['popUpMessages'][] = 'eliminado com sucesso!';
         return $this->response->setJSON($this->res);
+    }
+
+
+    //BUSCAR TODOS OS VEÍCULOS
+    public function getAllVehicles()
+    {
+        $vehicleInfo = $this->vehiclesModel->getAllVehicles();
+
+        return $this->response->setJSON($vehicleInfo);
     }
 
     public function Seeder()

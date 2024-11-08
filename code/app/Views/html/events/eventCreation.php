@@ -37,6 +37,12 @@
                         </div>
 
                         <div class="mb-3">
+                            <label class="form-label">vehicle</label>
+                            <select id="select-vehicle" class="form-control" placeholder="select a vehicle" name="eventVehicle" multiple>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
                             <label class="form-label">description</label>
                             <input type="text" class="form-control" placeholder="description" name="eventDescription">
                         </div>
