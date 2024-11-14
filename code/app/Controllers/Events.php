@@ -133,9 +133,6 @@ class Events extends BaseController
             $formData = $this->request->getPost();
             $events = array();
 
-            // echo date("Y-m-d", strtotime($formData['start']));
-            // echo date("Y-m-d", strtotime($formData['end']));
-
             // ADD INTERVENTIONS
             $allInterventions = $this->eventsModel->getAllEventsByDateRange(date("Y-m-d", strtotime($formData['start'])), date("Y-m-d", strtotime($formData['end'])));
             
