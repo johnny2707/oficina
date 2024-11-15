@@ -15,44 +15,6 @@
         border-top-right-radius: 8px;
     }
 
-    .form-help-webmovel {
-        margin: 0px 2px;
-        display: inline-flex;
-        padding: 11px;
-        font-weight: var(--tblr-font-weight-bold);
-        align-items: center;
-        justify-content: center;
-        height: 1.125rem;
-        font-size: .75rem;
-        color: var(--tblr-muted);
-        text-align: center;
-        text-decoration: none;
-        cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        background: var(--tblr-gray-100);
-        border-radius: 9px;
-        transition: background-color .3s,color .3s;
-    }
-    .form-help-webmovel:hover, .form-help-webmovel[aria-describedby] {
-        color: #fff;
-        background: var(--tblr-primary);
-    }
-
-    .ti {
-        font-size: 16px !important;
-    }
-
-    .nav-item .ti {
-        font-size: 20px !important;
-    }
-
-    .pagination {
-        --tblr-pagination-focus-box-shadow: 0 0 0 0.25rem rgb(48, 159, 46 / 25%) !important;
-    }
-
     .form-control:focus {
         border-color: 0 0 0 0.25rem rgb(48, 159, 46 / 50%) !important;
         box-shadow: 0 0 0 0.25rem rgb(48, 159, 46 / 25%) !important;
@@ -71,14 +33,6 @@
     textarea, 
     .form-select {
         background-color: #f8f8f875 !important;
-    }
-
-    .btn-webmovel {
-        background-color: #078641 !important;
-    }
-
-    .btn-webmovel:hover {
-        background-color: #066933 !important;
     }
 
     .btn-sm {
@@ -103,10 +57,6 @@
     .nav-link:focus, .nav-link:hover {
         color: #309F2E;
         text-decoration: none;
-    }
-
-    .card-footer-webmovel {
-        border-top: none;
     }
 
     .changeInputType {
@@ -242,13 +192,6 @@ div.dataTables_wrapper div.dataTables_info {
     padding: 0px 5px !important;
 }
 /* ---- DATATABLES ---- */
-
-
-/* ++++ TOM SELECT ++++ */
-.form-select {
-    padding: 0 !important;
-}
-/* ---- TOM SELECT ---- */
 
 
 /* ++++ JQUERY UI ++++ */

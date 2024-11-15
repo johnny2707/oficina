@@ -12,13 +12,13 @@ class Dashboard extends BaseController
             'menu'          => 'HOME',
             'subMenu'       => '',
             'customCSS'     => '',
-            'customJS'      => '<script src="'.base_url('assets/js/custom/events.js?' . $_ENV['VERSION'] ).'"></script>'
+            'customJS'      => '<script src="'.base_url('assets/js/custom/custom.js?' . $_ENV['VERSION'] ).'"></script>'
         ];
     }
 
     public function index() {
         $this->data['title'] = "Dashboard";
 
-        return view('html/dashboard/index', $this->data);
+        return view('html/index', $this->data);
     }
 }
