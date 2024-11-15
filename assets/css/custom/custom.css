@@ -244,12 +244,6 @@ div.dataTables_wrapper div.dataTables_info {
 /* ---- DATATABLES ---- */
 
 
-/* ++++ TOM SELECT ++++ */
-.form-select {
-    padding: 0 !important;
-}
-/* ---- TOM SELECT ---- */
-
 
 /* ++++ JQUERY UI ++++ */
 .ui-sortable-helper {
