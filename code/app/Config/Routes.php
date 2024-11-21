@@ -8,7 +8,12 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-$routes->get('/', 'Dashboard::Index');
+$routes->get('/', 'Dashboard::index');
+
+$routes->get('cliente/criar',              'Clientes::criar');
+$routes->get('fatura/criar',               'Fatura::criar');
+$routes->post('products/getProductByCode', 'Products::getProductByCode');
+$routes->get('products/getAllProducts',    'Products::getAllProducts');
 
 // $routes->get('clock', 'Clock::index');
 

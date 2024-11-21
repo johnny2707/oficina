@@ -1,7 +1,7 @@
 <?php
-	$name = session()->get('name');
-	$role = session()->get('role');
-	$permissions = session()->get('permissions');
+	// $name = session()->get('name');
+	// $role = session()->get('role');
+	// $permissions = session()->get('permissions');
 ?>
 
 <!doctype html>
@@ -67,17 +67,17 @@
 				<div class="nav-item dropdown">
 					<a href="#" class="nav-link d-flex lh-1 text-reset p-0 ms-3 me-5" data-bs-toggle="dropdown" aria-label="Abrir menu do utilizador">
 						<?php
-							$nameExplode = explode(" ", $name);
-							$firstL = $nameExplode[0][0];
-							$secondL = "";
-							if (isset($nameExplode[1][0])) {
-								$secondL = $nameExplode[1][0];
-							}
+							// $nameExplode = explode(" ", $name);
+							// $firstL = $nameExplode[0][0];
+							// $secondL = "";
+							// if (isset($nameExplode[1][0])) {
+							// 	$secondL = $nameExplode[1][0];
+							// }
 						?>
-						<span class="avatar bg-orange-lt"><?= "{$firstL}{$secondL}" ?></span>
+						<span class="avatar bg-orange-lt">js<?php #"{$firstL}{$secondL}" ?></span>
 						<div class="d-none d-xl-block ps-2">
-							<div><?= $name ?></div>
-							<div class="mt-1 small text-muted"><?= $role ?></div>
+							<div><?php # $name ?>joão soares</div>
+							<div class="mt-1 small text-muted"><?php # $role ?>developer</div>
 						</div>
 					</a>
 					<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -106,63 +106,22 @@
 							<span class="nav-link-title">Clientes</span>
 						</a>
 						<div class="dropdown-menu">
-							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER CREATION' ? 'active' : '' ?>" href="<?= base_url('clients/createClientPage') ?>">Criação</a>
-							<?php endif; ?>
-
-							<?php if (in_array('CUSTOMER LIST', $permissions) || in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER LIST' ? 'active' : '' ?>" href="<?= base_url('clients/listAllClients') ?>">Lista</a>
-							<?php endif; ?>
-
-							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CUSTOMER OTHERS' ? 'active' : '' ?>" href="<?= base_url() ?>">Outros</a>
-							<?php endif; ?>
+							<?php # if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CRIAR CLIENTE' ? 'active' : '' ?>" href="<?= base_url('cliente/criar') ?>">CREATE</a>
+							<?php # endif; ?>
 						</div>
 					</li>
 					<li class="nav-item dropdown <?= isset($menu) && $menu == 'COSTUMERS' ? 'active' : '' ?>">
 						<a class="nav-link dropdown-toggle" href="#COSTUMERS" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 							<span class="nav-link-icon d-md-none d-lg-inline-block">
-								<i class="ti ti-tool"></i>
+								<i class="ti ti-file-description"></i>
 							</span>
-							<span class="nav-link-title">Mecânicos</span>
+							<span class="nav-link-title">Fatura</span>
 						</a>
 						<div class="dropdown-menu">
-							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'MECHANIC CREATION' ? 'active' : '' ?>" href="<?= base_url('mechanics/createMechanicPage') ?>">Criação</a>
-							<?php endif; ?>
-
-							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'MECHANIC AGENDA' ? 'active' : '' ?>" href="<?= base_url('mechanics/mechanicAgendaPage') ?>">Agenda</a>
-							<?php endif; ?>
-
-							<?php if (in_array('CUSTOMER LIST', $permissions) || in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'MECHANIC LIST' ? 'active' : '' ?>" href="<?= base_url('mechanics/listAllMechanics') ?>">Lista</a>
-							<?php endif; ?>
-
-							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'MECHANIC OTHERS' ? 'active' : '' ?>" href="<?= base_url() ?>">Outros</a>
-							<?php endif; ?>
-						</div>
-					</li>
-					<li class="nav-item dropdown <?= isset($menu) && $menu == 'EVENTS' ? 'active' : '' ?>">
-						<a class="nav-link dropdown-toggle" href="#EVENTS" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-							<span class="nav-link-icon d-md-none d-lg-inline-block">
-								<i class="ti ti-calendar"></i>
-							</span>
-							<span class="nav-link-title">Events</span>
-						</a>
-						<div class="dropdown-menu">
-							<?php if (in_array('EVENTS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'EVENT CREATION' ? 'active' : '' ?>" href="<?= base_url('events/createEventPage') ?>">Criação</a>
-							<?php endif; ?>
-
-							<?php if (in_array('EVENTS', $permissions) || in_array('EVENTS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'EVENT LIST' ? 'active' : '' ?>" href="<?= base_url('events/listAllEvents') ?>">Lista</a>
-							<?php endif; ?>
-
-							<?php if (in_array('EVENTS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'EVENT OTHERS' ? 'active' : '' ?>" href="<?= base_url() ?>">Outros</a>
-							<?php endif; ?>
+							<?php # if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CRIAR FATURA' ? 'active' : '' ?>" href="<?= base_url('fatura/criar') ?>">CREATE</a>
+							<?php # endif; ?>
 						</div>
 					</li>
 					<li>

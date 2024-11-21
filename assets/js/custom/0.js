@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
 
-    $("#page-loader").hide();
+    
 
     $(document).on('click', '.createClient', function(e){
 
