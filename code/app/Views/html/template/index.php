@@ -12,7 +12,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 	<title><?= "{$title} | " ?>johnny</title>
 
-	<link rel="shortcut icon" type="image/x-icon" href="<?= base_url('logo.svg') ?>">
+	<link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/img/logo.svg') ?>">
 
 	<!-- Libs CSS -->
 	<link href="<?= base_url('assets/libs/notyf/css/notyf.min.css') ?>" rel="stylesheet"/>

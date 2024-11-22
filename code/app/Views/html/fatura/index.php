@@ -79,7 +79,7 @@
                                         </thead>
                                         <tbody id="tableBody">
                                             <tr class="">
-                                                <td scope="row"><input class="form-control" type="text" name="serviceSelect" id="serviceSelect"></td>
+                                                <td scope="row"><input class="form-control serviceSelect" type="text" name="serviceSelect" id="serviceSelect"></td>
                                                 <td>-</td>
                                                 <td>-</td>
                                                 <td>-</td>
