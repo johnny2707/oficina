@@ -44,39 +44,39 @@
     }
     
     .nav-item.active::after {
-        border: 0 solid #309F2E !important;
+        border: 0 solid #CD5C08 !important;
         border-bottom-width: 2px !important;
     }
 
     .dropdown-item.active, .dropdown-item:active {
-        color: #309F2E;
+        color: #CD5C08;
         text-decoration: none;
         background-color: rgba(23, 51, 63, 0.06);
     }
 
     .nav-link:focus, .nav-link:hover {
-        color: #309F2E;
+        color: #CD5C08;
         text-decoration: none;
     }
 
     .changeInputType {
-        color: #268224 !important;
+        color: #CD5C08 !important;
         float: right !important;
     }
     
     .changeInputType:hover {
         cursor: pointer;
-        color: #268224 !important;
+        color: #CD5C08 !important;
     }
 
     .button-txt-label {
-        color: #268224 !important;
+        color: #CD5C08 !important;
         float: right !important;
     }
     
     .button-txt-label:hover {
         cursor: pointer;
-        color: #268224 !important;
+        color: #CD5C08 !important;
     }
 
     .modal-xlg {
@@ -92,6 +92,7 @@
 
     /* Firefox */
     input[type=number] {
+        appearance: textfield;
         -moz-appearance: textfield;
     }
 
@@ -107,23 +108,23 @@
     }
 
     .change-variation-type {
-        color: #268224 !important;
+        color: #CD5C08 !important;
         float: right !important;
     }
     
     .change-variation-type:hover {
         cursor: pointer;
-        color: #268224 !important;
+        color: #CD5C08 !important;
     }
 
     .add-new-variation-price {
-        color: #268224 !important;
+        color: #CD5C08 !important;
         float: right !important;
     }
     
     .add-new-variation-price:hover {
         cursor: pointer;
-        color: #268224 !important;
+        color: #CD5C08 !important;
     }
     
     .form-label, .card-title {
