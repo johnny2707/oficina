@@ -45,24 +45,24 @@
                             <li class="nav-item" role="presentation">
                                 <button
                                     class="nav-link active"
-                                    id="servicos-tab"
+                                    id="fatura-tab"
                                     data-bs-toggle="tab"
-                                    data-bs-target="#servicos"
+                                    data-bs-target="#fatura"
                                     type="button"
                                     role="tab"
-                                    aria-controls="servicos"
+                                    aria-controls="fatura"
                                     aria-selected="false"
                                 >
-                                    Serviço
+                                    Fatura
                                 </button>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div
                                 class="tab-pane active py-3 bg-body-secondary border border-top-0 px-3"
-                                id="servicos"
+                                id="fatura"
                                 role="tabpanel"
-                                aria-labelledby="servicos-tab"
+                                aria-labelledby="fatura-tab"
                             >
                                 <div class="table-responsive">
                                     <table class="table align-middle">
@@ -93,30 +93,19 @@
                                 
                                 <div class="row pt-5">
                                     <div class="col-sm-2">Total Bruto</div>
-                                    <div class="col-sm-10">36.43€</div>
+                                    <div class="col-sm-10" id="totalBrutoValor"></div>
                                     <hr class="my-2">
                                     <div class="col-sm-2">Desconto Global</div>
-                                    <div class="col-sm-10">0.00€</div>
+                                    <div class="col-sm-10" id="descontoGlobalValor"></div>
                                     <hr class="my-2">
                                     <div class="col-sm-2">Total Liquido</div>
-                                    <div class="col-sm-10">36.43€</div>
+                                    <div class="col-sm-10" id="totalLiquidoValor"></div>
                                     <hr class="my-2">
                                     <div class="col-sm-2"><b>TOTAL</b></div>
-                                    <div class="col-sm-10">36.43€</div>
+                                    <div class="col-sm-10" id="totalValor"></div>
                                 </div>
                             </div>
-                            <!-- <div
-                                class="tab-pane active pt-3 bg-body-secondary border border-top-0 px-3"
-                                id="contactos"
-                                role="tabpanel"
-                                aria-labelledby="contactos-tab"
-                            >
-                                <div class="row">
-
-                                </div> 
-                            </div> -->
                         </div>
-
                     </div>
                 </div>
             </div>
