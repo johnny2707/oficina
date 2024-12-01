@@ -93,16 +93,16 @@
                                 
                                 <div class="row pt-5">
                                     <div class="col-sm-2">Total Bruto</div>
-                                    <div class="col-sm-10" id="totalBrutoValor"></div>
+                                    <div class="col-sm-10"><span id="totalBrutoValor">0</span>€</div>
                                     <hr class="my-2">
                                     <div class="col-sm-2">Desconto Global</div>
-                                    <div class="col-sm-10" id="descontoGlobalValor"></div>
+                                    <div class="col-sm-10" id="descontoGlobalValor">0</div>
                                     <hr class="my-2">
                                     <div class="col-sm-2">Total Liquido</div>
-                                    <div class="col-sm-10" id="totalLiquidoValor"></div>
+                                    <div class="col-sm-10" id="totalLiquidoValor">0</div>
                                     <hr class="my-2">
                                     <div class="col-sm-2"><b>TOTAL</b></div>
-                                    <div class="col-sm-10" id="totalValor"></div>
+                                    <div class="col-sm-10" id="totalValor">0</div>
                                 </div>
                             </div>
                         </div>

@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     $("input[name='quantidadeProduto']").on("keyup", function(event) {
         if(event === 13) {
-            
+            $("#total")
         }
     });
 
@@ -39,14 +39,16 @@ $(document).ready(function () {
                                     <td>${data[0]['servico_descricao']}</td>
                                     <td><input class="form-control" type="text" name="quantidadeProduto"></td>
                                     <td>${data[0]['servico_unidade_id']}</td>
-                                    <td>${data[0]['servico_preco_sem_iva']}€</td>
+                                    <td>${data[0]['servico_preco_sem_iva']}</td>
                                     <td><input class="form-control" type="text" name="descontoProduto"></td>
-                                    <td>-</td>
+                                    <td>${Math.round((parseFloat(data[0]['servico_preco_sem_iva']) + (parseFloat(data[0]['servico_preco_sem_iva']) * 0.23)) * 100) / 100}</td>
                                 </tr>
                             `);
 
                             $('#serviceSelect').val("");
                             $('#serviceSelect').text("");
+
+                            document.getElementById("totalBrutoValor").innerHTML = parseFloat(document.getElementById("totalBrutoValor").innerHTML) + parseFloat(data[0]['servico_preco_sem_iva']);
                     // }
                 },
                 error: function(xhr, status, error){
