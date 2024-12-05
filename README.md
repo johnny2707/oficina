@@ -2,7 +2,7 @@
 
 welcome to the repository **Oficina**!
 
-## descrription
+## description
 
 this project can be resumed to a php web app to manage a vehicle workshop.
 
