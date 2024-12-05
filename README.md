@@ -22,5 +22,6 @@ oficina/
 |   |   ├── models/
 |   |   └── views/
 └── README.md
+```
 
 please note that some things might be in portuguese, as i'm one myself. feel free to ask anything!
