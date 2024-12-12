@@ -4,9 +4,15 @@ $(document).ready(function () {
     
     $("#page-loader").hide();
 
-    $("input[name='quantidadeProduto']").on("keyup", function(event) {
-        if(event === 13) {
-            $("#total")
+    $("#tableBody").on('keydown', '.quantidadeProduto', function(e) {
+        console.log("entrou!!");
+        
+        let value = $(this).val();
+
+        if(e.key === 'Enter' || e.keyCode === 13) {
+            console.log(parseFloat($('.precoFinalProduto').text()));
+            console.log(parseFloat(value));
+            $('.precoFinalProduto').text(Math.round((parseFloat($('.precoFinalProduto').text()) * parseFloat(value)) * 100) / 100);
         }
     });
 
@@ -37,11 +43,11 @@ $(document).ready(function () {
                                 <tr>
                                     <td scope="row"><input class="form-control" type="text" value="${data[0]['servico_codigo']}" disabled></td>
                                     <td>${data[0]['servico_descricao']}</td>
-                                    <td><input class="form-control" type="text" name="quantidadeProduto"></td>
+                                    <td><input class="form-control quantidadeProduto" type="text"></td>
                                     <td>${data[0]['servico_unidade_id']}</td>
                                     <td>${data[0]['servico_preco_sem_iva']}</td>
                                     <td><input class="form-control" type="text" name="descontoProduto"></td>
-                                    <td>${Math.round((parseFloat(data[0]['servico_preco_sem_iva']) + (parseFloat(data[0]['servico_preco_sem_iva']) * 0.23)) * 100) / 100}</td>
+                                    <td class="precoFinalProduto">${Math.round((parseFloat(data[0]['servico_preco_sem_iva']) + (parseFloat(data[0]['servico_preco_sem_iva']) * 0.23)) * 100) / 100}</td>
                                 </tr>
                             `);
 
@@ -51,7 +57,7 @@ $(document).ready(function () {
                             document.getElementById("totalBrutoValor").innerHTML = parseFloat(document.getElementById("totalBrutoValor").innerHTML) + parseFloat(data[0]['servico_preco_sem_iva']);
                     // }
                 },
-                error: function(xhr, status, error){
+                error: function(xhr, status, error) {
                     console.log(xhr);
                     console.log(status);
                     console.log(error);
