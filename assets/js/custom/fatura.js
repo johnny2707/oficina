@@ -4,15 +4,65 @@ $(document).ready(function () {
     
     $("#page-loader").hide();
 
+    $('#tableBody').sortable({
+        cursor: 'move',
+        animation: 150,
+    });
+
     $("#tableBody").on('keydown', '.quantidadeProduto', function(e) {
-        console.log("entrou!!");
         
         let value = $(this).val();
 
-        if(e.key === 'Enter' || e.keyCode === 13) {
-            console.log(parseFloat($('.precoFinalProduto').text()));
-            console.log(parseFloat(value));
-            $('.precoFinalProduto').text(Math.round((parseFloat($('.precoFinalProduto').text()) * parseFloat(value)) * 100) / 100);
+        if(e.key === 'Enter' && value != "") {
+
+            let element = $(this).closest('tr').find('.precoFinalProduto');
+
+            element.text(Math.round((element.text() * parseFloat(value)) * 100) / 100);
+            $(this).prop('disabled', true);
+            $(this).closest('tr').find('.descontoProduto').prop('disabled', false);            
+
+            $("#totalBrutoValor").text("0");
+
+            $(this).closest('tbody').find('tr').each(function() {
+
+                let precoFinalProduto = parseFloat($(this).find('.precoFinalProduto').text());
+                let totalBrutoValor = parseFloat($("#totalBrutoValor").text());
+                
+                if(!isNaN(precoFinalProduto)){
+                    $("#totalBrutoValor").text((totalBrutoValor + precoFinalProduto).toFixed(2));
+                }
+
+                $("#totalLiquidoValor").text($("#totalBrutoValor").text());
+
+            });
+        }
+    });
+
+    $("#tableBody").on('keydown', '.descontoProduto', function(e) {
+        
+        let value = $(this).val();
+
+        if(e.key === 'Enter' && value != "") {
+
+            let element = $(this).closest('tr').find('.precoFinalProduto');
+
+            element.text((element.text() - parseFloat(element.text()) * (parseFloat(value) / 100)).toFixed(2));
+            $(this).prop('disabled', true);
+
+            $("#totalBrutoValor").text("0");
+
+            $(this).closest('tbody').find('tr').each(function() {
+                                
+                var totalBrutoValor = parseFloat($("#totalBrutoValor").text());
+                var precoFinalProduto = parseFloat($(this).find('.precoFinalProduto').text());
+
+                if(!isNaN(precoFinalProduto)){
+                    $("#totalBrutoValor").text((totalBrutoValor + precoFinalProduto).toFixed(2));
+                }
+
+                $("#totalLiquidoValor").text(parseFloat($("#totalBrutoValor").text()) - parseFloat($("#totalBrutoValor").text()) * parseFloat($('.descontoGlobalValor').text()));
+                $("#totalValor").text(parseFloat($("#totalBrutoValor").text()) - parseFloat($("#totalBrutoValor").text()) * parseFloat($('.descontoGlobalValor').text()));
+            });
         }
     });
 
@@ -44,18 +94,20 @@ $(document).ready(function () {
                                     <td scope="row"><input class="form-control" type="text" value="${data[0]['servico_codigo']}" disabled></td>
                                     <td>${data[0]['servico_descricao']}</td>
                                     <td><input class="form-control quantidadeProduto" type="text"></td>
-                                    <td>${data[0]['servico_unidade_id']}</td>
+                                    <td>${data[0]['unidade_codigo']}</td>
                                     <td>${data[0]['servico_preco_sem_iva']}</td>
-                                    <td><input class="form-control" type="text" name="descontoProduto"></td>
-                                    <td class="precoFinalProduto">${Math.round((parseFloat(data[0]['servico_preco_sem_iva']) + (parseFloat(data[0]['servico_preco_sem_iva']) * 0.23)) * 100) / 100}</td>
+                                    <td><input class="form-control descontoProduto" type="text" disabled></td>
+                                    <td class="precoFinalProduto">${(parseFloat(data[0]['servico_preco_sem_iva']) + (parseFloat(data[0]['servico_preco_sem_iva']) * 0.23)).toFixed(2)}</td>
                                 </tr>
                             `);
 
+                            $('.ts-control').find('.item').text("");
                             $('#serviceSelect').val("");
                             $('#serviceSelect').text("");
 
-                            document.getElementById("totalBrutoValor").innerHTML = parseFloat(document.getElementById("totalBrutoValor").innerHTML) + parseFloat(data[0]['servico_preco_sem_iva']);
-                    // }
+                            $("#totalBrutoValor").text((parseFloat($("#totalBrutoValor").text()) + parseFloat(data[0]['servico_preco_sem_iva'])).toFixed(2));
+                            $("#totalLiquidoValor").text((parseFloat(data[0]['servico_preco_sem_iva']) + (parseFloat(data[0]['servico_preco_sem_iva']) * 0.23)).toFixed(2));
+                        // }
                 },
                 error: function(xhr, status, error) {
                     console.log(xhr);

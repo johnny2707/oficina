@@ -56,6 +56,20 @@
                                     Fatura
                                 </button>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <button
+                                    class="nav-link"
+                                    id="agendamento-tab"
+                                    data-bs-toggle="tab"
+                                    data-bs-target="#agendamento"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="agendamento"
+                                    aria-selected="false"
+                                >
+                                    Agendamento
+                                </button>
+                            </li>
                         </ul>
                         <div class="tab-content">
                             <div
@@ -78,7 +92,7 @@
                                             </tr>
                                         </thead>
                                         <tbody id="tableBody">
-                                            <tr class="">
+                                            <tr draggable="false">
                                                 <td scope="row"><input class="form-control serviceSelect" type="text" name="serviceSelect" id="serviceSelect"></td>
                                                 <td>-</td>
                                                 <td>-</td>
@@ -96,14 +110,29 @@
                                     <div class="col-sm-10"><span id="totalBrutoValor">0</span>€</div>
                                     <hr class="my-2">
                                     <div class="col-sm-2">Desconto Global</div>
-                                    <div class="col-sm-10" id="descontoGlobalValor">0</div>
+                                    <div class="col-sm-10"><span id="descontoGlobalValor">0</span>€</div>
                                     <hr class="my-2">
                                     <div class="col-sm-2">Total Liquido</div>
-                                    <div class="col-sm-10" id="totalLiquidoValor">0</div>
+                                    <div class="col-sm-10"><span id="totalLiquidoValor">0</span>€</div>
                                     <hr class="my-2">
                                     <div class="col-sm-2"><b>TOTAL</b></div>
-                                    <div class="col-sm-10" id="totalValor">0</div>
+                                    <div class="col-sm-10"><span id="totalValor">0</span>€</div>
                                 </div>
+                            </div>
+
+                            <div
+                                class="tab-pane py-3 bg-body-secondary border border-top-0 px-3"
+                                id="agendamento"
+                                role="tabpanel"
+                                aria-labelledby="agendamento-tab"
+                            >
+
+                                <div class="row">
+
+                                    
+
+                                </div>
+
                             </div>
                         </div>
                     </div>

@@ -100,7 +100,7 @@
                             </li> -->
                         </ul>
                         <div class="tab-content">
-                            <div
+                                <div
                                 class="tab-pane active pt-3 bg-body-secondary border border-top-0 px-3"
                                 id="informacao"
                                 role="tabpanel"
