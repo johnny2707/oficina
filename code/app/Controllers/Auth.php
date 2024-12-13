@@ -3,6 +3,7 @@
 use App\Models\UsersModel;
 use CodeIgniter\Debug\Toolbar\Collectors\Views;
 use PhpOffice\PhpSpreadsheet\Calculation\Engineering\BitWise;
+use PhpOffice\PhpSpreadsheet\Worksheet\Validations;
 use PhpParser\Node\Expr\Empty_;
 
 class Auth extends BaseController 
@@ -12,12 +13,14 @@ class Auth extends BaseController
     protected $res;
     protected $data;
     protected $email;
+    protected $validation;
 
     public function __construct() 
     {
         $this->session = \Config\Services::session();
         $this->usersModel = new UsersModel;
         $this->email = \Config\Services::email();
+        $this->validation = \Config\Services::validation();
         
         $this->res = [
             'error' => FALSE,
@@ -26,13 +29,12 @@ class Auth extends BaseController
         ];
 
         $this->data = [
-            'activePage' => 'auth',
             'customCSS'  => '',
             'customJS'   => '<script src="'.base_url('assets/js/custom/auth.js?' . $_ENV['VERSION'] ).'"></script>'
         ];
     }
 
-    public function index()
+    public function showLoginPage()
     {
         return view('html/auth/index', $this->data);
     }
@@ -42,22 +44,21 @@ class Auth extends BaseController
         $validationRules = [
             'email' => [
                 'label' => 'email',
-                'rules' => 'required|max_length[255]'
+                'rules' => 'required|max_length[255]|valid_email'
             ],
             'password' => [
                 'label' => 'password',
-                'rules' => 'required|max_length[255]'
+                'rules' => 'required|max_length[20]|min_length[8]'
             ]
         ];
 
         if (!$this->validate($validationRules)) 
         {
             $this->res['error'] = true;
-            $validation = \Config\Services::validation();
 
             foreach ($validationRules as $field => $rules)
             {
-                if ($validation->getError($field)) 
+                if ($this->validation->getError($field)) 
                 {
                     $this->res['popUpMessages'][] = "O campo <b>{$rules['label']}</b> tem erros!";
                 }
@@ -77,7 +78,7 @@ class Auth extends BaseController
             } 
             else 
             {
-                if (!password_verify($password, $userData[0]['password']) || $userData[0]['deleted_at']!=NULL) 
+                if (!password_verify($password, $userData[0]['user_password']) || $userData[0]['deleted_at']!=NULL) 
                 {
                     $this->res['error'] = true;
                     $this->res['popUpMessages'][] = 'O utilizador e a password não coincidem ou o utilizador está inativo.';
@@ -85,10 +86,10 @@ class Auth extends BaseController
                 else
                 {
                     $this->session->set([
-                        'id'          => $userData[0]['id'],
-                        'name'        => $userData[0]['name'],
-                        'role'        => $userData[0]['role'],
-                        'permissions' => json_decode($userData[0]['permissions'], true),
+                        'id'          => $userData[0]['user_id'],
+                        'name'        => $userData[0]['user_name'],
+                        'group'       => $userData[0]['group_description'],
+                        'permissions' => json_decode($userData[0]['group_permissions'], true),
                     ]);
 
                     $this->res['popUpMessages'][] = 'Login efetuado com sucesso!';
@@ -146,47 +147,36 @@ class Auth extends BaseController
     public function updatePassword()
     {
         $password = $this->request->getPost('password');
-        $passwordConfirm = $this->request->getPost('passwordConfirm');
         $email = $this->request->getPost('email');
+        
+        $validationRules = [
+            'password' => [
+                'label' => 'password',
+                'rules' => 'required|max_length[20]|min_length[8]'
+            ],
+            'passwordConfirm' => [
+                'label' => 'password confirm',
+                'rules' => 'required|matches[password]'
+            ]
+        ];
 
-        if($password === $passwordConfirm)
+        if(!$this->validate($validationRules))
         {
-            $validationRules = [
-                'password' => [
-                    'label' => 'password',
-                    'rules' => 'required|max_length[255]'
-                ],
-                'passwordConfirm' => [
-                    'label' => 'confirm password',
-                    'rules' => 'required|max_length[255]'
-                ]
-            ];
+            $this->res['error'] = true;
 
-            if(!$this->validate($validationRules))
-            {
-                $this->res['error'] = TRUE;
-
-                $validation = \Config\Services::validation();
-    
-                foreach ($validationRules as $field => $rules) {
-                    if ($validation->getError($field)) {
-                        array_push($this->res['popUpMessages'], "The field <b>{$rules['label']}</b> has errors!");
-                    }
+            foreach ($validationRules as $field => $rules) {
+                if ($this->validation->getError($field)) {
+                    array_push($this->res['popUpMessages'], "The field <b>{$rules['label']}</b> has errors!");
                 }
-            }
-            else
-            {
-                $userData = $this->usersModel->getUserDataByEmail($email);
-
-                $this->usersModel->updateUser($userData[0]['id'], ['password' => password_hash($password, PASSWORD_DEFAULT)]);
-
-                $this->res['popUpMessages'][] = 'Password atualizada com sucesso!';
             }
         }
         else
         {
-            $this->res['error'] = TRUE;
-            $this->res['popUpMessages'][] = 'Ocorreu um erro. As passwords não coincidem!';    
+            $userData = $this->usersModel->getUserDataByEmail($email);
+
+            $this->usersModel->updateUser($userData[0]['user_id'], ['user_password' => password_hash($password, PASSWORD_DEFAULT)]);
+
+            $this->res['popUpMessages'][] = 'Password atualizada com sucesso!';
         }
 
         return $this->response->setJSON($this->res);

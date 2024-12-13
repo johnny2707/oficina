@@ -6,7 +6,7 @@ class VehiclesModel extends Model
 {
     protected $db;
 
-    protected $table = 'tb_clients_vehicles';
+    protected $table = 'tb_vehicles';
     protected $useSoftDeletes = true;
 
     public function __construct()
@@ -18,6 +18,13 @@ class VehiclesModel extends Model
     public function getAllVehicles()
     {
         $query = $this->db->table($this->table)->select('*');
+
+        return $query->get()->getResultArray();
+    }
+
+    public function getVehiclesByLicensePlate()
+    {
+        $query = $this->db->table($this->table)->select("*");
 
         return $query->get()->getResultArray();
     }

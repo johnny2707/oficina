@@ -6,7 +6,7 @@ class ProductsModel extends Model
 {
     protected $db;
 
-    protected $table = 'tb_servicos';
+    protected $table = 'tb_services';
     protected $useSoftDeletes = true;
 
     public function __construct() 
@@ -15,16 +15,16 @@ class ProductsModel extends Model
         $this->db = \Config\Database::connect();
     }
 
-    public function getProductByCode($produtoCodigo)
+    public function getProductByCode($productCode)
     {
-        $query = $this->db->table('tb_servicos')->select('servico_codigo, servico_descricao, unidade_codigo, servico_preco_sem_iva')->join('tb_unidades', 'servico_unidade_id = unidade_id')->where('servico_codigo', $produtoCodigo);
+        $query = $this->db->table('tb_services')->select('service_code, service_description, unit_code, service_price_without_iva')->join('tb_units', 'service_unit_id = unit_id')->where('service_code', $productCode);
     
         return $query->get()->getResultArray();
     }
 
     public function getAllProducts()
     {
-        $query = $this->db->table('tb_servicos')->select('*');
+        $query = $this->db->table('tb_services')->select('*');
 
         return $query->get()->getResult();
     }

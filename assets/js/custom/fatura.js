@@ -1,8 +1,26 @@
 "use strict";
 
-$(document).ready(function () {
-    
+$(document).ready(function () { 
+
     $("#page-loader").hide();
+
+    function calculatePriceValues() {
+        $("#totalBrutoValor").text("0");
+        $("#totalLiquidoValor").text("0");
+        $("#totalValor").text("0");
+
+        $("#tableBody").find('tr').each(function() {
+            let precoFinalProduto = parseFloat($(this).find('.precoFinalProduto').text());
+            let totalBrutoValor = parseFloat($("#totalBrutoValor").text());
+
+            if(!isNaN(precoFinalProduto)){
+                $("#totalBrutoValor").text((totalBrutoValor + precoFinalProduto).toFixed(2));
+            }
+
+            $("#totalLiquidoValor").text((parseFloat($("#totalBrutoValor").text()) - (parseFloat($("#totalBrutoValor").text()) * parseFloat($('#descontoGlobalValor').text()))).toFixed(2));
+            $("#totalValor").text((parseFloat($("#totalLiquidoValor").text()) + (parseFloat($("#totalLiquidoValor").text()) * 0.23)).toFixed(2));
+        });
+    }
 
     $('#tableBody').sortable({
         cursor: 'move',
@@ -15,26 +33,12 @@ $(document).ready(function () {
 
         if(e.key === 'Enter' && value != "") {
 
-            let element = $(this).closest('tr').find('.precoFinalProduto');
+            $(this).closest('tr').find('.precoFinalProduto').text((parseFloat($(this).closest("tr").find(".precoSemIva").text()) * value).toFixed(2));
 
-            element.text(Math.round((element.text() * parseFloat(value)) * 100) / 100);
             $(this).prop('disabled', true);
             $(this).closest('tr').find('.descontoProduto').prop('disabled', false);            
 
-            $("#totalBrutoValor").text("0");
-
-            $(this).closest('tbody').find('tr').each(function() {
-
-                let precoFinalProduto = parseFloat($(this).find('.precoFinalProduto').text());
-                let totalBrutoValor = parseFloat($("#totalBrutoValor").text());
-                
-                if(!isNaN(precoFinalProduto)){
-                    $("#totalBrutoValor").text((totalBrutoValor + precoFinalProduto).toFixed(2));
-                }
-
-                $("#totalLiquidoValor").text($("#totalBrutoValor").text());
-
-            });
+            calculatePriceValues();
         }
     });
 
@@ -49,20 +53,7 @@ $(document).ready(function () {
             element.text((element.text() - parseFloat(element.text()) * (parseFloat(value) / 100)).toFixed(2));
             $(this).prop('disabled', true);
 
-            $("#totalBrutoValor").text("0");
-
-            $(this).closest('tbody').find('tr').each(function() {
-                                
-                var totalBrutoValor = parseFloat($("#totalBrutoValor").text());
-                var precoFinalProduto = parseFloat($(this).find('.precoFinalProduto').text());
-
-                if(!isNaN(precoFinalProduto)){
-                    $("#totalBrutoValor").text((totalBrutoValor + precoFinalProduto).toFixed(2));
-                }
-
-                $("#totalLiquidoValor").text(parseFloat($("#totalBrutoValor").text()) - parseFloat($("#totalBrutoValor").text()) * parseFloat($('.descontoGlobalValor').text()));
-                $("#totalValor").text(parseFloat($("#totalBrutoValor").text()) - parseFloat($("#totalBrutoValor").text()) * parseFloat($('.descontoGlobalValor').text()));
-            });
+            calculatePriceValues();
         }
     });
 
@@ -88,26 +79,20 @@ $(document).ready(function () {
                     // } else {
                     //     notyf.success(data.popUpMessages[0]);
 
-                            console.log(data);
-                            $('#tableBody').append(`
-                                <tr>
-                                    <td scope="row"><input class="form-control" type="text" value="${data[0]['servico_codigo']}" disabled></td>
-                                    <td>${data[0]['servico_descricao']}</td>
-                                    <td><input class="form-control quantidadeProduto" type="text"></td>
-                                    <td>${data[0]['unidade_codigo']}</td>
-                                    <td>${data[0]['servico_preco_sem_iva']}</td>
-                                    <td><input class="form-control descontoProduto" type="text" disabled></td>
-                                    <td class="precoFinalProduto">${(parseFloat(data[0]['servico_preco_sem_iva']) + (parseFloat(data[0]['servico_preco_sem_iva']) * 0.23)).toFixed(2)}</td>
-                                </tr>
-                            `);
+                        $('#tableBody').append(`
+                            <tr>
+                                <td scope="row"><input class="form-control" type="text" value="${data[0]['service_code']}" disabled></td>
+                                <td>${data[0]['service_description']}</td>
+                                <td><input class="form-control quantidadeProduto" type="text"></td>
+                                <td>${data[0]['unit_code']}</td>
+                                <td class="precoSemIva">${data[0]['service_price_without_iva']}</td>
+                                <td><input class="form-control descontoProduto" type="text" disabled></td>
+                                <td class="precoFinalProduto">${data[0]['service_price_without_iva']}</td>
+                            </tr>
+                        `);
 
-                            $('.ts-control').find('.item').text("");
-                            $('#serviceSelect').val("");
-                            $('#serviceSelect').text("");
-
-                            $("#totalBrutoValor").text((parseFloat($("#totalBrutoValor").text()) + parseFloat(data[0]['servico_preco_sem_iva'])).toFixed(2));
-                            $("#totalLiquidoValor").text((parseFloat(data[0]['servico_preco_sem_iva']) + (parseFloat(data[0]['servico_preco_sem_iva']) * 0.23)).toFixed(2));
-                        // }
+                        calculatePriceValues();
+                    // }
                 },
                 error: function(xhr, status, error) {
                     console.log(xhr);
@@ -120,7 +105,7 @@ $(document).ready(function () {
         }
     });
 
-    var settings = {
+    var settingsService = {
         options: [],
         maxItems: 1, 
         dropdownClass: 'dropdown-menu ts-dropdown',
@@ -133,17 +118,51 @@ $(document).ready(function () {
         url: `${baseURL}products/getAllProducts`,
         success: function (data) {
             if (data.length === 0) {
-                settigs.options.push({value: 0, text: "no items found"})
+                settingsService.options.push({value: 0, text: "no items found"})
             } 
             else {
                 data.forEach(element => {
                     console.log(element);
 
-                    var newItem = {value: element.servico_codigo, text: element.servico_codigo}
-                    settings.options.push(newItem);
+                    var newItem = {value: element.service_code, text: element.service_code}
+                    settingsService.options.push(newItem);
                 });
 
-                new TomSelect('#serviceSelect', settings);
+                new TomSelect('#serviceSelect', settingsService);
+                $(".ts-dropdown").css("z-index", "9999");
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr);
+            console.log(status);
+            console.log(error);
+        }
+    });
+
+    var settingsVehicles = {
+        options: [],
+        maxItems: 1, 
+        dropdownClass: 'dropdown-menu ts-dropdown',
+        optionClass: 'dropdown-item',
+        dropdownParent: 'body'
+    };
+
+    $.ajax({
+        type: "get",
+        url: `${baseURL}vehicles/getAllVehicles`,
+        success: function (data) {
+            if (data.length === 0) {
+                settingsVehicles.options.push({value: 0, text: "no items found"})
+            } 
+            else {
+                data.forEach(element => {
+                    console.log(element);
+
+                    var newItem = {value: element.service_code, text: element.service_code}
+                    settingsVehicles.options.push(newItem);
+                });
+
+                new TomSelect('#vehicleSelect', settingsVehicles);
                 $(".ts-dropdown").css("z-index", "9999");
             }
         },

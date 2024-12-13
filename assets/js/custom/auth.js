@@ -8,7 +8,7 @@ $(document).ready(function() {
         let element = $(this);
         setTimeout(function() {
             element.removeAttr('disabled');
-        }, 1000);
+        }, 2000);
 
         let email = $('input[name=email]').val();
         let password = $('input[name=password]').val();

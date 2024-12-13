@@ -14,10 +14,8 @@ class Products extends BaseController
     public function getProductByCode()
     {
         $productCode = $this->request->getPost('codigo');
-
-        $result = $this->productsModel->getProductByCode($productCode);
-
-        return $this->response->setJSON($result);
+        
+        return $this->response->setJSON($this->productsModel->getProductByCode($productCode));
     }
 
     public function getAllProducts()

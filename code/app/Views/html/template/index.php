@@ -1,7 +1,7 @@
 <?php
-	// $name = session()->get('name');
-	// $role = session()->get('role');
-	// $permissions = session()->get('permissions');
+	$name = session()->get('name');
+	$group = session()->get('group');
+	$permissions = session()->get('permissions');
 ?>
 
 <!doctype html>
@@ -10,7 +10,7 @@
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-	<title><?= "{$title} | " ?>johnny</title>
+	<title><?= "{$title} | " ?>oficina digital</title>
 
 	<link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/img/logo.svg') ?>">
 
@@ -50,7 +50,7 @@
 			<h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3 my-3">
 				<a href="<?= base_url() ?>" class="text-decoration-none">
 					<img src="<?= base_url('assets/img/logo.svg') ?>" width="110" height="32" alt="Oficina" class="navbar-brand-image">
-					Oficina
+					Oficina Digital
 				</a>
 			</h1>
 			<div class="navbar-nav flex-row">
@@ -67,17 +67,18 @@
 				<div class="nav-item dropdown">
 					<a href="#" class="nav-link d-flex lh-1 text-reset p-0 ms-3 me-5" data-bs-toggle="dropdown" aria-label="Abrir menu do utilizador">
 						<?php
-							// $nameExplode = explode(" ", $name);
-							// $firstL = $nameExplode[0][0];
-							// $secondL = "";
-							// if (isset($nameExplode[1][0])) {
-							// 	$secondL = $nameExplode[1][0];
-							// }
+							$nameExplode = explode(" ", $name);
+							$firstL = $nameExplode[0][0];
+							$secondL = "";
+							if (isset($nameExplode[1][0])) 
+							{
+								$secondL = $nameExplode[1][0];
+							}
 						?>
-						<span class="avatar bg-orange-lt">js<?php #"{$firstL}{$secondL}" ?></span>
+						<span class="avatar bg-orange-lt"><?= "{$firstL}{$secondL}" ?></span>
 						<div class="d-none d-xl-block ps-2">
-							<div><?php # $name ?>joão soares</div>
-							<div class="mt-1 small text-muted"><?php # $role ?>developer</div>
+							<div><?= $name ?></div>
+							<div class="mt-1 small text-muted"><?php echo $group ?></div>
 						</div>
 					</a>
 					<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -90,7 +91,8 @@
             	<ul class="navbar-nav pt-lg-3">
 					<li class="nav-item">
 						<a class="nav-link" href="<?= base_url() ?>">
-							<span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+							<span class="nav-link-icon d-md-none d-lg-inline-block">
+								<!-- Download SVG icon from http://tabler-icons.io/i/home -->
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
 							</span>
 							<span class="nav-link-title">
@@ -106,9 +108,9 @@
 							<span class="nav-link-title">Clientes</span>
 						</a>
 						<div class="dropdown-menu">
-							<?php # if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
+							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CRIAR CLIENTE' ? 'active' : '' ?>" href="<?= base_url('cliente/criar') ?>">CREATE</a>
-							<?php # endif; ?>
+							<?php endif; ?>
 						</div>
 					</li>
 					<li class="nav-item dropdown <?= isset($menu) && $menu == 'COSTUMERS' ? 'active' : '' ?>">
@@ -119,9 +121,9 @@
 							<span class="nav-link-title">Fatura</span>
 						</a>
 						<div class="dropdown-menu">
-							<?php # if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
+							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CRIAR FATURA' ? 'active' : '' ?>" href="<?= base_url('fatura/criar') ?>">CREATE</a>
-							<?php # endif; ?>
+							<?php endif; ?>
 						</div>
 					</li>
 					<li>

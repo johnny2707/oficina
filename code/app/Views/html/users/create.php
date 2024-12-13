@@ -47,9 +47,9 @@
                                     <label class="form-label">Grupo de permissões</label>
                                     <select class="form-select select-role" name="role" autocomplete="off">
                                         <option value="" selected>Selecione uma opção</option>
-                                        <?php foreach ($allRoles as $roles) : ?>
-                                            <option value="<?=$roles['id']?>"><?=$roles['role']?></option>
-                                        <?php endforeach; ?>
+                                        <!-- <?php # foreach ($allRoles as $roles) : ?>
+                                            <option value="<?php #$roles['id']?>"><?php #$roles['role']?></option>
+                                        <?php # endforeach; ?> -->
                                     </select>
                                 </div>
                             </div>
@@ -75,7 +75,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

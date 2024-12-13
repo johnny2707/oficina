@@ -21,7 +21,7 @@
                             <div class="card-body bg-body-tertiary">
                                 <div class="row">
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Matrícula</label></div>
-                                    <div class="col-sm-3"><input type="text" name="veiculoMatricula" class="form-control"></div>
+                                    <div class="col-sm-3"><input type="text" id="vehicleSelect" name="veiculoMatricula" class="form-control"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
                                 
@@ -68,6 +68,20 @@
                                     aria-selected="false"
                                 >
                                     Agendamento
+                                </button>
+                            </li> 
+                            <li class="nav-item" role="presentation">
+                                <button
+                                    class="nav-link"
+                                    id="cliente-tab"
+                                    data-bs-toggle="tab"
+                                    data-bs-target="#cliente"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="cliente"
+                                    aria-selected="false"
+                                >
+                                    Cliente
                                 </button>
                             </li>
                         </ul>
@@ -125,6 +139,21 @@
                                 id="agendamento"
                                 role="tabpanel"
                                 aria-labelledby="agendamento-tab"
+                            >
+
+                                <div class="row">
+
+                                    
+
+                                </div>
+
+                            </div>
+                            
+                            <div
+                                class="tab-pane py-3 bg-body-secondary border border-top-0 px-3"
+                                id="cliente"
+                                role="tabpanel"
+                                aria-labelledby="cliente-tab"
                             >
 
                                 <div class="row">

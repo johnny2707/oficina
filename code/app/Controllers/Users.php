@@ -42,6 +42,13 @@ class Users extends BaseController
         return view('html/users/createAccount', $this->data);
     }
 
+    public function create()
+    {
+        $this->data['title'] = 'user creation';
+
+        return view('html/users/create', $this->data);
+    }
+
     // public function index() {
     //     $this->data['title'] = "Utilizadores";
     //     $this->data['subMenu'] = 'USERS';
