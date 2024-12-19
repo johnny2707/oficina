@@ -20,9 +20,9 @@ class UsersModel extends Model
         $this->db->table('tb_users')->insert($userData);
     }
 
-    public function updateUser($userID, $userData)
+    public function updateUser($userId, $userData)
     {
-        $this->db->table('tb_users')->update($userData, ['user_id' => $userID]);
+        $this->db->table('tb_users')->update($userData, ['user_id' => $userId]);
     }
 
     public function getUserDataByEmail($userEmail)
@@ -35,10 +35,22 @@ class UsersModel extends Model
         return $query->get()->getResultArray();
     }
 
+    public function getUserDataById($userId)
+    {
+        $query = $this->db->table('tb_users')
+                          ->select('*')
+                          ->join('tb_groups', 'tb_users.user_group_id = tb_groups.group_id')
+                          ->where('tb_users.user_id', $userId);
+        
+        return $query->get()->getResultArray();
+    }
+
     public function getGroups()
     {
         $query = $this->db->table('tb_groups')->select('*');
         
         return $query->get()->getResultArray();
     }
+
+    
 }

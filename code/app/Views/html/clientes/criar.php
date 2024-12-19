@@ -32,11 +32,6 @@
                                 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Contribuinte <sup class="text-danger">*</sup></label></div>
                                     <div class="col-sm-3"><input type="text" name="clienteContribuinte" class="form-control"></div>
-
-                                    <div class="w-100 d-block d-md-none mb-3"></div>
-                                
-                                    <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Telefone <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-3"><input type="tel" name="clienteTelefone" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" class="form-control"></div>
                                 </div>
                             </div>
                         </div>
@@ -99,15 +94,11 @@
 
                                     <div class="w-100 d-block mb-3"></div>
                                 
-                                    <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Zona <sup class="text-danger">*</sup></label></div>
+                                    <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Destrito <sup class="text-danger">*</sup></label></div>
                                     <div class="col-sm-3"><input type="text" name="clienteZona" class="form-control clienteZona"></div>
 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Idioma</label></div>
-                                    <div class="col-sm-3">
-                                        <select name="clienteIdioma" class="form-select">
-                                            <option value="">select language</option>
-                                        </select>
-                                    </div>
+                                    <div class="col-sm-3"><input type="text" name="clienteIdioma" id="clienteIdioma" class="form-control clienteIdioma"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
 
@@ -169,6 +160,8 @@
                                 </div> 
                             </div>
                         </div>
+
+                        <button type="button" class="btn btn-primary mt-5">registar cliente</button>
                     </div>
                 </div>
             </div>

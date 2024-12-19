@@ -42,7 +42,7 @@ class Clientes extends BaseController
 
         $this->data = [
             'menu' => 'CLIENTES',
-            'submenu' => 'INDEX',
+            'submenu' => '',
             'clientData' => array(),
             'customCSS' => '',
             'customJS' => '<script src="'. base_url('assets/js/custom/clientes.js?' . $_ENV['VERSION'] ).'"></script>'

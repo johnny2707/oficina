@@ -28,26 +28,31 @@ class Users extends BaseController
         ];
     }
 
-    public function index()
+    public function index() 
     {
-        $this->data['title'] = 'users';
-
-        return view('html/users/index', $this->data);
+        
     }
 
-    public function createAccountPage()
-    {
-        $this->data['title'] = 'user creation';
+    // public function index()
+    // {
+    //     $this->data['title'] = 'users';
 
-        return view('html/users/createAccount', $this->data);
-    }
+    //     return view('html/users/index', $this->data);
+    // }
 
-    public function create()
-    {
-        $this->data['title'] = 'user creation';
+    // public function createAccountPage()
+    // {
+    //     $this->data['title'] = 'user creation';
 
-        return view('html/users/create', $this->data);
-    }
+    //     return view('html/users/createAccount', $this->data);
+    // }
+
+    // public function create()
+    // {
+    //     $this->data['title'] = 'user creation';
+
+    //     return view('html/users/create', $this->data);
+    // }
 
     // public function index() {
     //     $this->data['title'] = "Utilizadores";
