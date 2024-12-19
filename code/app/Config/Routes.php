@@ -10,7 +10,6 @@ use CodeIgniter\Router\RouteCollection;
 
  $routes->get('/', 'Dashboard::index', ['filter' => 'authGuard']);
 
-$routes->get('cliente/criar',              'Clientes::criar');
 $routes->get('fatura/criar',               'Fatura::criar');
 
 $routes->get('clock', 'Clock::index');
@@ -40,7 +39,8 @@ $routes->group('products', ['filter' => 'authGuard|permissionsValidation: PRODUC
 //CLIENTS
 
 $routes->group('clients', ['filter' => 'authGuard|permissionsValidation:COSTUMERS, ALL'], function($routes){
-    
+    $routes->get('create',              'Clients::create');
+    $routes->post('createClient',       'Clients::createClient');
 });
 
 //VEHICLES

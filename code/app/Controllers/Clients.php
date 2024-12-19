@@ -9,7 +9,7 @@ use Symfony\Component\Console\Descriptor\Descriptor;
 use CodeIgniter\I18n\Time;
 use SebastianBergmann\CodeUnit\FunctionUnit;
 
-class Clientes extends BaseController
+class Clients extends BaseController
 {
     protected $session;
     protected $clientsModel;
@@ -49,11 +49,18 @@ class Clientes extends BaseController
         ];
     }
 
-    public function criar()
+    public function create()
     {
         $this->data['title'] = 'registar cliente';
 
         return view('html/clientes/criar', $this->data);
+    }
+
+    public function createClient()
+    {
+        $clientData = $this->request->getPost("clientData");
+
+        return $this->response->setJSON($clientData);
     }
     //     $formData = [
     //         'nif' => $this->request->getPost('nif'),

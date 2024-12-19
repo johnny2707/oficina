@@ -63,4 +63,45 @@ $(document).ready(function () {
             });
     });
 
+    $('.registerClient').on('click', function(e){
+
+        console.log("Entrou!");
+
+        client = [
+            clientCode = $(".clientCode").val(),
+            clientName = $(".clientName").val(),
+            clientTaxPayer = $(".clientTaxPayer").val(),
+            clientAddress = $(".clientAddress").val(),
+            clientCity = $(".clientCity").val(),
+            clientPostCode = $(".clientPostCode").val(),
+            clientCountry = $(".clientCountry").val(),
+            clientCounty = $(".clientCounty").val(),
+            clientLanguage = $(".clientLanguage").val(),
+            clientEmail = $(".clientEmail").val(),
+            clientPhoneNumber = $(".clientPhoneNumber").val(),
+            clientGroup = $(".clientGroup").val()
+        ];
+
+        vehicle = [
+            vehicleLicensePlate = $(".vehicleLicensePlate").val(),
+            vehicleBrand = $(".vehicleBrand").val(),
+            vehicleModel = $(".vehicleModel").val(),
+            vehicleYear = $(".vehicleYear").val(),
+            vehicleChassi = $(".vehicleChassi").val(),
+            vehicleObservations = $(".vehicleObservations").val()
+        ];
+
+        clientData = [client, vehicle];
+
+        $.ajax({
+            type: "post",
+            url: `${baseURL}clients/createClient`,
+            data: clientData,
+            dataType: "json",
+            success: function (response) {
+                notyf.success("Sucesso!");
+            }
+        });
+
+    });
 });

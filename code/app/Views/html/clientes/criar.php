@@ -21,17 +21,17 @@
                             <div class="card-body bg-body-tertiary">
                                 <div class="row">
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Cliente</label></div>
-                                    <div class="col-sm-3"><input type="text" name="clienteCodigo" class="form-control"></div>
+                                    <div class="col-sm-3"><input type="text" name="clientCode" class="form-control clientCode"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
                                 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Nome <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-8"><input type="text" name="clienteNome" class="form-control"></div>
+                                    <div class="col-sm-8"><input type="text" name="clientName" class="form-control clientName"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
                                 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Contribuinte <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-3"><input type="text" name="clienteContribuinte" class="form-control"></div>
+                                    <div class="col-sm-3"><input type="text" name="clientTaxPayer" class="form-control clientTaxPayer"></div>
                                 </div>
                             </div>
                         </div>
@@ -75,48 +75,43 @@
                             >
                                 <div class="row">
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Morada <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-8"><input type="text" name="clienteMorada" class="form-control clienteMorada" id="select"></div>
+                                    <div class="col-sm-8"><input type="text" name="clientAddress" class="form-control clientAddress" id="select"></div>
 
                                     <div class="w-100 d-md-block mb-3"></div>
                                 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Localidade <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-8"><input type="text" name="clienteLocalidade" class="form-control clienteLocalidade"></div>
+                                    <div class="col-sm-8"><input type="text" name="clientCity" class="form-control clientCity"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
                                 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Código Postal <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-3"><input type="text" name="clienteCodigoPostal" class="form-control clienteCodigoPostal"></div>
+                                    <div class="col-sm-3"><input type="text" name="clientPostCode" class="form-control clientPostCode"></div>
 
                                     <div class="w-100 d-block d-md-none mb-3"></div>
                                 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">País <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-3"><input type="text" name="clientePais" class="form-control clientePais"></div>
+                                    <div class="col-sm-3"><input type="text" name="clientCountry" class="form-control clientCountry"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
                                 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Destrito <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-3"><input type="text" name="clienteZona" class="form-control clienteZona"></div>
+                                    <div class="col-sm-3"><input type="text" name="clientCounty" class="form-control clientCounty"></div>
 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Idioma</label></div>
-                                    <div class="col-sm-3"><input type="text" name="clienteIdioma" id="clienteIdioma" class="form-control clienteIdioma"></div>
+                                    <div class="col-sm-3"><input type="text" name="clientLanguage" class="form-control clientLanguage"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Email <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-8"><input type="text" name="clienteEmail" class="form-control"></div>
+                                    <div class="col-sm-8"><input type="text" name="clientEmail" class="form-control clientEmail"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
                                 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Telemóvel <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-3"><input type="tel" name="clienteTelemovel" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" class="form-control"></div>
+                                    <div class="col-sm-3"><input type="tel" name="clientPhoneNumber" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" class="form-control clientPhoneNumber"></div>
                                 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Grupo <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-3">
-                                        <select name="clienteGrupo" class="form-select">
-                                            <option value="" selected>select group</option>
-                                            <option value="">developer</option>
-                                        </select>
-                                    </div>
+                                    <div class="col-sm-3"><input type="text" name="clientGroup" class="form-control clientGroup"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
                                 </div>
@@ -129,39 +124,39 @@
                             >
                                 <div class="row">
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Matrícula <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-3"><input type="text" name="viaturaMatricula" class="form-control" pattern="[A-Z0-9]{2}-[A-Z0-9]{2}-[A-Z0-9]{2}"></div>
+                                    <div class="col-sm-3"><input type="text" name="vehicleLicensePlate" class="form-control vehicleLicensePlate" pattern="[A-Z0-9]{2}-[A-Z0-9]{2}-[A-Z0-9]{2}"></div>
 
                                     <div class="w-100 d-block d-md-none mb-3"></div>
 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Marca <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-3"><input type="text" name="viaturaMarca" class="form-control"></div>
+                                    <div class="col-sm-3"><input type="text" name="vehicleBrand" class="form-control vehicleBrand"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Modelo <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-8"><input type="text" name="viaturaModelo" class="form-control"></div>
+                                    <div class="col-sm-8"><input type="text" name="vehicleModel" class="form-control vehicleModel"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Ano <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-3"><input type="text" name="viaturaAno" class="form-control" pattern="[0-9]{4}"></div>
+                                    <div class="col-sm-3"><input type="text" name="vehicleYear" class="form-control vehicleYear" pattern="[0-9]{4}"></div>
 
                                     <div class="w-100 d-block d-md-none mb-3"></div>
 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Chassi</label></div>
-                                    <div class="col-sm-3"><input type="text" name="viaturaChassi" class="form-control"></div>
+                                    <div class="col-sm-3"><input type="text" name="vehicleChassi" class="form-control vehicleChassi"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
 
                                     <div class="col-sm-2"><label class="form-label">Observações</label></div>
-                                    <div class="col-sm-8"><textarea name="viaturaObservacoes" class="form-control"></textarea></div>
+                                    <div class="col-sm-8"><textarea name="vehicleObservations" class="form-control vehicleObservations"></textarea></div>
 
                                     <div class="w-100 d-block mb-3"></div>
                                 </div> 
                             </div>
                         </div>
 
-                        <button type="button" class="btn btn-primary mt-5">registar cliente</button>
+                        <button type="button" class="btn btn-primary mt-5 registerClient" name="registerClient">registar cliente</button>
                     </div>
                 </div>
             </div>

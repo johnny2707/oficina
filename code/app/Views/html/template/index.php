@@ -109,7 +109,7 @@
 						</a>
 						<div class="dropdown-menu">
 							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CRIAR CLIENTE' ? 'active' : '' ?>" href="<?= base_url('cliente/criar') ?>">CREATE</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CRIAR CLIENTE' ? 'active' : '' ?>" href="<?= base_url('clients/create') ?>">CREATE</a>
 							<?php endif; ?>
 						</div>
 					</li>
