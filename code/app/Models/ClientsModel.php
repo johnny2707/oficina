@@ -17,9 +17,16 @@ class ClientsModel extends Model
         $this->db = \Config\Database::connect();
     }
 
-    public function createClient($client)
+    public function createClient($data)
     {
-
+        if($this->db->table($this->table)->insert($data))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public function updateClient()
@@ -35,5 +42,17 @@ class ClientsModel extends Model
     public function getClientInfo()
     {
 
+    }
+
+    public function insertContact($data)
+    {
+        if($this->db->table('tb_contacts')->insert($data))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

@@ -38,8 +38,8 @@ $routes->group('products', ['filter' => 'authGuard|permissionsValidation: PRODUC
 
 //CLIENTS
 
-$routes->group('clients', ['filter' => 'authGuard|permissionsValidation:COSTUMERS, ALL'], function($routes){
-    $routes->get('create',              'Clients::create');
+$routes->group('clients', ['filter' => 'authGuard|permissionsValidation:CLIENTS, ALL'], function($routes){
+    $routes->get('create',              'Clients::createClientPage');
     $routes->post('createClient',       'Clients::createClient');
 });
 

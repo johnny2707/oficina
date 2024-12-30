@@ -116,7 +116,7 @@
                                     <div class="w-100 d-block mb-3"></div>
                                     
                                     <div class="col-sm-2 d-flex align-items-center"><label class="form-label">Observações</label></div>
-                                    <div class="col-sm-8"><textarea type="text" name="clientGroup" class="form-control clientGroup"></textarea></div>
+                                    <div class="col-sm-8"><textarea type="text" name="clientObservations" class="form-control clientObservations"></textarea></div>
 
                                     <div class="w-100 d-block mb-3"></div>
 

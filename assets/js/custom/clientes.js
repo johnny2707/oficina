@@ -6,31 +6,24 @@ $(document).ready(function () {
 
     function showResult(result)
     {
-        $(".clienteLocalidade").val("");
-        $(".clienteCodigoPostal").val("");
-        $(".clientePais").val("");
-        $(".clienteZona").val("");
-        
         result["features"].forEach(element => {
 
             console.log(element);
 
-            $(".clienteLocalidade").val(element["properties"]["city"]);
-            $(".clienteCodigoPostal").val(element["properties"]["postcode"]);
-            $(".clientePais").val(element["properties"]["country"]);
-            $(".clienteZona").val(element["properties"]["county"]);
+            $(".clientCity").val(element["properties"]["city"]);
+            $(".clientPostCode").val(element["properties"]["postcode"]);
+            $(".clientCountry").val(element["properties"]["country"]);
+            $(".clientCounty").val(element["properties"]["county"]);
 
         });
     }
 
     let controller = null;
 
-    $("input[name='clienteMorada']").on("keyup", function(){
-
-        console.log("entrou!!!!");
+    $("input[name='clientAddress']").on("keyup", function(){
 
         if(controller) {
-            // controller.abort("Cancelling previous request");
+            controller.abort("Cancelling previous request");
         }
 
         controller = new AbortController();
@@ -52,10 +45,10 @@ $(document).ready(function () {
             })
             .catch(error => {
                 if (error.name === 'AbortError') {
-                    // console.log('Request was deliberately cancelled:', error.message);
+                    console.log('Request was deliberately cancelled:', error.message);
                 }
                 else {
-                    // console.error('Fetch error:', error);
+                    console.error('Fetch error:', error);
                 }
             })
             .finally(() => {
@@ -79,6 +72,7 @@ $(document).ready(function () {
             "clientLanguage" : $(".clientLanguage").val(),
             "clientEmail" : $(".clientEmail").val(),
             "clientPhoneNumber" : $(".clientPhoneNumber").val(),
+            "clientGroup" : $(".clientGroup").val(),
             "clientObservations": $(".clientObservations").val()
         };
 
@@ -98,10 +92,23 @@ $(document).ready(function () {
             url: `${baseURL}clients/createClient`,
             data: clientData,
             dataType: "json",
-            success: function (response) {
-                console.log(response);
+            success: function(data) {
+                console.log(data)
                 
-                // notyf.success("Sucesso!");
+                if (data.error == true) {
+                    $.each( data.popUpMessages, function(key, value) {
+                        notyf.error(value);
+                    });
+                } else {
+                    notyf.success(data.popUpMessages[0]);
+                }
+            },
+            error: function(xhr, status, error){
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+
+                notyf.error('Ocorreu um erro. Atualize a página e tente novamente!');
             }
         });
 

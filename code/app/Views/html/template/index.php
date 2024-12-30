@@ -100,20 +100,20 @@
 							</span>
 						</a>
 					</li>
-					<li class="nav-item dropdown <?= isset($menu) && $menu == 'COSTUMERS' ? 'active' : '' ?>">
-						<a class="nav-link dropdown-toggle" href="#COSTUMERS" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+					<li class="nav-item dropdown <?= isset($menu) && $menu == 'CLIENTS' ? 'active' : '' ?>">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 							<span class="nav-link-icon d-md-none d-lg-inline-block">
 								<i class="ti ti-users"></i>
 							</span>
 							<span class="nav-link-title">Clientes</span>
 						</a>
 						<div class="dropdown-menu">
-							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CRIAR CLIENTE' ? 'active' : '' ?>" href="<?= base_url('clients/create') ?>">CREATE</a>
+							<?php if (in_array('CLIENTS', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CREATION' ? 'active' : '' ?>" href="<?= base_url('clients/create') ?>">CREATE</a>
 							<?php endif; ?>
 						</div>
 					</li>
-					<li class="nav-item dropdown <?= isset($menu) && $menu == 'COSTUMERS' ? 'active' : '' ?>">
+					<li class="nav-item dropdown <?= isset($menu) && $menu == 'FATURA' ? 'active' : '' ?>">
 						<a class="nav-link dropdown-toggle" href="#COSTUMERS" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 							<span class="nav-link-icon d-md-none d-lg-inline-block">
 								<i class="ti ti-file-description"></i>
@@ -121,7 +121,7 @@
 							<span class="nav-link-title">Fatura</span>
 						</a>
 						<div class="dropdown-menu">
-							<?php if (in_array('CUSTOMERS', $permissions) || in_array('ALL', $permissions)) : ?>
+							<?php if (in_array('FATURA', $permissions) || in_array('ALL', $permissions)) : ?>
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CRIAR FATURA' ? 'active' : '' ?>" href="<?= base_url('fatura/criar') ?>">CREATE</a>
 							<?php endif; ?>
 						</div>

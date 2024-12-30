@@ -15,6 +15,17 @@ class VehiclesModel extends Model
         $this->db = \Config\Database::connect();
     }
 
+    public function insertVehicle($data)
+    {
+        if($this->db->table($this->table)->insert($data))
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public function getAllVehicles()
     {
         $query = $this->db->table($this->table)->select('*');

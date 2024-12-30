@@ -3,29 +3,31 @@
 use App\Models\ClientsModel;
 use App\Models\UsersModel;
 use App\Models\VehiclesModel;
-use DateTime;
-use PhpParser\Node\Expr\FuncCall;
-use Symfony\Component\Console\Descriptor\Descriptor;
+use App\Models\TokensModel;
 use CodeIgniter\I18n\Time;
-use SebastianBergmann\CodeUnit\FunctionUnit;
 
 class Clients extends BaseController
 {
     protected $session;
+
     protected $clientsModel;
+    protected $usersModel;
+    protected $vehiclesModel;
+    protected $tokensModel;
+
     protected $res;
     protected $data;
-    protected $usersModel;
+
     protected $email;
-    protected $db;
-    protected $vehiclesModel;
 
     public function __construct()
     {
         $this->session = \Config\Services::session();
+
         $this->clientsModel = new ClientsModel;
         $this->usersModel = new UsersModel;
         $this->vehiclesModel = new VehiclesModel;
+        $this->tokensModel = new TokensModel;
 
         $this->email = \Config\Services::email();
 
@@ -39,15 +41,14 @@ class Clients extends BaseController
         ];
 
         $this->data = [
-            'menu' => 'CLIENTES',
-            'submenu' => '',
-            'clientData' => array(),
+            'menu' => 'CLIENTS',
+            'submenu' => 'CREATION',
             'customCSS' => '',
             'customJS' => '<script src="'. base_url('assets/js/custom/clientes.js?' . $_ENV['VERSION'] ).'"></script>'
         ];
     }
 
-    public function create()
+    public function createClientPage()
     {
         $this->data['title'] = 'registar cliente';
 
@@ -64,7 +65,7 @@ class Clients extends BaseController
             'client_name' => $clientData['clientName'],
             'client_nif' => $clientData['clientNif'],
             'client_address' => $clientData['clientAddress'],
-            'client_city' => $clientData['clientCode'],
+            'client_city' => $clientData['clientCity'],
             'client_post_code' => $clientData['clientPostCode'],
             'client_country' => $clientData['clientCountry'],
             'client_county' => $clientData['clientCounty'],
@@ -82,92 +83,85 @@ class Clients extends BaseController
         ];
 
         $validationRules = [
-            'client_code' => [
-                'label' => 'Código Cliente',
-                'rules' => 'required'
+            'clientCode' => [
+                'label'  => 'Código Cliente', 
+                'rules'  => 'required|numeric'
             ],
-            'client_name' => [
-                'label' => 'Nome',
-                'rules' => 'required|max_length[255]'
+            'clientName' => [
+                'label'  => 'Nome', 
+                'rules'  => 'required|max_length[200]'
             ],
-            'client_nif' => [
-                'label' => 'Nif',
-                'rules' => 'required|'
+            'clientNif' => [
+                'label' => 'Nif', 
+                'rules' => 'required|numeric|max_length[9]'
             ],
-            'client_address' => [
-                'label' => 'Morada',
-                'rules' => 'required|'
+            'clientAddress' => [
+                'label'     => 'Morada', 
+                'rules'     => 'required'
             ],
-            'client_city' => [
-                'label' => 'Cidade',
-                'rules' => 'required|'
+            'clientCity' => [
+                'label'  => 'Cidade', 
+                'rules'  => 'required'
+            ], 
+            'clientPostCode' => [
+                'label'      => 'Código Postal', 
+                'rules'      => 'required'
             ],
-            'client_post_code' => [
-                'label' => 'Código Postal',
-                'rules' => 'required|'
+            'clientCountry' => [
+                'label'     => 'País', 
+                'rules'     => 'required'
             ],
-            'client_country' => [
-                'label' => 'País',
-                'rules' => 'required|'
+            'clientCounty' => [
+                'label'    => 'Distrito', 
+                'rules'    => 'required'
             ],
-            'client_county' => [
-                'label' => 'Distrito',
-                'rules' => 'required|'
+            'clientLanguage' => [
+                'label'      => 'Idioma', 
+                'rules'      => 'required'
             ],
-            'client_language' => [
-                'label' => 'Idioma',
-                'rules' => 'required|'
+            'clientEmail' => [
+                'label'   => 'Email', 
+                'rules'   => 'required|valid_email'
             ],
-            'client_email' => [
-                'label' => 'Email',
-                'rules' => 'required|'
+            'clientPhoneNumber' => [
+                'label'         => 'Telemóvel', 
+                'rules'         => 'required'
             ],
-            'client_phone_number' => [
-                'label' => 'Telemóvel',
-                'rules' => 'required|'
+            'clientGroup' => [
+                'label'   => 'Grupo',
+                'rules'   => 'required'
             ],
-            'client_observations' => [
-                'label' => 'Observações (Cliente)',
-                'rules' => ''
+            'vehicleLicensePlate' => [
+                'label'           => 'Matrícula',
+                'rules'           => 'required|exact_length[8,13]'
             ],
-            'user_group_id' => [
-                'label' => 'Grupo',
-                'rules' => ''
+            'vehicleBrand' => [
+                'label'    => 'Marca',
+                'rules'    => 'required'
             ],
-            'vehicle_license_plate' => [
-                'label' => 'Matrícula',
-                'rules' => 'required|'
+            'vehicleModel' => [
+                'label'    => 'Modelo',
+                'rules'    => 'required'
             ],
-            'vehicle_brand' => [
-                'label' => 'Marca',
-                'rules' => 'required|'
+            'vehicleYear' => [
+                'label'   => 'Ano',
+                'rules'   => 'required|exact_length[4]|numeric'
             ],
-            'vehicle_model' => [
-                'label' => 'Modelo',
-                'rules' => 'required|'
+            'vehicleChassi' => [
+                'label'     => 'Chassi',
+                'rules'     => 'required'
             ],
-            'vehicle_year' => [
-                'label' => 'Ano',
-                'rules' => 'required|'
-            ],
-            'vehicle_chassi' => [
-                'label' => 'Chassi',
-                'rules' => 'required|'
-            ],
-            'vehicle_observations' => [
-                'label' => 'Observações (Veículo)',
-                'rules' => 'required|'
-            ]
         ];
 
         if(!$this->validate($validationRules))
         {
             $this->res['error'] = true;
-            $this->res['popUpMessages'][] = $this->validator->getErrors();
+            array_push($this->res['popUpMessages'], $this->validator->getErrors());
         }
         else
         {
             $creation_date = new Time('now');
+            $tokenExpireDate = $creation_date->addDays(7);
             $USER_TOKEN = generateToken('c');
 
             $client = [
@@ -185,15 +179,60 @@ class Clients extends BaseController
             ];
 
             $contact = [
-                'client_code'              => $formData['client_code'],
-                'client_email'             => $formData['client_email'],
-                'client_phone_number'      => $formData['client_phone_number']
+                'contact_client_code'              => $formData['client_code'],
+                'contact_description'              => 'DEFAULT',
+                'contact_client_email'             => $formData['client_email'],
+                'contact_client_phone_number'      => $formData['client_phone_number'],
+                'contact_default'                  => 'true'
             ];
 
-            $vehicle = [];
+            $vehicle = [
+                'vehicle_client_code'        => $formData['client_code'],
+                'vehicle_license_plate'      => $formData['vehicle_license_plate'],
+                'vehicle_brand'              => $formData['vehicle_brand'],
+                'vehicle_model'              => $formData['vehicle_model'],
+                'vehicle_year'               => $formData['vehicle_year'],
+                'vehicle_chassi'             => $formData['vehicle_chassi'],
+                'vehicle_observations'       => $formData['vehicle_observations'],
+            ];
+
+            $tokenData = [
+                'token'                 => $USER_TOKEN,
+                'token_third_party_id'  => $formData['client_code'],
+                'token_expire_date'     => $tokenExpireDate
+            ];
+
+            if($this->clientsModel->insertClient($client) && $this->clientsModel->insertContact($contact) && $this->vehiclesModel->insertVehicle($vehicle) && $this->tokensModel->insertToken($tokenData))
+            {
+                $this->accountCreationEmail($formData['client_email'], $USER_TOKEN);
+            }
+            else
+            {
+                $this->res['error'] = true;
+                $this->res['popUpMessages'][] = 'An unexpected ERROR occurred.';
+            }
+
         }
 
-        // return $this->response->setJSON();
+        return $this->response->setJSON($this->res);
+    }
+
+    private function accountCreationEmail($emailAddress, $USER_TOKEN) : void
+    {
+        $emailBody = view('html/users/emailTemplate', ['token' => $USER_TOKEN]);
+
+        $this->email->setMailType('html');
+
+        $this->email->setFrom('oficinadigital@gmail.com', 'joão soares');
+        $this->email->setTo($emailAddress);
+
+        $this->email->setSubject('account creation');
+        
+        $this->email->setMessage($emailBody);
+
+        $this->email->send();
+
+        return;
     }
 
     //         $clientInfo = [
