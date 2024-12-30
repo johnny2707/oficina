@@ -67,31 +67,31 @@ $(document).ready(function () {
 
         console.log("Entrou!");
 
-        client = [
-            clientCode = $(".clientCode").val(),
-            clientName = $(".clientName").val(),
-            clientTaxPayer = $(".clientTaxPayer").val(),
-            clientAddress = $(".clientAddress").val(),
-            clientCity = $(".clientCity").val(),
-            clientPostCode = $(".clientPostCode").val(),
-            clientCountry = $(".clientCountry").val(),
-            clientCounty = $(".clientCounty").val(),
-            clientLanguage = $(".clientLanguage").val(),
-            clientEmail = $(".clientEmail").val(),
-            clientPhoneNumber = $(".clientPhoneNumber").val(),
-            clientGroup = $(".clientGroup").val()
-        ];
+        let client = {
+            "clientCode": $(".clientCode").val(),
+            "clientName" : $(".clientName").val(),
+            "clientNif" : $(".clientNif").val(),
+            "clientAddress" : $(".clientAddress").val(),
+            "clientCity" : $(".clientCity").val(),
+            "clientPostCode" : $(".clientPostCode").val(),
+            "clientCountry" : $(".clientCountry").val(),
+            "clientCounty" : $(".clientCounty").val(),
+            "clientLanguage" : $(".clientLanguage").val(),
+            "clientEmail" : $(".clientEmail").val(),
+            "clientPhoneNumber" : $(".clientPhoneNumber").val(),
+            "clientObservations": $(".clientObservations").val()
+        };
 
-        vehicle = [
-            vehicleLicensePlate = $(".vehicleLicensePlate").val(),
-            vehicleBrand = $(".vehicleBrand").val(),
-            vehicleModel = $(".vehicleModel").val(),
-            vehicleYear = $(".vehicleYear").val(),
-            vehicleChassi = $(".vehicleChassi").val(),
-            vehicleObservations = $(".vehicleObservations").val()
-        ];
+        let vehicle = {
+            "vehicleLicensePlate" : $(".vehicleLicensePlate").val(),
+            "vehicleBrand" : $(".vehicleBrand").val(),
+            "vehicleModel" : $(".vehicleModel").val(),
+            "vehicleYear" : $(".vehicleYear").val(),
+            "vehicleChassi" : $(".vehicleChassi").val(),
+            "vehicleObservations" : $(".vehicleObservations").val()
+        };
 
-        clientData = [client, vehicle];
+        let clientData = {client, vehicle};
 
         $.ajax({
             type: "post",
@@ -99,7 +99,9 @@ $(document).ready(function () {
             data: clientData,
             dataType: "json",
             success: function (response) {
-                notyf.success("Sucesso!");
+                console.log(response);
+                
+                // notyf.success("Sucesso!");
             }
         });
 

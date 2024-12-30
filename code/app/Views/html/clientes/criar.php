@@ -20,7 +20,7 @@
                         <div class="card mb-1">
                             <div class="card-body bg-body-tertiary">
                                 <div class="row">
-                                    <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Cliente</label></div>
+                                    <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Código Cliente <sup class="text-danger">*</sup></label></div>
                                     <div class="col-sm-3"><input type="text" name="clientCode" class="form-control clientCode"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
@@ -31,7 +31,7 @@
                                     <div class="w-100 d-block mb-3"></div>
                                 
                                     <div class="col-sm-2 d-flex align-items-end"><label class="form-label">Contribuinte <sup class="text-danger">*</sup></label></div>
-                                    <div class="col-sm-3"><input type="text" name="clientTaxPayer" class="form-control clientTaxPayer"></div>
+                                    <div class="col-sm-3"><input type="text" name="clientTaxPayer" class="form-control clientNif"></div>
                                 </div>
                             </div>
                         </div>
@@ -114,6 +114,12 @@
                                     <div class="col-sm-3"><input type="text" name="clientGroup" class="form-control clientGroup"></div>
 
                                     <div class="w-100 d-block mb-3"></div>
+                                    
+                                    <div class="col-sm-2 d-flex align-items-center"><label class="form-label">Observações</label></div>
+                                    <div class="col-sm-8"><textarea type="text" name="clientGroup" class="form-control clientGroup"></textarea></div>
+
+                                    <div class="w-100 d-block mb-3"></div>
+
                                 </div>
                             </div>
                             <div

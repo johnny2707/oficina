@@ -17,4 +17,23 @@ class ClientsModel extends Model
         $this->db = \Config\Database::connect();
     }
 
+    public function createClient($client)
+    {
+
+    }
+
+    public function updateClient()
+    {
+
+    }
+
+    public function deleteClient()
+    {
+        
+    }
+
+    public function getClientInfo()
+    {
+
+    }
 }

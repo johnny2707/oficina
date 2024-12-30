@@ -46,7 +46,6 @@ function publicHolidaysByYear($year) {
 
     ksort($holidays);
     return $holidays;
-
 }
 
 ?>
