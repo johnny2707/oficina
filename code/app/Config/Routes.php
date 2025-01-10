@@ -58,8 +58,6 @@ $routes->post('users/createAccount/(:segment)', 'Users::createAccount/$1');
 $routes->group("users", ['filter' => 'authGuard|permissionsValidation: USERS, ALL'], function($routes){
     $routes->get('/',                   'Users::index');
     $routes->get('table',               'Users::populateUsersTable');
-    $routes->get('create',              'Users::create');
-    $routes->post('create',             'Users::createNewUser');
     $routes->get('(:hash)/update',      'Users::update/$1');
     $routes->post('(:hash)/update',     'Users::updateUser/$1');
     $routes->post('(:hash)/activate',   'Users::activateUser/$1');

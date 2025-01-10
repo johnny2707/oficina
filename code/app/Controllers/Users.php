@@ -24,13 +24,15 @@ class Users extends BaseController
             'menu'          => 'USER',
             'subMenu'       => '',
             'customCSS'     => '',
-            'customJS'      => '<script src="'. base_url('assets/js/custom/clients.js?' . $_ENV['VERSION'] ).'"></script>'
+            'customJS'      => '<script src="'. base_url('assets/js/custom/users.js?' . $_ENV['VERSION'] ).'"></script>'
         ];
     }
 
-    public function index() 
+    public function createAccountPage() 
     {
-        
+        $this->data['title'] = 'user creation';
+
+        return view('html/users/createAccount', $this->data);
     }
 
     // public function index()

@@ -42,7 +42,7 @@ class Clients extends BaseController
 
         $this->data = [
             'menu' => 'CLIENTS',
-            'submenu' => 'CREATION',
+            'submenu' => '',
             'customCSS' => '',
             'customJS' => '<script src="'. base_url('assets/js/custom/clientes.js?' . $_ENV['VERSION'] ).'"></script>'
         ];
@@ -51,6 +51,7 @@ class Clients extends BaseController
     public function createClientPage()
     {
         $this->data['title'] = 'registar cliente';
+        $this->data['submenu'] = 'CREATION';
 
         return view('html/clientes/criar', $this->data);
     }
@@ -66,7 +67,7 @@ class Clients extends BaseController
             'client_nif' => $clientData['clientNif'],
             'client_address' => $clientData['clientAddress'],
             'client_city' => $clientData['clientCity'],
-            'client_post_code' => $clientData['clientPostCode'],
+            'client_post_code' => $clientData['clientPostCode'], 
             'client_country' => $clientData['clientCountry'],
             'client_county' => $clientData['clientCounty'],
             'client_language' => $clientData['clientLanguage'],
@@ -83,71 +84,71 @@ class Clients extends BaseController
         ];
 
         $validationRules = [
-            'clientCode' => [
+            'client.clientCode' => [
                 'label'  => 'Código Cliente', 
                 'rules'  => 'required|numeric'
             ],
-            'clientName' => [
+            'client.clientName' => [
                 'label'  => 'Nome', 
                 'rules'  => 'required|max_length[200]'
             ],
-            'clientNif' => [
+            'client.clientNif' => [
                 'label' => 'Nif', 
                 'rules' => 'required|numeric|max_length[9]'
             ],
-            'clientAddress' => [
+            'client.clientAddress' => [
                 'label'     => 'Morada', 
                 'rules'     => 'required'
             ],
-            'clientCity' => [
+            'client.clientCity' => [
                 'label'  => 'Cidade', 
                 'rules'  => 'required'
             ], 
-            'clientPostCode' => [
+            'client.clientPostCode' => [
                 'label'      => 'Código Postal', 
                 'rules'      => 'required'
             ],
-            'clientCountry' => [
+            'client.clientCountry' => [
                 'label'     => 'País', 
                 'rules'     => 'required'
             ],
-            'clientCounty' => [
+            'client.clientCounty' => [
                 'label'    => 'Distrito', 
                 'rules'    => 'required'
             ],
-            'clientLanguage' => [
+            'client.clientLanguage' => [
                 'label'      => 'Idioma', 
                 'rules'      => 'required'
             ],
-            'clientEmail' => [
+            'client.clientEmail' => [
                 'label'   => 'Email', 
                 'rules'   => 'required|valid_email'
             ],
-            'clientPhoneNumber' => [
+            'client.clientPhoneNumber' => [
                 'label'         => 'Telemóvel', 
                 'rules'         => 'required'
             ],
-            'clientGroup' => [
+            'client.clientGroup' => [
                 'label'   => 'Grupo',
                 'rules'   => 'required'
             ],
-            'vehicleLicensePlate' => [
+            'vehicle.vehicleLicensePlate' => [
                 'label'           => 'Matrícula',
                 'rules'           => 'required|exact_length[8,13]'
             ],
-            'vehicleBrand' => [
+            'vehicle.vehicleBrand' => [
                 'label'    => 'Marca',
                 'rules'    => 'required'
             ],
-            'vehicleModel' => [
+            'vehicle.vehicleModel' => [
                 'label'    => 'Modelo',
                 'rules'    => 'required'
             ],
-            'vehicleYear' => [
+            'vehicle.vehicleYear' => [
                 'label'   => 'Ano',
                 'rules'   => 'required|exact_length[4]|numeric'
             ],
-            'vehicleChassi' => [
+            'vehicle.vehicleChassi' => [
                 'label'     => 'Chassi',
                 'rules'     => 'required'
             ],
@@ -179,15 +180,15 @@ class Clients extends BaseController
             ];
 
             $contact = [
-                'contact_client_code'              => $formData['client_code'],
-                'contact_description'              => 'DEFAULT',
-                'contact_client_email'             => $formData['client_email'],
-                'contact_client_phone_number'      => $formData['client_phone_number'],
-                'contact_default'                  => 'true'
+                'contact_third_party_code'  => $formData['client_code'],
+                'contact_description'       => 'DEFAULT',
+                'contact_email'             => $formData['client_email'],
+                'contact_phone_number'      => $formData['client_phone_number'],
+                'contact_default'           => 'true'
             ];
 
             $vehicle = [
-                'vehicle_client_code'        => $formData['client_code'],
+                'vehicle_third_party_code'   => $formData['client_code'],
                 'vehicle_license_plate'      => $formData['vehicle_license_plate'],
                 'vehicle_brand'              => $formData['vehicle_brand'],
                 'vehicle_model'              => $formData['vehicle_model'],

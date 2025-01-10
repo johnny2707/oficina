@@ -17,7 +17,7 @@ class ClientsModel extends Model
         $this->db = \Config\Database::connect();
     }
 
-    public function createClient($data)
+    public function insertClient($data)
     {
         if($this->db->table($this->table)->insert($data))
         {
