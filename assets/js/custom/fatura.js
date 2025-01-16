@@ -72,12 +72,11 @@ $(document).ready(function () {
                 },
                 dataType: "json",
                 success: function(data) {
-                    // if (data.error == true) {
-                    //     $.each( data.popUpMessages, function( key, value ) {
-                    //         notyf.error(value);
-                    //     });
-                    // } else {
-                    //     notyf.success(data.popUpMessages[0]);
+                    if (data.error == true) {
+                        $.each( data.popUpMessages, function( key, value ) {
+                            notyf.error(value);
+                        });
+                    } else {
 
                         $('#tableBody').append(`
                             <tr>
@@ -92,7 +91,7 @@ $(document).ready(function () {
                         `);
 
                         calculatePriceValues();
-                    // }
+                    }
                 },
                 error: function(xhr, status, error) {
                     console.log(xhr);

@@ -20,7 +20,7 @@ function generateToken(
     bool $includeUppercase = true,
     bool $includeLowercase = true,
     bool $includeNumbers = true,
-    bool $includeSpecial = true,
+    bool $includeSpecial = false,
 ): string {
 
     $uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

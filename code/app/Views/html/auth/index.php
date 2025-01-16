@@ -22,7 +22,7 @@
 	<link href="<?= base_url('assets/css/custom/custom.css') ?>" rel="stylesheet"/>
 
 	<!-- Custom CSS -->
-	<?php #$customCSS ?>
+	<?= $customCSS ?>
 	
 </head>
 <body class="border-top-wide border-primary d-flex flex-column" style="background-color: #2f2f2f; opacity: 1; background-image:  linear-gradient(30deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(150deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(30deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(150deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(60deg, #00000077 25%, transparent 25.5%, transparent 75%, #00000077 75%, #00000077), linear-gradient(60deg, #00000077 25%, transparent 25.5%, transparent 75%, #00000077 75%, #00000077); background-size: 80px 140px; background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;">
@@ -48,14 +48,14 @@
 						<input type="text" class="form-control" placeholder="email" name="email">
 					</div>
 					<div class="mb-2">
-						<label class="form-label">password</label>
-						<input type="password" class="form-control" placeholder="password" name="password">
+						<label class="form-label">palavra-passe</label>
+						<input type="password" class="form-control" placeholder="palavra-passe" name="password">
 					</div>
 					<div class="form-footer">
-						<a type="button" class="btn btn-primary w-100 authButton">login</a>
+						<a type="button" class="btn btn-primary w-100 authButton">entrar</a>
 
 						<span class="form-label-description mt-4">
-							<a href="<?= base_url('auth/recoverPassword') ?>">forgot password?</a>
+							<a href="<?= base_url('auth/recoverPassword') ?>">esqueceu a palavra-passe?</a>
 						</span>
 					</div>
 				</div>

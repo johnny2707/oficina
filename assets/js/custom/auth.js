@@ -27,7 +27,10 @@ $(document).ready(function() {
                         notyf.error(value);
                     });
                 } else {
-                    notyf.success(data.popUpMessages[0]);
+                    $.each(data.popUpMessages, function(key, value) {
+                        notyf.success(value);
+                    });
+
                     location.reload();
                 }
             },
@@ -48,8 +51,8 @@ $(document).ready(function() {
         let email = $('input[name=email]').val();
 
         $.ajax({
-            url: `${baseURL}auth/sendPasswordEmail`,
-            method: "POST",
+            method: "post",
+            url: `${baseURL}/auth/sendPasswordEmail`,
             dataType: 'json',
             data : { 
                 email
@@ -60,8 +63,11 @@ $(document).ready(function() {
                         notyf.error(value);
                     });
                 } else {
-                    notyf.success(data.popUpMessages[0]);
-                    window.location.href = baseURL+'auth/emailSentConfirmation/'+email;
+                    $.each(data.popUpMessages, function(key, value) {
+                        notyf.success(value);
+                    });
+                    
+                    window.location.href = baseURL+'auth/emailSentConfirmation/'+ email;
                 }
             },
             error: function(xhr, status, error){

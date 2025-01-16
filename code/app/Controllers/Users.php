@@ -28,9 +28,10 @@ class Users extends BaseController
         ];
     }
 
-    public function createAccountPage() 
+    public function createAccountPage($USER_TOKEN) 
     {
         $this->data['title'] = 'user creation';
+        $this->data['token'] = $USER_TOKEN;
 
         return view('html/users/createAccount', $this->data);
     }

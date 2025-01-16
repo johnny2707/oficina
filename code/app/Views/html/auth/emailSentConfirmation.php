@@ -23,7 +23,7 @@
 
 	<?php #$customCSS ?>
 </head>
-<body  class=" d-flex flex-column">
+<body  class=" d-flex flex-column bodyBackground">
 	<div class="page page-center">
 		<div class="container container-tight py-4">
 			<div class="text-center mb-4">
@@ -32,13 +32,13 @@
 			<div class="text-center">
 				<div class="my-5">
 					<p class="fs-h3 text-muted">
-						we sent an email to the following adress:
+						enviámos um email para o este endereço:
 					</p>
 					<h2 class="h1"><?= $email ?></h2>
 				</div>
 				<div class="text-center text-muted mt-3">
-					can't find the email? check your spam!<br />
-					wrong email? please <a href="<?= base_url("auth/recoverPassword") ?>">enter the correct email</a>.
+					não encontra o email? procure no spam!<br />
+					email errado? por favor <a href="<?= base_url("auth/recoverPassword") ?>">insira o email certo</a>.
 				</div>
 			</div>
 		</div>

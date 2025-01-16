@@ -100,7 +100,9 @@ $(document).ready(function () {
                         notyf.error(value);
                     });
                 } else {
-                    notyf.success(data.popUpMessages[0]);
+                    $.each(data.popUpMessages, function(key, value) {
+                        notyf.success(value);
+                    });
                 }
             },
             error: function(xhr, status, error){
