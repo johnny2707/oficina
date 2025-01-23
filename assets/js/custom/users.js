@@ -43,7 +43,7 @@ $(document).ready(function () {
             });
         }
         else {
-             notyf.error('As palavras-passe não coincidem!');
+            notyf.error('As palavras-passe não coincidem!');
         }
     });
     

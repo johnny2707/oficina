@@ -53,7 +53,7 @@ $routes->group('vehicles', ['filter' => 'authGuard|permissionsValidation: VEHICL
 //USERS
 
 $routes->get('users/createAccount/(:segment)',  'Users::createAccountPage/$1');
-$routes->post('users/createAccount/(:segment)', 'Users::createAccount/$1');
+$routes->post('users/createAccount', 'Users::createAccount');
 
 $routes->group("users", ['filter' => 'authGuard|permissionsValidation: USERS, ALL'], function($routes){
     $routes->get('/',                   'Users::index');

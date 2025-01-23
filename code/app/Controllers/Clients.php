@@ -163,7 +163,7 @@ class Clients extends BaseController
         {
             $creation_date = new Time('now');
             $tokenExpireDate = $creation_date->addDays(7);
-            $USER_TOKEN = generateToken('c');
+            $USER_TOKEN = generateToken('u');
 
             $client = [
                 'client_code'              => $formData['client_code'],

@@ -135,8 +135,8 @@
         flex-grow: 0 !important;
     }
 
-    .bodyBackground {
-        background-color: #EAEAEA;
+    body {
+        background-color: #eaeaea;
     }
 /* ---- CORE ---- */
 

@@ -52,5 +52,10 @@ class UsersModel extends Model
         return $query->get()->getResultArray();
     }
 
-    
+    public function getTokenInfo($USER_TOKEN)
+    {
+        $query = $this->db->table('tb_tokens')->select('*')->where('token', $USER_TOKEN);
+
+        return $query->get()->getResultArray();
+    }
 }

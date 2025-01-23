@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\UsersModel;
+use CodeIgniter\I18n\Time;
 
 class Users extends BaseController 
 {
@@ -34,6 +35,24 @@ class Users extends BaseController
         $this->data['token'] = $USER_TOKEN;
 
         return view('html/users/createAccount', $this->data);
+    }
+
+    public function createAccount()
+    {
+        $USER_TOKEN = $this->request->getPost('token');
+        $password = $this->request->getPost('password');
+        $passwordConfirmation = $this->request->getPost('passwordConfirmation');
+
+        $tokenInfo = $this->usersModel->getTokenInfo($USER_TOKEN);
+
+        if(Time('now') > $tokenInfo['token_expire_date'])
+        {
+
+        }
+        else
+        {
+            $this->res['error'] = true;
+        }
     }
 
     // public function index()
