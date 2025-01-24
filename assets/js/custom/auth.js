@@ -35,6 +35,10 @@ $(document).ready(function() {
                 }
             },
             error: function(xhr, status, error){
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+                
                 notyf.error('Ocorreu um erro. Atualize a página e tente novamente!');
             }
         });

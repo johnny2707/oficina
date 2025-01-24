@@ -4,7 +4,7 @@
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-	<title>johnny</title>
+	<title>Oficina Digital</title>
 
 	<link rel="shortcut icon" type="image/x-icon" href="<?= base_url('logo.svg') ?>">
 
@@ -22,7 +22,7 @@
 	<link href="<?= base_url('assets/css/custom/custom.css') ?>" rel="stylesheet"/>
 
 	<!-- Custom CSS -->
-	<?php #$customCSS ?>
+	<?= $customCSS ?>
 	
 </head>
 <body class="d-flex flex-column">
@@ -30,7 +30,6 @@
 		<div class="container container-tight py-4">
 			<form class="card card-md" autocomplete="off">
 				<div class="text-center mt-5 d-flex flex-row justify-content-around align-items-center">
-					<h1>OFICINA</h1>
 					<a href="." class="navbar-brand navbar-brand-autodark"><img src="<?= base_url('assets/img/logo.svg') ?>" height="100" alt=""></a>
 				</div>
 

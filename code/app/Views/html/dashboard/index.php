@@ -15,9 +15,19 @@
 <div class="page-body">
     <div class="container-xl">
         <div class="row">
-            <div class="col-md-12">
-                
-                <div id="schedule"></div>
+            <div class="col-md-12 row">
+                <div id="schedule" class="col-sm-12 col-md-8 bg-primary">
+                    <div style="height: 320px"></div>
+                </div>
+                <div id="tasks" class="col-sm-12 col-md-4 bg-secondary">
+                    <div style="height: 320px"></div>
+                </div>
+                <div id="other" class="col-sm-12 col-md-4 bg-success">
+                    <div style="height: 320px"></div>
+                </div>
+                <div id="graphic" class="col-sm-12 col-md-8 bg-danger">
+                    <div style="height: 320px"></div>
+                </div>
 
             </div>
         </div>

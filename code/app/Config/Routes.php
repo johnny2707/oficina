@@ -8,25 +8,22 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
- $routes->get('/', 'Dashboard::index', ['filter' => 'authGuard']);
+$routes->get('/', 'Dashboard::index', ['filter' => 'authGuard']);
 
-$routes->get('fatura/criar',               'Fatura::criar');
-
-$routes->get('clock', 'Clock::index');
-
+$routes->get('fatura/criar', 'Fatura::criar');
 
 // AUTHENTICATION
 
 $routes->group('auth', ['filter' => 'authValidation'], function($routes){
-    $routes->get('/',                                  'Auth::showLoginPage');
-    $routes->post('/',                                 'Auth::login');
+    $routes->get('/',                                  'Auth::ShowLoginPage');
+    $routes->post('/',                                 'Auth::Login');
 });
 
-$routes->get('/auth/recoverPassword',                  'Auth::recoverPassword');
-$routes->post('/auth/sendPasswordEmail',               'Auth::sendPasswordEmail');
-$routes->get('/auth/changePassword/(:segment)',        'Auth::changePassword/$1');
-$routes->get('/auth/emailSentConfirmation/(:segment)', 'Auth::emailSentConfirmation/$1');
-$routes->post('/auth/updatePassword',                  'Auth::updatePassword');
+$routes->get('/auth/recoverPassword',                  'Auth::ShowPasswordRecoveryPage');
+$routes->post('/auth/sendPasswordEmail',               'Auth::SendPasswordRecoveryEmail');
+$routes->get('/auth/emailSentConfirmation/(:segment)', 'Auth::ShowEmailSentConfirmationPage/$1');
+$routes->get('/auth/newPassword/(:segment)',           'Auth::ShowNewPasswordPage/$1');
+$routes->post('/auth/updatePassword',                  'Auth::UpdatePassword');
 $routes->get('/auth/logout',                           'Auth::logout', ['filter' => 'authGuard']);
 
 // PRODUCTS 
@@ -53,16 +50,20 @@ $routes->group('vehicles', ['filter' => 'authGuard|permissionsValidation: VEHICL
 //USERS
 
 $routes->get('users/createAccount/(:segment)',  'Users::createAccountPage/$1');
-$routes->post('users/createAccount', 'Users::createAccount');
+$routes->post('users/createAccount',            'Users::createAccount');
 
-$routes->group("users", ['filter' => 'authGuard|permissionsValidation: USERS, ALL'], function($routes){
-    $routes->get('/',                   'Users::index');
-    $routes->get('table',               'Users::populateUsersTable');
-    $routes->get('(:hash)/update',      'Users::update/$1');
-    $routes->post('(:hash)/update',     'Users::updateUser/$1');
-    $routes->post('(:hash)/activate',   'Users::activateUser/$1');
-    $routes->post('(:hash)/inactivate', 'Users::inactivateUser/$1');
+//ACCOUNT
+
+$routes->group("users", ['filter' => 'authGuard|permissionsValidation: ACCOUNT, ALL'], function($routes){
+    $routes->get('/',                           'Users::index');
+    $routes->get('/users/my-password',          'Users::myPassword');
+    $routes->post('/users/my-password',         'Users::updateMyPassword');
 });
 
-$routes->get('/users/my-password',  'Users::myPassword', ['filter' => 'authGuard']);
-$routes->post('/users/my-password', 'Users::updateMyPassword', ['filter' => 'authGuard']);
+$routes->get('table',               'Users::populateUsersTable');
+$routes->get('(:hash)/update',      'Users::update/$1');
+$routes->post('(:hash)/update',     'Users::updateUser/$1');
+$routes->post('(:hash)/activate',   'Users::activateUser/$1');
+$routes->post('(:hash)/inactivate', 'Users::inactivateUser/$1');
+
+$routes->get('clock', 'Clock::index');

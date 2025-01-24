@@ -22,11 +22,18 @@ class Users extends BaseController
         );
 
         $this->data = [
-            'menu'          => 'USER',
-            'subMenu'       => '',
             'customCSS'     => '',
             'customJS'      => '<script src="'. base_url('assets/js/custom/users.js?' . $_ENV['VERSION'] ).'"></script>'
         ];
+    }
+
+    public function index() 
+    {
+        $this->data['title'] = 'My Account';
+        $this->data['menu'] = 'ACCOUNT';
+        $this->data['userInfo'] = $this->usersModel->getUserDataById($this->session->get('id'));
+
+        return view('html/account/index', $this->data);
     }
 
     public function createAccountPage($USER_TOKEN) 

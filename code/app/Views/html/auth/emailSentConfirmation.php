@@ -4,7 +4,7 @@
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-	<title>johnny</title>
+	<title>Oficina Digital</title>
 
 	<link rel="shortcut icon" type="image/x-icon" href="<?= base_url('logo.svg') ?>">
 
@@ -32,13 +32,13 @@
 			<div class="text-center">
 				<div class="my-5">
 					<p class="fs-h3 text-muted">
-						enviámos um email para o este endereço:
+						enviámos um email para este endereço:
 					</p>
 					<h2 class="h1"><?= $email ?></h2>
 				</div>
 				<div class="text-center text-muted mt-3">
 					não encontra o email? procure no spam!<br />
-					email errado? por favor <a href="<?= base_url("auth/recoverPassword") ?>">insira o email certo</a>.
+					email errado? por favor <a href="<?= base_url("auth/recoverPassword") ?>">insira o email correto</a>.
 				</div>
 			</div>
 		</div>

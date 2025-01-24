@@ -4,7 +4,7 @@
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-	<title>Recuperação da Password</title>
+	<title>Oficina Digital</title>
 
 	<link rel="shortcut icon" type="image/x-icon" href="<?= base_url('logo.svg') ?>">
 
@@ -21,7 +21,7 @@
 	<!-- Custom CSS -->
 	<link href="<?= base_url('assets/css/custom/custom.css') ?>" rel="stylesheet"/>
 
-	<?php #$customCSS ?>
+	<?= $customCSS ?>
 </head>
 <body class="d-flex flex-column bodyBackground">
 	<div class="page page-center">

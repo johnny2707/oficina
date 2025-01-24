@@ -10,7 +10,7 @@
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-	<title><?= "{$title} | " ?>oficina digital</title>
+	<title><?= "{$title} | " ?>Oficina Digital</title>
 
 	<link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/img/logo.svg') ?>">
 
@@ -22,6 +22,7 @@
 	<link href="<?= base_url('assets/libs/datatables/stateRestore.dataTables.min.css') ?>" rel="stylesheet"/>
 	
 	<link href="<?= base_url('assets/libs/tabler-icons/tabler-icons.min.css') ?>" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 	
 	<link href="<?= base_url('assets/libs/jquery-confirm/css/jquery-confirm.min.css') ?>" rel="stylesheet"/>
 	<link href="<?= base_url('assets/libs/tom-select/css/tom-select.css') ?>" rel="stylesheet"/>
@@ -53,19 +54,116 @@
 					Oficina Digital
 				</a>
 			</h1>
-			<div class="navbar-nav flex-row">
+			
+          	<div class="collapse navbar-collapse" id="sidebar-menu">
+            	<ul class="navbar-nav pt-lg-3">
+					<li class="nav-item">
+						<a class="nav-link" href="<?= base_url() ?>">
+							<span class="nav-link-icon d-md-none d-lg-inline-block">
+								<i class="bi bi-house-fill"></i>	
+							</span>
+							<span class="nav-link-title">HOME</span>
+						</a>
+					</li>
+					<li class="nav-item <?= isset($menu) && $menu == 'ACCOUNT' ? 'active' : '' ?>">
+						<a href="<?= base_url('users') ?>" class="nav-link">
+							<span class="nav-link-icon d-md-none d-lg-inline-block">
+								<i class="bi bi-person-circle"></i>
+							</span>
+							<span class="nav-link-title">ACCOUNT</span>
+						</a>
+					</li>
+					<li class="nav-item dropdown <?= isset($menu) && $menu == 'VEHICLE' ? 'active' : '' ?>">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+							<span class="nav-link-icon d-md-none d-lg-inline-block">
+								<i class="bi bi-car-front-fill"></i>
+							</span>
+							<span class="nav-link-title">MY VEHICLE</span>
+						</a>
+						<div class="dropdown-menu">
+							<?php if (in_array('VEHICLE', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'LIST' ? 'active' : '' ?>" href="<?= base_url('clients/list') ?>">LISTA CLIENTES</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CREATION' ? 'active' : '' ?>" href="<?= base_url('clients/create') ?>">CRIAR CLIENTE</a>
+							<?php endif; ?>
+						</div>
+					</li>
+					<li class="nav-item dropdown <?= isset($menu) && $menu == 'CLIENTS' ? 'active' : '' ?>">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+							<span class="nav-link-icon d-md-none d-lg-inline-block">
+								<i class="bi bi-people-fill"></i>
+							</span>
+							<span class="nav-link-title">COSTUMERS</span>
+						</a>
+						<div class="dropdown-menu">
+							<?php if (in_array('CLIENTS', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'LIST' ? 'active' : '' ?>" href="<?= base_url('clients/list') ?>">LISTA CLIENTES</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CREATION' ? 'active' : '' ?>" href="<?= base_url('clients/create') ?>">CRIAR CLIENTE</a>
+							<?php endif; ?>
+						</div>
+					</li>
+					<li class="nav-item dropdown <?= isset($menu) && $menu == 'SCHEDULE' ? 'active' : '' ?>">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+							<span class="nav-link-icon d-md-none d-lg-inline-block">
+								<i class="bi bi-calendar-event-fill"></i>
+							</span>
+							<span class="nav-link-title">CALENDAR</span>
+						</a>
+						<div class="dropdown-menu">
+							<?php if (in_array('SCHEDULE', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CALENDAR' ? 'active' : '' ?>" href="<?= base_url('calendar/calendar') ?>">CALENDÁRIO</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CREATION' ? 'active' : '' ?>" href="<?= base_url('calendar/create') ?>">CRIAR EVENTO</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'LIST' ? 'active' : '' ?>" href="<?= base_url('calendar/list') ?>">LISTA DE EVENTOS</a>
+							<?php endif; ?>
+						</div>
+					</li>
+					<li class="nav-item dropdown <?= isset($menu) && $menu == 'FATURA' ? 'active' : '' ?>">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+							<span class="nav-link-icon d-md-none d-lg-inline-block">
+								<i class="bi bi-receipt"></i>
+							</span>
+							<span class="nav-link-title">RECEIPTS</span>
+						</a>
+						<div class="dropdown-menu">
+							<?php if (in_array('FATURA', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'DIRECT CREATION' ? 'active' : '' ?>" href="<?= base_url('fatura/criar') ?>">FATURA DIRETA</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CREATION' ? 'active' : '' ?>" href="<?= base_url('fatura/criar-fatura') ?>">FATURA</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'HISTORY' ? 'active' : '' ?>" href="<?= base_url('fatura/history') ?>">HISTÓRICO</a>
+							<?php endif; ?>
+						</div>
+					</li>
+					<li class="nav-item dropdown <?= isset($menu) && $menu == 'OTHERS' ? 'active' : '' ?>">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+							<span class="nav-link-icon d-md-none d-lg-inline-block">
+								<i class="bi bi-gear-fill"></i>
+							</span>
+							<span class="nav-link-title">OTHERS</span>
+						</a>
+						<div class="dropdown-menu">
+							<?php if (in_array('OTHERS', $permissions) || in_array('ALL', $permissions)) : ?>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'OTHER' ? 'active' : '' ?>" href="<?= base_url() ?>">QUALQUER COISA</a>
+							<?php endif; ?>
+						</div>
+					</li>
+            	</ul>
+          	</div>
+
+			<!-- <div class="d-none d-lg-flex justify-content-center align-items-center gap-5 flex-row flex-row-auto">
+				<a href="?theme=dark" class="nav-link px-0" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable dark mode" data-bs-original-title="Enable dark mode">
+					<i class="bi bi-moon-fill"></i>
+				</a>
+				<a href="?theme=light" class="nav-link px-0" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable light mode" data-bs-original-title="Enable light mode">
+					<i class="bi bi-sun-fill"></i>
+				</a>
+			</div> -->
+
+			<div class="navbar-nav flex-row py-3">
 				<div class="d-none d-lg-flex order-2">
-					<a href="?theme=dark" class="nav-link px-0 hide-theme-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable dark mode" data-bs-original-title="Enable dark mode">
-						<!-- Download SVG icon from http://tabler-icons.io/i/moon -->
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg>
-					</a>
-					<a href="?theme=light" class="nav-link px-0 hide-theme-light" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable light mode" data-bs-original-title="Enable light mode">
-						<!-- Download SVG icon from http://tabler-icons.io/i/sun -->
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path></svg>
+					<a href="<?= base_url('auth/logout') ?>" class="nav-link px-0 hide-theme-dark" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="logout" data-bs-original-title="logout">
+						<i class="bi bi-door-open-fill h1 m-0 p-0 text-primary"></i>
 					</a>
 				</div>
-				<div class="nav-item dropdown">
-					<a href="#" class="nav-link d-flex lh-1 text-reset p-0 ms-3 me-5" data-bs-toggle="dropdown" aria-label="Abrir menu do utilizador">
+				<div class="nav-item">
+					<span class="nav-link d-flex lh-1 text-reset p-0 ms-3 me-5">
 						<?php
 							$nameExplode = explode(" ", $name);
 							$firstL = $nameExplode[0][0];
@@ -80,62 +178,9 @@
 							<div><?= $name ?></div>
 							<div class="mt-1 small text-muted"><?php echo $group ?></div>
 						</div>
-					</a>
-					<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-						<a href="<?= base_url('auth/recoverPassword') ?>" class="dropdown-item <?= isset($subMenu) && $subMenu == 'MY-PASSWORD' ? 'active' : '' ?>">Alterar password</a>
-						<a href="<?= base_url('auth/logout') ?>" class="dropdown-item">Log out</a>
-					</div>
+					</span>
 				</div>
 			</div>
-          	<div class="collapse navbar-collapse" id="sidebar-menu">
-            	<ul class="navbar-nav pt-lg-3">
-					<li class="nav-item">
-						<a class="nav-link" href="<?= base_url() ?>">
-							<span class="nav-link-icon d-md-none d-lg-inline-block">
-								<!-- Download SVG icon from http://tabler-icons.io/i/home -->
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
-							</span>
-							<span class="nav-link-title">
-								Home
-							</span>
-						</a>
-					</li>
-					<li class="nav-item dropdown <?= isset($menu) && $menu == 'CLIENTS' ? 'active' : '' ?>">
-						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-							<span class="nav-link-icon d-md-none d-lg-inline-block">
-								<i class="ti ti-users"></i>
-							</span>
-							<span class="nav-link-title">Clientes</span>
-						</a>
-						<div class="dropdown-menu">
-							<?php if (in_array('CLIENTS', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CREATION' ? 'active' : '' ?>" href="<?= base_url('clients/create') ?>">CREATE</a>
-							<?php endif; ?>
-						</div>
-					</li>
-					<li class="nav-item dropdown <?= isset($menu) && $menu == 'FATURA' ? 'active' : '' ?>">
-						<a class="nav-link dropdown-toggle" href="#COSTUMERS" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-							<span class="nav-link-icon d-md-none d-lg-inline-block">
-								<i class="ti ti-file-description"></i>
-							</span>
-							<span class="nav-link-title">Fatura</span>
-						</a>
-						<div class="dropdown-menu">
-							<?php if (in_array('FATURA', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CRIAR FATURA' ? 'active' : '' ?>" href="<?= base_url('fatura/criar') ?>">CREATE</a>
-							<?php endif; ?>
-						</div>
-					</li>
-					<li>
-						<a class="nav-link" href="<?= base_url('clock') ?>" role="button">
-							<span class="nav-link-icon d-md-none d-lg-inline-block">
-								<i class="ti ti-clock"></i>
-							</span>
-							<span class="nav-link-title">clock</span>
-						</a>
-					</li>
-            	</ul>
-          	</div>
         </div>
     </aside>
 	

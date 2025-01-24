@@ -34,12 +34,12 @@ class Auth extends BaseController
         ];
     }
 
-    public function showLoginPage()
+    public function ShowLoginPage()
     {
         return view('html/auth/index', $this->data);
     }
 
-    public function login()
+    public function Login()
     {
         $validationRules = [
             'email' => [
@@ -100,18 +100,18 @@ class Auth extends BaseController
         return $this->response->setJSON($this->res);
     }
 
-    public function logout()
+    public function Logout()
     {
         $this->session->destroy();
         return redirect()->to(base_url('auth'));
     }
 
-    public function recoverPassword()
+    public function ShowPasswordRecoveryPage()
     {
         return view('html/auth/recoverPassword', $this->data);
     }
 
-    public function sendPasswordEmail()
+    public function SendPasswordRecoveryEmail()
     {
         $userEmail = $this->request->getPost('email');
 
@@ -134,17 +134,19 @@ class Auth extends BaseController
         return $this->response->setJSON($this->res);
     }
 
-    public function emailSentConfirmation($email)
+    public function ShowEmailSentConfirmationPage($email)
     {
         return view('html/auth/emailSentConfirmation', ['email' => $email]);
     } 
 
-    public function changePassword($email)
+    public function ShowNewPasswordPage($email)
     {
-        return view('html/auth/changePassword', ['email' => $email]);
+        $this->data['email'] = $email;
+        
+        return view('html/auth/changePassword', $this->data);
     }
 
-    public function updatePassword()
+    public function UpdatePassword()
     {
         $password = $this->request->getPost('password');
         $email = $this->request->getPost('email');
