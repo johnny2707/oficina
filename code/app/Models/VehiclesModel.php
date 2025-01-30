@@ -15,6 +15,13 @@ class VehiclesModel extends Model
         $this->db = \Config\Database::connect();
     }
 
+    public function getVehiclesByThirdPartyCode($userId)
+    {
+        $query = $this->db->table($this->table)->select('*')->where('vehicle_third_party_code', $userId);
+
+        return $query->get()->getResultArray();
+    }
+
     public function insertVehicle($data)
     {
         if($this->db->table($this->table)->insert($data))
@@ -33,9 +40,9 @@ class VehiclesModel extends Model
         return $query->get()->getResultArray();
     }
 
-    public function getVehiclesByLicensePlate()
+    public function getVehicleDataById($vehicleId)
     {
-        $query = $this->db->table($this->table)->select("*");
+        $query = $this->db->table($this->table)->select("*")->where('vehicle_id', $vehicleId);
 
         return $query->get()->getResultArray();
     }

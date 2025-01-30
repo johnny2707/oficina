@@ -40,9 +40,8 @@ class Events extends BaseController
         ];
 
         $this->data = [
-            'menu' => 'EVENTS',
-            'submenu' => 'INDEX',
-            'mechanicData' => array(),
+            'menu' => 'SCHEDULE',
+            'submenu' => '',
             'customCSS' => '',
             'customJS' => '<script src="'. base_url('assets/js/custom/events.js?' . $_ENV['VERSION'] ).'"></script>'
         ];
@@ -97,11 +96,12 @@ class Events extends BaseController
         return $this->response->setJSON($this->res);
     }
 
-    public function listAllEvents()
+    public function index()
     {
-        $this->data['title'] = 'event calendar';
+        $this->data['title'] = 'CALENDAR';
+        $this->data['submenu'] = 'CALENDAR';
 
-        return  view('html/events/eventList', $this->data);
+        return  view('html/events/index', $this->data);
     }
 
     public function listOfEvents() 
@@ -162,17 +162,17 @@ class Events extends BaseController
 
                 // Add data to the events array
                 array_push($events, array(
-                    'id'    => $interventions['id'],
-                    'title' => $interventions['event_description'] . "(" . $interventions['name'] . ")",
+                    'id'    => $interventions['event_id'],
+                    'title' => $interventions['event_description'],
                     'description' => "
-                        <b>" . $interventions['event_description'] . "(" . $interventions['name'] . ") </b>
+                        <b>" . $interventions['event_description'] . "</b>
                         <br><br>
                         <b><u>Descrição:</u></b><br>
                         " . $interventions['event_description'],
                     'start' => $interventions['event_date'] . "T" . $interventions['event_start'],
                     'end'   => $interventions['event_date'] . "T" . $interventions['event_end'],
-                    'color' => $interventions['color'] . ($interventions['completed'] == 1 ? '80' : ''),
-                    'url'   => base_url("events/{$interventions['id']}/update")
+                    'color' => $interventions['event_color'] . (Time() > $interventions['event_date'] ? '80' : ''),
+                    'url'   => base_url("events/{$interventions['event_id']}/update")
                 ));
             }
 

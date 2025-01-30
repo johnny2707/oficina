@@ -82,8 +82,8 @@
 						</a>
 						<div class="dropdown-menu">
 							<?php if (in_array('VEHICLE', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'LIST' ? 'active' : '' ?>" href="<?= base_url('clients/list') ?>">LISTA CLIENTES</a>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CREATION' ? 'active' : '' ?>" href="<?= base_url('clients/create') ?>">CRIAR CLIENTE</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'MY VEHICLE' ? 'active' : '' ?>" href="<?= base_url('vehicles/myVehicle') ?>">O MEU VEÍCULO</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'HISTORIC' ? 'active' : '' ?>" href="<?= base_url('vehicles/historic') ?>">HISTÓRICO DE REPARAÇÕES</a>
 							<?php endif; ?>
 						</div>
 					</li>
@@ -110,7 +110,7 @@
 						</a>
 						<div class="dropdown-menu">
 							<?php if (in_array('SCHEDULE', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CALENDAR' ? 'active' : '' ?>" href="<?= base_url('calendar/calendar') ?>">CALENDÁRIO</a>
+								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CALENDAR' ? 'active' : '' ?>" href="<?= base_url('calendar/index') ?>">CALENDÁRIO</a>
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'CREATION' ? 'active' : '' ?>" href="<?= base_url('calendar/create') ?>">CRIAR EVENTO</a>
 								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'LIST' ? 'active' : '' ?>" href="<?= base_url('calendar/list') ?>">LISTA DE EVENTOS</a>
 							<?php endif; ?>

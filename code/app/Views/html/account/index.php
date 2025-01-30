@@ -54,7 +54,17 @@
                             </div>
 
                             <div class="col-sm-1 d-flex align-items-end">
-                                <input type="color" name="" id="" class="form-control form-control-color">
+                                <input type="color" name="primaryColor" id="primaryColorPicker" class="form-control form-control-color">
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-2 d-flex align-items-end">
+                                <label class="form-label">secondary color</label>
+                            </div>
+
+                            <div class="col-sm-1 d-flex align-items-end">
+                                <input type="color" name="secondaryColor" id="secondaryColorPicker" class="form-control form-control-color">
                             </div>
                         </div>
                     </div>

@@ -43,8 +43,17 @@ $routes->group('clients', ['filter' => 'authGuard|permissionsValidation:CLIENTS,
 //VEHICLES
 
 $routes->group('vehicles', ['filter' => 'authGuard|permissionsValidation: VEHICLES, ALL'], function($routes){
-    $routes->get('getAllVehicles',            'Vehicles::getAllVehicles');
-    $routes->post('getVehicleByLicensePlate', 'Vehicles::getVehicleByLicensePlate');
+    $routes->get('myVehicle',                 'Vehicles::index');
+    $routes->get('historic',                  'Vehicles::historicPage');
+    $routes->get('getUserVehicles',           'Vehicles::getUserVehicles');
+    $routes->post('getVehicleData',           'Vehicles::getVehicleData');
+});
+
+//EVENTS
+
+$routes->group('calendar', ['filter' => 'authGuard|permissionsValidation: EVENTS, ALL'], function($routes){
+    $routes->get('index',               'Events::index');
+    $routes->post('events',             'Events::listOfEvents');
 });
 
 //USERS
