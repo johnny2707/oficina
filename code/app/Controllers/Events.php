@@ -50,11 +50,11 @@ class Events extends BaseController
     //CREATE EVENT
     public function createEventLoadPage()
     {
-        $this->data['title'] = 'event creation';
-        $this->data['mechanics'] = $this->mechanicsModel->getAllMechanics();
-        $this->data['types'] = $this->eventsModel->getAllTypes();
+        $this->data['title'] = 'EVENT CREATION';
+        // $this->data['mechanics'] = $this->mechanicsModel->getAllMechanics();
+        // $this->data['types'] = $this->eventsModel->getAllTypes();
 
-        return view('html/events/eventCreation', $this->data);
+        return view('html/events/create', $this->data);
     }
 
     public function createEvent()

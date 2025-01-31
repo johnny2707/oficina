@@ -73,8 +73,8 @@
 							<span class="nav-link-title">ACCOUNT</span>
 						</a>
 					</li>
-					<li class="nav-item dropdown <?= isset($menu) && $menu == 'VEHICLE' ? 'active' : '' ?>">
-						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+					<li class="nav-item dropdown <?= (isset($menu) && $menu == 'VEHICLE') ? 'active' : '' ?>">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
 							<span class="nav-link-icon d-md-none d-lg-inline-block">
 								<i class="bi bi-car-front-fill"></i>
 							</span>
@@ -82,8 +82,12 @@
 						</a>
 						<div class="dropdown-menu">
 							<?php if (in_array('VEHICLE', $permissions) || in_array('ALL', $permissions)) : ?>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'MY VEHICLE' ? 'active' : '' ?>" href="<?= base_url('vehicles/myVehicle') ?>">O MEU VEÍCULO</a>
-								<a class="dropdown-item <?= isset($subMenu) && $subMenu == 'HISTORIC' ? 'active' : '' ?>" href="<?= base_url('vehicles/historic') ?>">HISTÓRICO DE REPARAÇÕES</a>
+								<a class="dropdown-item <?= (isset($subMenu) && $subMenu == 'MY_VEHICLE') ? 'active' : '' ?>" href="<?= base_url('vehicles/myVehicle') ?>">
+									O MEU VEÍCULO
+								</a>
+								<a class="dropdown-item <?= (isset($subMenu) && $subMenu == 'HISTORIC') ? 'active' : '' ?>" href="<?= base_url('vehicles/historic') ?>">
+									HISTÓRICO DE REPARAÇÕES
+								</a>
 							<?php endif; ?>
 						</div>
 					</li>

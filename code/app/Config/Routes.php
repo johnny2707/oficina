@@ -54,6 +54,7 @@ $routes->group('vehicles', ['filter' => 'authGuard|permissionsValidation: VEHICL
 $routes->group('calendar', ['filter' => 'authGuard|permissionsValidation: EVENTS, ALL'], function($routes){
     $routes->get('index',               'Events::index');
     $routes->post('events',             'Events::listOfEvents');
+    $routes->get('create',              'Events::createEventLoadPage');
 });
 
 //USERS

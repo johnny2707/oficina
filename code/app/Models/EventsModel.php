@@ -49,7 +49,7 @@ class EventsModel extends Model
     {
         $query = $this->db->table('tb_events')->select('*')
                                               ->join('tb_events_types', 'tb_events.event_type = tb_events_types.type_id')
-                                              ->join('tb_vehicles', 'tb_events.event_vehicle_id = tb_vehicles.vehicle_id')
+                                              ->join('tb_clients_vehicles', 'tb_events.event_vehicle_id = tb_clients_vehicles.vehicle_id')
                                               ->where("tb_events.event_date >= ", $start)
                                               ->where("tb_events.event_date <=", $end);            
         
